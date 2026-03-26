@@ -85,33 +85,6 @@
       </section>
 
       <section class="slide">
-        <div class="eyebrow">Warm-up</div>
-        <h2>API spotting with real-world platforms</h2>
-        <div class="content two-col">
-          <div class="card">
-            <h3>Ask the room</h3>
-            <ul>
-              <li>Uber</li>
-              <li>Spotify</li>
-              <li>Stripe</li>
-              <li>WhatsApp</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Let people guess</h3>
-            <div class="flow">
-              <span class="tag api">REST</span>
-              <span class="tag api">GraphQL</span>
-              <span class="tag api">WebSocket</span>
-              <span class="tag api">Webhook</span>
-              <span class="tag api">gRPC</span>
-            </div>
-            <div class="lead">The point is simple: modern platforms usually combine multiple API styles.</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide">
         <div class="eyebrow">Case</div>
         <h2>One shared case: a Deliveroo-like platform</h2>
         <div class="lead">We use one familiar platform for the whole session so the API discussion stays concrete.</div>
@@ -123,11 +96,6 @@
             <span class="node">Driver App</span>
           </div>
         </div>
-      </section>
-
-      <section class="slide">
-        <div class="eyebrow">Case flow</div>
-        <h2>What has to happen in this platform</h2>
         <div class="content requirement-grid">
           <div class="card">
             <h3>Main user flow</h3>
@@ -170,34 +138,6 @@
               <li><strong>gRPC</strong> for fast, typed communication between services.</li>
               <li><strong>Webhook</strong> for payment confirmations and event callbacks.</li>
               <li><strong>SOAP</strong> for external legacy or enterprise integrations.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide">
-        <div class="eyebrow">API mapping</div>
-        <h2>Example mapping in the food delivery case</h2>
-        <div class="content three-col">
-          <div class="card">
-            <h3>Customer side</h3>
-            <ul>
-              <li>Customer app to backend: <strong>REST</strong> or <strong>GraphQL</strong>.</li>
-              <li>Tracking updates to the app: <strong>WebSocket</strong>.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Platform side</h3>
-            <ul>
-              <li>Order service to dispatch service: <strong>gRPC</strong>.</li>
-              <li>Fast and strongly typed, still a container-level choice.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>External side</h3>
-            <ul>
-              <li>Payment provider callback: <strong>Webhook</strong>.</li>
-              <li>Legacy partner integration: <strong>SOAP</strong>.</li>
             </ul>
           </div>
         </div>
@@ -472,34 +412,6 @@
       </section>
 
       <section class="slide">
-        <div class="eyebrow">Twist cards</div>
-        <h2>Add a constraint and revisit the API choice</h2>
-        <div class="content three-col">
-          <div class="card">
-            <h3>Real-time update</h3>
-            <ul>
-              <li>The customer now expects live status updates.</li>
-              <li>Does the API choice still fit?</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Latency target</h3>
-            <ul>
-              <li>A service interaction must stay below 100 ms.</li>
-              <li>What changes at container level?</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Legacy partner</h3>
-            <ul>
-              <li>A partner system only exposes SOAP.</li>
-              <li>Where does that sit in the model?</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide">
         <div class="eyebrow">Takeaway</div>
         <h2>API styles are not a preference contest</h2>
         <div class="big-quote">Choose the style that fits the interaction, and explain it within the right C4 scope.</div>
@@ -549,7 +461,7 @@
         <button id="prevBtn">← Prev</button>
         <button id="nextBtn">Next →</button>
       </div>
-      <div class="counter" id="counter">1 / 18</div>
+      <div class="counter" id="counter">1 / 14</div>
       <div class="hint">Use <span class="kbd">←</span> <span class="kbd">→</span> or space</div>
     </div>
   </div>
