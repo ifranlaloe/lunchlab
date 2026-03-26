@@ -4,11 +4,82 @@
     const nextBtn = document.getElementById('nextBtn');
     let index = 0;
 
+    function prepareSlides() {
+      slides.forEach((slide) => {
+        if (slide.querySelector('.slide-frame')) {
+          return;
+        }
+
+        const frame = document.createElement('div');
+        frame.className = 'slide-frame';
+        const header = document.createElement('div');
+        header.className = 'slide-header';
+        const body = document.createElement('div');
+        body.className = 'slide-body';
+        const bodySelectors = ['.content', '.big-quote'];
+        let startedBody = false;
+
+        Array.from(slide.childNodes).forEach((node) => {
+          const isElement = node.nodeType === Node.ELEMENT_NODE;
+          const isBodyNode = isElement && bodySelectors.some((selector) => node.matches(selector));
+
+          if (isBodyNode) {
+            startedBody = true;
+          }
+
+          if (!startedBody && isElement) {
+            header.appendChild(node);
+            return;
+          }
+
+          if (!startedBody && !isElement && node.textContent.trim() === '') {
+            return;
+          }
+
+          body.appendChild(node);
+        });
+
+        if (header.childNodes.length > 0) {
+          frame.appendChild(header);
+        }
+
+        if (body.childNodes.length > 0) {
+          frame.appendChild(body);
+        }
+
+        slide.replaceChildren(frame);
+      });
+    }
+
+    function fitActiveSlide() {
+      const slide = slides[index];
+      if (!slide) {
+        return;
+      }
+
+      const frame = slide.querySelector('.slide-frame');
+      if (!frame) {
+        return;
+      }
+
+      frame.style.transform = 'scale(1)';
+
+      const fitPadding = 12;
+      const availableWidth = Math.max(0, slide.clientWidth - fitPadding);
+      const availableHeight = Math.max(0, slide.clientHeight - fitPadding);
+      const requiredWidth = frame.scrollWidth;
+      const requiredHeight = frame.scrollHeight;
+      const scale = Math.min(1, availableWidth / requiredWidth, availableHeight / requiredHeight) * 0.995;
+
+      frame.style.transform = `scale(${scale})`;
+    }
+
     function render() {
       slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
       counter.textContent = `${index + 1} / ${slides.length}`;
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === slides.length - 1;
+      fitActiveSlide();
     }
 
     function next() {
@@ -47,4 +118,7 @@
       }
     });
 
+    window.addEventListener('resize', fitActiveSlide);
+
+    prepareSlides();
     render();
