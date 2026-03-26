@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LunchLab #2 — Choosing the Right API Style</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --panel-2: #1a2345;
+      --text: #eef2ff;
+      --muted: #b8c1ec;
+      --accent: #8b5cf6;
+      --accent-2: #22c55e;
+      --warning: #f59e0b;
+      --border: rgba(255,255,255,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #090d1a 0%, #0f1630 100%);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+    }
+
+    .slides {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 56px 72px 88px;
+      display: none;
+      grid-template-rows: auto auto 1fr;
+      gap: 22px;
+      background:
+        radial-gradient(circle at top right, rgba(139,92,246,0.18), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(34,197,94,0.12), transparent 30%);
+    }
+
+    .slide.active { display: grid; }
+
+    .eyebrow {
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1, h2 {
+      margin: 0;
+      line-height: 1.05;
+      max-width: 1100px;
+    }
+
+    h1 { font-size: clamp(2.4rem, 6vw, 5rem); }
+    h2 { font-size: clamp(2rem, 4.8vw, 3.8rem); }
+
+    .subtitle, .lead {
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.4rem);
+      max-width: 950px;
+      line-height: 1.5;
+    }
+
+    .content {
+      display: grid;
+      gap: 20px;
+      align-content: start;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(18,25,51,0.88);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 1.03rem;
+    }
+
+    li + li { margin-top: 8px; }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .level {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      min-height: 220px;
+    }
+
+    .level .num {
+      font-size: 0.9rem;
+      color: var(--accent-2);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .level strong {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .vs {
+      display: grid;
+      place-items: center;
+      color: var(--warning);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .node, .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      min-height: 42px;
+    }
+
+    .tag.api { background: rgba(139,92,246,0.18); color: #ddd6fe; }
+    .tag.focus { background: rgba(34,197,94,0.16); color: #d1fae5; }
+    .tag.warn { background: rgba(245,158,11,0.15); color: #fde68a; }
+
+    .arrow { opacity: 0.75; font-size: 1.3rem; }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(7, 10, 20, 0.78);
+      backdrop-filter: blur(12px);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button:hover { background: var(--panel-2); }
+
+    .counter, .hint {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(139,92,246,0.18);
+      color: #ddd6fe;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .requirement-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .big-quote {
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      line-height: 1.3;
+      max-width: 1000px;
+    }
+
+    .kbd {
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .slide { padding: 28px 24px 84px; }
+      .two-col, .three-col, .level-grid, .compare, .requirement-grid { grid-template-columns: 1fr; }
+      .vs { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <div class="slides">
+      <section class="slide active">
+        <div class="eyebrow">LunchLab #2</div>
+        <h1>Choosing the Right API Style</h1>
+        <div class="subtitle">A practical system design session using <strong>real-world platforms</strong>, <strong>C4</strong>, and explicit trade-off reasoning.</div>
+        <div class="content">
+          <div class="flow">
+            <span class="tag focus">C4 framing</span>
+            <span class="tag api">REST</span>
+            <span class="tag api">GraphQL</span>
+            <span class="tag api">gRPC</span>
+            <span class="tag api">Webhooks</span>
+            <span class="tag api">WebSocket</span>
+            <span class="tag api">SOAP</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Why this session</div>
+        <h2>Not all API concepts are equally clear yet</h2>
+        <div class="content two-col">
+          <div class="card">
+            <h3>What we want</h3>
+            <ul>
+              <li>Understand when a certain API style fits.</li>
+              <li>Use real-world examples people recognize instantly.</li>
+              <li>Practice explaining design decisions, not just naming technologies.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>How we keep discussions useful</h3>
+            <ul>
+              <li>Use C4 to define the discussion scope.</li>
+              <li>Stay mostly at Level 1 and Level 2.</li>
+              <li>Only go deeper when it truly helps the design conversation.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">C4 cheat sheet</div>
+        <h2>C4 on the left, API styles on the right</h2>
+        <div class="content two-col">
+          <div class="card">
+            <h3>The 4 levels of C4</h3>
+            <div class="step-list">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div>
+                  <h3>System Context</h3>
+                  <div class="lead"><strong>Main question:</strong> What is our system, who uses it, and which external systems interact with it?</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div>
+                  <h3>Container</h3>
+                  <div class="lead"><strong>Main question:</strong> What are the main applications, services, and data stores, and how do they communicate?</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div>
+                  <h3>Component</h3>
+                  <div class="lead"><strong>Main question:</strong> How is one container split into internal building blocks and responsibilities?</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div>
+                  <h3>Code</h3>
+                  <div class="lead"><strong>Main question:</strong> How is the solution implemented in code?</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>API styles we will focus on</h3>
+            <svg viewBox="0 0 520 520" width="100%" role="img" aria-label="API styles overview diagram">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#8b5cf6" />
+                  <stop offset="100%" stop-color="#22c55e" />
+                </linearGradient>
+              </defs>
+              <circle cx="260" cy="260" r="74" fill="url(#g1)" opacity="0.18"></circle>
+              <rect x="190" y="220" width="140" height="80" rx="18" fill="#121933" stroke="rgba(255,255,255,0.18)" />
+              <text x="260" y="252" text-anchor="middle" fill="#eef2ff" font-size="20" font-family="Inter, sans-serif" font-weight="700">Our System</text>
+              <text x="260" y="278" text-anchor="middle" fill="#b8c1ec" font-size="14" font-family="Inter, sans-serif">Label interactions</text>
+
+              <rect x="30" y="70" width="110" height="54" rx="16" fill="#1a2345" stroke="rgba(255,255,255,0.16)" />
+              <text x="85" y="102" text-anchor="middle" fill="#eef2ff" font-size="18" font-family="Inter, sans-serif">REST</text>
+              <line x1="140" y1="124" x2="208" y2="220" stroke="#8b5cf6" stroke-width="3" opacity="0.9" />
+
+              <rect x="375" y="70" width="115" height="54" rx="16" fill="#1a2345" stroke="rgba(255,255,255,0.16)" />
+              <text x="432.5" y="102" text-anchor="middle" fill="#eef2ff" font-size="18" font-family="Inter, sans-serif">GraphQL</text>
+              <line x1="375" y1="124" x2="312" y2="220" stroke="#8b5cf6" stroke-width="3" opacity="0.9" />
+
+              <rect x="32" y="390" width="130" height="54" rx="16" fill="#1a2345" stroke="rgba(255,255,255,0.16)" />
+              <text x="97" y="422" text-anchor="middle" fill="#eef2ff" font-size="18" font-family="Inter, sans-serif">WebSocket</text>
+              <line x1="162" y1="390" x2="208" y2="300" stroke="#22c55e" stroke-width="3" opacity="0.9" />
+
+              <rect x="188" y="430" width="145" height="54" rx="16" fill="#1a2345" stroke="rgba(255,255,255,0.16)" />
+              <text x="260.5" y="462" text-anchor="middle" fill="#eef2ff" font-size="18" font-family="Inter, sans-serif">Webhook</text>
+              <line x1="260" y1="430" x2="260" y2="300" stroke="#22c55e" stroke-width="3" opacity="0.9" stroke-dasharray="8 6" />
+
+              <rect x="360" y="390" width="115" height="54" rx="16" fill="#1a2345" stroke="rgba(255,255,255,0.16)" />
+              <text x="417.5" y="422" text-anchor="middle" fill="#eef2ff" font-size="18" font-family="Inter, sans-serif">gRPC</text>
+              <line x1="360" y1="390" x2="312" y2="300" stroke="#22c55e" stroke-width="3" opacity="0.9" />
+
+              <rect x="365" y="220" width="100" height="54" rx="16" fill="#1a2345" stroke="rgba(255,255,255,0.16)" />
+              <text x="415" y="252" text-anchor="middle" fill="#eef2ff" font-size="18" font-family="Inter, sans-serif">SOAP</text>
+              <line x1="365" y1="247" x2="330" y2="260" stroke="#f59e0b" stroke-width="3" opacity="0.9" />
+
+              <text x="58" y="54" fill="#b8c1ec" font-size="13" font-family="Inter, sans-serif">client-facing</text>
+              <text x="376" y="54" fill="#b8c1ec" font-size="13" font-family="Inter, sans-serif">client data shaping</text>
+              <text x="24" y="468" fill="#b8c1ec" font-size="13" font-family="Inter, sans-serif">real-time</text>
+              <text x="212" y="506" fill="#b8c1ec" font-size="13" font-family="Inter, sans-serif">event callback</text>
+              <text x="382" y="468" fill="#b8c1ec" font-size="13" font-family="Inter, sans-serif">service-to-service</text>
+              <text x="372" y="208" fill="#b8c1ec" font-size="13" font-family="Inter, sans-serif">legacy / enterprise</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">C4 focus</div>
+        <h2>We will mainly use Level 1 and Level 2</h2>
+        <div class="content compare">
+          <div class="card">
+            <h3>Level 1 — System Context</h3>
+            <ul>
+              <li>Shows users and external systems.</li>
+              <li>Answers: what is our system and who interacts with it?</li>
+              <li>Great for identifying external APIs and integrations like payment providers or legacy SOAP systems.</li>
+            </ul>
+          </div>
+          <div class="vs">VS</div>
+          <div class="card">
+            <h3>Level 2 — Container</h3>
+            <ul>
+              <li>Shows the system's main apps, services, and data stores.</li>
+              <li>Answers: how is our system structured internally?</li>
+              <li>Great for discussing REST, GraphQL, WebSocket, and gRPC between containers.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Guardrail</div>
+        <h2>How to keep the discussion in scope</h2>
+        <div class="content three-col">
+          <div class="card">
+            <h3>Ask first</h3>
+            <ul>
+              <li>Which C4 level are we discussing right now?</li>
+              <li>Are we outside the system or inside it?</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Stay useful</h3>
+            <ul>
+              <li>Talk about interactions between boxes.</li>
+              <li>Avoid deep implementation details.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Cheat phrase</h3>
+            <div class="big-quote">“We only talk about communication <strong>between boxes</strong>, not inside them.”</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Case</div>
+        <h2>Real-world example: a food delivery platform</h2>
+        <div class="lead">Think of a platform in the space of Uber Eats or Deliveroo. Familiar enough to imagine, rich enough to contain several API styles.</div>
+        <div class="content">
+          <div class="flow">
+            <span class="node">Customer App</span><span class="arrow">→</span>
+            <span class="node">Delivery Platform</span><span class="arrow">←</span>
+            <span class="node">Restaurant Portal</span><span class="arrow">←</span>
+            <span class="node">Driver App</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Requirements</div>
+        <h2>Functional and non-functional requirements</h2>
+        <div class="content requirement-grid">
+          <div class="card">
+            <h3>Functional</h3>
+            <ul>
+              <li>Browse restaurants and menus.</li>
+              <li>Place an order and pay.</li>
+              <li>Restaurant receives and accepts orders.</li>
+              <li>Customer tracks delivery in near real time.</li>
+              <li>Customer receives order status updates.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Non-functional</h3>
+            <ul>
+              <li>Responsive experience for mobile users.</li>
+              <li>Reliable payment confirmation.</li>
+              <li>Scales during lunch and dinner peaks.</li>
+              <li>Low latency for driver tracking updates.</li>
+              <li>Works with external partners and legacy systems.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Workshop flow</div>
+        <h2>Then we go to the drawing board</h2>
+        <div class="content step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Identify actors and external systems</h3>
+              <div class="lead">Start with Level 1 and draw the system boundary.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Identify the main containers</h3>
+              <div class="lead">Move to Level 2: apps, services, and important data stores.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Draw interactions</h3>
+              <div class="lead">Who talks to whom? Which interactions are synchronous, asynchronous, or real-time?</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div>
+              <h3>Label the API style per interaction</h3>
+              <div class="lead">Choose the style that fits the interaction, then explain the trade-off.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Level 1</div>
+        <h2>Start with System Context</h2>
+        <div class="content two-col">
+          <div class="card">
+            <h3>Identify</h3>
+            <ul>
+              <li>Customers</li>
+              <li>Restaurants</li>
+              <li>Drivers</li>
+              <li>Payment provider</li>
+              <li>Notification provider</li>
+              <li>Possibly a legacy partner system</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Prompt for the room</h3>
+            <ul>
+              <li>Which of these are part of our system?</li>
+              <li>Which are outside the boundary?</li>
+              <li>Where do we already expect external API styles like webhooks or SOAP?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Level 2</div>
+        <h2>Then move to Containers</h2>
+        <div class="content">
+          <div class="flow">
+            <span class="node">Mobile App</span>
+            <span class="arrow">→</span>
+            <span class="node">Backend API</span>
+            <span class="arrow">→</span>
+            <span class="node">Order Service</span>
+            <span class="arrow">→</span>
+            <span class="node">Payment Service</span>
+            <span class="arrow">→</span>
+            <span class="node">Tracking Service</span>
+          </div>
+          <div class="two-col">
+            <div class="card">
+              <h3>Good discussion questions</h3>
+              <ul>
+                <li>Which containers do we need first?</li>
+                <li>Which container owns which responsibility?</li>
+                <li>Which interactions matter for the user experience?</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Important framing</h3>
+              <ul>
+                <li>gRPC is valid here because it is a choice between containers.</li>
+                <li>We do not need to open up the inside of a service to discuss it.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">API mapping</div>
+        <h2>Example mapping of API styles</h2>
+        <div class="content three-col">
+          <div class="card">
+            <h3>Client-facing</h3>
+            <ul>
+              <li><strong>REST</strong> for straightforward request-response flows.</li>
+              <li><strong>GraphQL</strong> when frontend data needs are variable.</li>
+              <li><strong>WebSocket</strong> for live tracking or status streams.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Internal</h3>
+            <ul>
+              <li><strong>gRPC</strong> for fast, strongly typed service-to-service communication.</li>
+              <li>Still a Level 2 container discussion.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>External</h3>
+            <ul>
+              <li><strong>Webhook</strong> for payment confirmations or event callbacks.</li>
+              <li><strong>SOAP</strong> when integrating with legacy enterprise systems.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Facilitation</div>
+        <h2>Questions to keep asking during the session</h2>
+        <div class="content two-col">
+          <div class="card">
+            <h3>About scope</h3>
+            <ul>
+              <li>Which C4 level is this decision on?</li>
+              <li>Is this inside the system or outside it?</li>
+              <li>Are we still talking between boxes?</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>About API choice</h3>
+            <ul>
+              <li>Why does this interaction need this style?</li>
+              <li>What trade-off are we making?</li>
+              <li>What would break if we used a different style?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Takeaway</div>
+        <h2>API styles are not a preference contest</h2>
+        <div class="big-quote">Choose the style that fits the interaction, and explain it within the right C4 scope.</div>
+        <div class="content">
+          <div class="flow">
+            <span class="tag focus">Start at Level 1</span>
+            <span class="tag focus">Move to Level 2</span>
+            <span class="tag api">Label interactions</span>
+            <span class="tag warn">Explain trade-offs</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer">
+      <div class="controls">
+        <button id="prevBtn">← Prev</button>
+        <button id="nextBtn">Next →</button>
+      </div>
+      <div class="counter" id="counter">1 / 12</div>
+      <div class="hint">Use <span class="kbd">←</span> <span class="kbd">→</span> or space</div>
+    </div>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const counter = document.getElementById('counter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let index = 0;
+
+    function render() {
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      counter.textContent = `${index + 1} / ${slides.length}`;
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === slides.length - 1;
+    }
+
+    function next() {
+      if (index < slides.length - 1) {
+        index += 1;
+        render();
+      }
+    }
+
+    function prev() {
+      if (index > 0) {
+        index -= 1;
+        render();
+      }
+    }
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    window.addEventListener('keydown', (e) => {
+      if (["ArrowRight", " ", "PageDown"].includes(e.key)) {
+        e.preventDefault();
+        next();
+      }
+      if (["ArrowLeft", "PageUp"].includes(e.key)) {
+        e.preventDefault();
+        prev();
+      }
+      if (e.key === 'Home') {
+        index = 0;
+        render();
+      }
+      if (e.key === 'End') {
+        index = slides.length - 1;
+        render();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
