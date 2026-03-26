@@ -1,160 +1,146 @@
 # LunchLab #2: Choosing the Right API Style
 
-This session is designed for a LunchLab knowledge-sharing event about system design. The trigger for this second edition is simple: during the first session, it became clear that common API concepts are not equally clear to everyone yet.
+This session is a trimmed LunchLab format focused on one practical question:
 
-The goal of this session is to make API style choices easier to understand and easier to explain.
+> Which API style fits which interaction?
+
+The session uses one fixed case: a Deliveroo-like food delivery platform.
 
 ## Purpose
 
-- Explain when different API styles are a good fit.
-- Practice explaining design decisions and trade-offs.
-- Use real-world platforms and interactions so the discussion stays concrete.
-- Use C4 to keep the discussion at the right architectural scope.
+- explain when a specific API style fits
+- practice explaining trade-offs
+- keep the discussion grounded in one real-world case
+- use C4 to keep the discussion at the right scope
 
-## Session framing
+## Core message
 
-The session focuses on one core message:
+There is no single best API style for a system.
 
-> You do not choose one API style for the whole system. You choose the right style for each interaction.
+The useful question is:
 
-To make that tangible, this edition uses one fixed case: a food delivery platform in the space of Deliveroo. That gives the session one shared mental model and makes it easier to compare API style choices in a realistic context.
+> What is the interaction, and which style fits it best?
 
-## Recommended format
+## Current slide flow
 
-Total duration: 60 to 90 minutes.
+The current deck is intentionally slimmer than the original draft.
 
-### 1. Warm-up: API spotting
+### 1. Opening
 
-Use a short interactive opening with recognizable platforms such as:
+Start with:
 
-- Uber
-- Spotify
-- Stripe
-- WhatsApp
+- why this session exists
+- what participants should get out of it
+- the high-level session flow
 
-Ask the room which API styles they think are involved:
+### 2. Shared case
+
+Use one Deliveroo-like platform as the reference system.
+
+Cover:
+
+- customer app
+- restaurant portal
+- driver app
+- the delivery platform itself
+
+Main flow:
+
+- browse restaurants and menus
+- place and pay for an order
+- restaurant accepts the order
+- driver delivers the order
+- customer tracks progress
+
+Important constraints:
+
+- responsive mobile experience
+- reliable payment confirmation
+- low-latency tracking
+- scale during lunch and dinner peaks
+- realistic external and legacy integrations
+
+### 3. API styles
+
+Explain API styles through the delivery case.
+
+Current styles in scope:
 
 - REST
 - GraphQL
 - WebSocket
 - Webhook
 - gRPC
+- SOAP
 
-The point is to show early that modern platforms usually combine multiple API styles.
+Use the case to explain:
 
-### 2. Explain the case first
+- client-facing interactions
+- service-to-service communication
+- external callbacks and legacy integrations
 
-Use one shared case before introducing the API styles.
+### 4. C4 framing
 
-Suggested case: a food delivery platform similar to Deliveroo.
+Explain why the model is called C4:
 
-Explain the basic flow of the platform:
+- Context
+- Containers
+- Components
+- Code
 
-- customers browse restaurants and menus
-- customers place and pay for orders
-- restaurants receive and accept orders
-- drivers pick up and deliver orders
-- customers track delivery progress
+Then make the session rule explicit:
 
-This creates the system context participants need before API terminology is introduced.
+- stay at Level 1 and Level 2
+- use Level 3 and Level 4 only as a warning that the discussion is going too deep
 
-### 3. Explain the API styles through the case
+The helpful facilitation phrase remains:
 
-Once the room understands the food delivery case, map the API styles onto that scenario:
+> We only talk about communication between boxes, not inside them.
 
-- REST or GraphQL for app-to-backend data retrieval
-- WebSocket for real-time delivery tracking
-- Webhook for payment status callbacks
-- gRPC for service-to-service communication between containers
-- SOAP for external legacy or enterprise integrations
+### 5. WhatsApp zoom example
 
-This keeps the API discussion practical instead of abstract.
+Use the WhatsApp SVG to explain C4 as zooming into the same system:
 
-### 4. Explain C4 before the exercise
+- Level 1: system context
+- Level 2: containers
+- Level 3: components
+- Level 4: code
 
-Before using C4 as a discussion guardrail, explain the name itself:
+This slide is there to make the abstraction levels intuitive, not to change the scope of the session.
 
-- C4 stands for Context, Containers, Components, and Code.
-- The name is useful because it already tells the room which four abstraction levels exist in the model.
-- For this session, only the first two matter: Context and Containers.
+### 6. Whole-room exercise
 
-This session should stay intentionally narrow in C4 scope:
-
-- Level 1: System Context
-- Level 2: Container
-
-Do not go to Component level unless there is a very strong reason. In practice, that level tends to make the discussion more complex than useful for this format.
-
-Use these rules during the session:
-
-- Always state which C4 level you are discussing.
-- Only discuss communication between boxes, not inside them.
-- Keep the conversation at architecture and interaction level, not implementation level.
-
-The purpose of this part is to give the room a shared discussion discipline before the interactive work starts.
-
-### 5. Interactive group exercise
-
-Run the exercise with the full room on the same food delivery case.
-
-That keeps the discussion shared, makes facilitation easier, and avoids time loss from breakout discussions.
+The exercise is done with the full room on the same food delivery case.
 
 Ask the room to:
 
 - identify the relevant interactions
 - choose an API style per interaction
-- explain why that style fits
-- name the trade-off
-- state whether the decision is at System Context or Container level
+- explain the trade-off
+- state the C4 level
 
-Optional twist cards can be added halfway through, such as:
-
-- real-time updates are now required
-- latency must stay below a given threshold
-- a legacy partner system must be integrated
-
-### 6. Group discussion
-
-As the room works through the case, keep asking:
+Useful prompt questions:
 
 - Which C4 level is this decision on?
-- Why does this API style fit this interaction?
-- What trade-off are you accepting?
-- What would change if traffic or latency requirements changed?
+- Are we still talking between boxes?
+- Why does this interaction need this style?
+- What trade-off are we making?
 
-The session should reward reasoning, not guessing the single correct answer.
+### 7. Close
 
-### 7. Wrap-up
+End with:
 
-Close with a short summary:
+- the takeaway slide
+- the cheat sheet slide
 
-- there is no single best API style
-- real systems use multiple API styles together
-- API choices only make sense in context
-- C4 helps keep the discussion structured
+The cheat sheet is there as a final reference, not as a new concept.
 
 ## C4 scope for API styles
 
-One important clarification from the preparation discussion:
+Two points matter for this session:
 
-- SOAP fits naturally at Level 1 when it represents an external legacy or enterprise system.
-- gRPC still fits cleanly at Level 2, as long as it is framed as communication between containers or services.
-
-That means this session can stay fully within Level 1 and Level 2 while still discussing gRPC.
-
-Good phrasing for the room:
-
-> We only talk about communication between boxes, not inside them.
-
-And for gRPC specifically:
-
-> Even though gRPC feels technical, in this session we treat it as a container-level decision: how services talk to each other.
-
-## Practical takeaway
-
-The most useful framing for participants is:
-
-> API styles are less about technology preference and more about fit for purpose within a specific C4 scope.
+- SOAP fits naturally at Level 1 when it represents an external legacy or enterprise integration.
+- gRPC fits naturally at Level 2 when it is framed as communication between containers or services.
 
 ## Files
 
