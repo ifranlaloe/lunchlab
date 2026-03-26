@@ -12,10 +12,10 @@
       <section class="slide active">
         <div class="eyebrow">LunchLab #2</div>
         <h1>Choosing the Right API Style</h1>
-        <div class="subtitle">A practical system design session using <strong>real-world platforms</strong>, <strong>C4</strong>, and explicit trade-off reasoning.</div>
+        <div class="subtitle">A practical system design session built around a <strong>Deliveroo-like platform</strong>, <strong>C4</strong>, and explicit trade-off reasoning.</div>
         <div class="content">
           <div class="flow">
-            <span class="tag focus">C4 framing</span>
+            <span class="tag focus">Food delivery case</span>
             <span class="tag api">REST</span>
             <span class="tag api">GraphQL</span>
             <span class="tag api">gRPC</span>
@@ -42,152 +42,79 @@
             <h3>How we keep discussions useful</h3>
             <ul>
               <li>Use C4 to define the discussion scope.</li>
-              <li>Stay mostly at Level 1 and Level 2.</li>
-              <li>Only go deeper when it truly helps the design conversation.</li>
+              <li>Stay at Level 1 and Level 2.</li>
+              <li>Explain decisions in terms of trade-offs, not preference.</li>
             </ul>
           </div>
         </div>
       </section>
 
       <section class="slide">
-        <div class="eyebrow">C4 cheat sheet</div>
-        <h2>C4 on the left, API styles on the right</h2>
-        <div class="content two-col">
-          <div class="card">
-            <h3>The 4 levels of C4</h3>
-            <div class="step-list">
-              <div class="step">
-                <div class="step-num">1</div>
-                <div>
-                  <h3>System Context</h3>
-                  <div class="lead"><strong>Main question:</strong> What is our system, who uses it, and which external systems interact with it?</div>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-num">2</div>
-                <div>
-                  <h3>Container</h3>
-                  <div class="lead"><strong>Main question:</strong> What are the main applications, services, and data stores, and how do they communicate?</div>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-num">3</div>
-                <div>
-                  <h3>Component</h3>
-                  <div class="lead"><strong>Main question:</strong> How is one container split into internal building blocks and responsibilities?</div>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-num">4</div>
-                <div>
-                  <h3>Code</h3>
-                  <div class="lead"><strong>Main question:</strong> How is the solution implemented in code?</div>
-                </div>
-              </div>
+        <div class="eyebrow">Flow</div>
+        <h2>How this session is structured</h2>
+        <div class="content step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Start with the case</h3>
+              <div class="lead">Use one shared Deliveroo-like platform so everyone reasons about the same system.</div>
             </div>
           </div>
-          <div class="card">
-            <h3>API styles we will focus on</h3>
-            <svg viewBox="0 0 520 520" width="100%" role="img" aria-label="API styles overview diagram">
-              <defs>
-                <linearGradient id="g1" x1="0" x2="1">
-                  <stop offset="0%" stop-color="#164194" />
-                  <stop offset="100%" stop-color="#0f2b6d" />
-                </linearGradient>
-              </defs>
-              <circle cx="260" cy="260" r="74" fill="url(#g1)" opacity="0.18"></circle>
-              <rect x="190" y="220" width="140" height="80" rx="18" fill="#ffffff" stroke="rgba(11,31,77,0.24)" />
-              <text x="260" y="252" text-anchor="middle" fill="#0b1f4d" font-size="20" font-family="Inter, sans-serif" font-weight="700">Our System</text>
-              <text x="260" y="278" text-anchor="middle" fill="#405789" font-size="14" font-family="Inter, sans-serif">Label interactions</text>
-
-              <rect x="30" y="70" width="110" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.2)" />
-              <text x="85" y="102" text-anchor="middle" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif">REST</text>
-              <line x1="140" y1="124" x2="208" y2="220" stroke="#164194" stroke-width="3" opacity="0.9" />
-
-              <rect x="375" y="70" width="115" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.2)" />
-              <text x="432.5" y="102" text-anchor="middle" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif">GraphQL</text>
-              <line x1="375" y1="124" x2="312" y2="220" stroke="#164194" stroke-width="3" opacity="0.9" />
-
-              <rect x="32" y="390" width="130" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.2)" />
-              <text x="97" y="422" text-anchor="middle" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif">WebSocket</text>
-              <line x1="162" y1="390" x2="208" y2="300" stroke="#0f2b6d" stroke-width="3" opacity="0.9" />
-
-              <rect x="188" y="430" width="145" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.2)" />
-              <text x="260.5" y="462" text-anchor="middle" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif">Webhook</text>
-              <line x1="260" y1="430" x2="260" y2="300" stroke="#0f2b6d" stroke-width="3" opacity="0.9" stroke-dasharray="8 6" />
-
-              <rect x="360" y="390" width="115" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.2)" />
-              <text x="417.5" y="422" text-anchor="middle" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif">gRPC</text>
-              <line x1="360" y1="390" x2="312" y2="300" stroke="#0f2b6d" stroke-width="3" opacity="0.9" />
-
-              <rect x="365" y="220" width="100" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.2)" />
-              <text x="415" y="252" text-anchor="middle" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif">SOAP</text>
-              <line x1="365" y1="247" x2="330" y2="260" stroke="#2c4f94" stroke-width="3" opacity="0.9" />
-
-              <text x="58" y="54" fill="#405789" font-size="13" font-family="Inter, sans-serif">client-facing</text>
-              <text x="376" y="54" fill="#405789" font-size="13" font-family="Inter, sans-serif">client data shaping</text>
-              <text x="24" y="468" fill="#405789" font-size="13" font-family="Inter, sans-serif">real-time</text>
-              <text x="212" y="506" fill="#405789" font-size="13" font-family="Inter, sans-serif">event callback</text>
-              <text x="382" y="468" fill="#405789" font-size="13" font-family="Inter, sans-serif">service-to-service</text>
-              <text x="372" y="208" fill="#405789" font-size="13" font-family="Inter, sans-serif">legacy / enterprise</text>
-            </svg>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Explain API styles through that case</h3>
+              <div class="lead">Map different interactions to different API choices.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Introduce C4 before discussion</h3>
+              <div class="lead">Use Context and Containers to keep the conversation at the right level.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div>
+              <h3>Run one whole-room exercise</h3>
+              <div class="lead">The full room works through the same case together and explains trade-offs.</div>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="slide">
-        <div class="eyebrow">C4 focus</div>
-        <h2>We will mainly use Level 1 and Level 2</h2>
-        <div class="content compare">
+        <div class="eyebrow">Warm-up</div>
+        <h2>API spotting with real-world platforms</h2>
+        <div class="content two-col">
           <div class="card">
-            <h3>Level 1 — System Context</h3>
+            <h3>Ask the room</h3>
             <ul>
-              <li>Shows users and external systems.</li>
-              <li>Answers: what is our system and who interacts with it?</li>
-              <li>Great for identifying external APIs and integrations like payment providers or legacy SOAP systems.</li>
-            </ul>
-          </div>
-          <div class="vs">VS</div>
-          <div class="card">
-            <h3>Level 2 — Container</h3>
-            <ul>
-              <li>Shows the system's main apps, services, and data stores.</li>
-              <li>Answers: how is our system structured internally?</li>
-              <li>Great for discussing REST, GraphQL, WebSocket, and gRPC between containers.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide">
-        <div class="eyebrow">Guardrail</div>
-        <h2>How to keep the discussion in scope</h2>
-        <div class="content three-col">
-          <div class="card">
-            <h3>Ask first</h3>
-            <ul>
-              <li>Which C4 level are we discussing right now?</li>
-              <li>Are we outside the system or inside it?</li>
+              <li>Uber</li>
+              <li>Spotify</li>
+              <li>Stripe</li>
+              <li>WhatsApp</li>
             </ul>
           </div>
           <div class="card">
-            <h3>Stay useful</h3>
-            <ul>
-              <li>Talk about interactions between boxes.</li>
-              <li>Avoid deep implementation details.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Cheat phrase</h3>
-            <div class="big-quote">“We only talk about communication <strong>between boxes</strong>, not inside them.”</div>
+            <h3>Let people guess</h3>
+            <div class="flow">
+              <span class="tag api">REST</span>
+              <span class="tag api">GraphQL</span>
+              <span class="tag api">WebSocket</span>
+              <span class="tag api">Webhook</span>
+              <span class="tag api">gRPC</span>
+            </div>
+            <div class="lead">The point is simple: modern platforms usually combine multiple API styles.</div>
           </div>
         </div>
       </section>
 
       <section class="slide">
         <div class="eyebrow">Case</div>
-        <h2>Real-world example: a food delivery platform</h2>
-        <div class="lead">Think of a platform in the space of Uber Eats or Deliveroo. Familiar enough to imagine, rich enough to contain several API styles.</div>
+        <h2>One shared case: a Deliveroo-like platform</h2>
+        <div class="lead">We use one familiar platform for the whole session so the API discussion stays concrete.</div>
         <div class="content">
           <div class="flow">
             <span class="node">Customer App</span><span class="arrow">→</span>
@@ -199,132 +126,36 @@
       </section>
 
       <section class="slide">
-        <div class="eyebrow">Requirements</div>
-        <h2>Functional and non-functional requirements</h2>
+        <div class="eyebrow">Case flow</div>
+        <h2>What has to happen in this platform</h2>
         <div class="content requirement-grid">
           <div class="card">
-            <h3>Functional</h3>
+            <h3>Main user flow</h3>
             <ul>
-              <li>Browse restaurants and menus.</li>
-              <li>Place an order and pay.</li>
-              <li>Restaurant receives and accepts orders.</li>
-              <li>Customer tracks delivery in near real time.</li>
-              <li>Customer receives order status updates.</li>
+              <li>Customers browse restaurants and menus.</li>
+              <li>Customers place and pay for orders.</li>
+              <li>Restaurants receive and accept orders.</li>
+              <li>Drivers pick up and deliver orders.</li>
+              <li>Customers track delivery progress.</li>
             </ul>
           </div>
           <div class="card">
-            <h3>Non-functional</h3>
+            <h3>Constraints that matter</h3>
             <ul>
-              <li>Responsive experience for mobile users.</li>
-              <li>Reliable payment confirmation.</li>
-              <li>Scales during lunch and dinner peaks.</li>
-              <li>Low latency for driver tracking updates.</li>
-              <li>Works with external partners and legacy systems.</li>
+              <li>Mobile experience needs to feel responsive.</li>
+              <li>Payment confirmation needs to be reliable.</li>
+              <li>Driver tracking needs low latency.</li>
+              <li>The platform must scale during lunch and dinner peaks.</li>
+              <li>External and legacy integrations are realistic.</li>
             </ul>
           </div>
         </div>
       </section>
 
       <section class="slide">
-        <div class="eyebrow">Workshop flow</div>
-        <h2>Then we go to the drawing board</h2>
-        <div class="content step-list">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div>
-              <h3>Identify actors and external systems</h3>
-              <div class="lead">Start with Level 1 and draw the system boundary.</div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div>
-              <h3>Identify the main containers</h3>
-              <div class="lead">Move to Level 2: apps, services, and important data stores.</div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div>
-              <h3>Draw interactions</h3>
-              <div class="lead">Who talks to whom? Which interactions are synchronous, asynchronous, or real-time?</div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">4</div>
-            <div>
-              <h3>Label the API style per interaction</h3>
-              <div class="lead">Choose the style that fits the interaction, then explain the trade-off.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide">
-        <div class="eyebrow">Level 1</div>
-        <h2>Start with System Context</h2>
+        <div class="eyebrow">API styles</div>
+        <h2>Use the case to explain different interaction types</h2>
         <div class="content two-col">
-          <div class="card">
-            <h3>Identify</h3>
-            <ul>
-              <li>Customers</li>
-              <li>Restaurants</li>
-              <li>Drivers</li>
-              <li>Payment provider</li>
-              <li>Notification provider</li>
-              <li>Possibly a legacy partner system</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Prompt for the room</h3>
-            <ul>
-              <li>Which of these are part of our system?</li>
-              <li>Which are outside the boundary?</li>
-              <li>Where do we already expect external API styles like webhooks or SOAP?</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide">
-        <div class="eyebrow">Level 2</div>
-        <h2>Then move to Containers</h2>
-        <div class="content">
-          <div class="flow">
-            <span class="node">Mobile App</span>
-            <span class="arrow">→</span>
-            <span class="node">Backend API</span>
-            <span class="arrow">→</span>
-            <span class="node">Order Service</span>
-            <span class="arrow">→</span>
-            <span class="node">Payment Service</span>
-            <span class="arrow">→</span>
-            <span class="node">Tracking Service</span>
-          </div>
-          <div class="two-col">
-            <div class="card">
-              <h3>Good discussion questions</h3>
-              <ul>
-                <li>Which containers do we need first?</li>
-                <li>Which container owns which responsibility?</li>
-                <li>Which interactions matter for the user experience?</li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>Important framing</h3>
-              <ul>
-                <li>gRPC is valid here because it is a choice between containers.</li>
-                <li>We do not need to open up the inside of a service to discuss it.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide">
-        <div class="eyebrow">API mapping</div>
-        <h2>Example mapping of API styles</h2>
-        <div class="content three-col">
           <div class="card">
             <h3>Client-facing</h3>
             <ul>
@@ -334,17 +165,227 @@
             </ul>
           </div>
           <div class="card">
-            <h3>Internal</h3>
+            <h3>Inside and outside the platform</h3>
             <ul>
-              <li><strong>gRPC</strong> for fast, strongly typed service-to-service communication.</li>
-              <li>Still a Level 2 container discussion.</li>
+              <li><strong>gRPC</strong> for fast, typed communication between services.</li>
+              <li><strong>Webhook</strong> for payment confirmations and event callbacks.</li>
+              <li><strong>SOAP</strong> for external legacy or enterprise integrations.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">API mapping</div>
+        <h2>Example mapping in the food delivery case</h2>
+        <div class="content three-col">
+          <div class="card">
+            <h3>Customer side</h3>
+            <ul>
+              <li>Customer app to backend: <strong>REST</strong> or <strong>GraphQL</strong>.</li>
+              <li>Tracking updates to the app: <strong>WebSocket</strong>.</li>
             </ul>
           </div>
           <div class="card">
-            <h3>External</h3>
+            <h3>Platform side</h3>
             <ul>
-              <li><strong>Webhook</strong> for payment confirmations or event callbacks.</li>
-              <li><strong>SOAP</strong> when integrating with legacy enterprise systems.</li>
+              <li>Order service to dispatch service: <strong>gRPC</strong>.</li>
+              <li>Fast and strongly typed, still a container-level choice.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>External side</h3>
+            <ul>
+              <li>Payment provider callback: <strong>Webhook</strong>.</li>
+              <li>Legacy partner integration: <strong>SOAP</strong>.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">C4</div>
+        <h2>Why it is called C4</h2>
+        <div class="content two-col">
+          <div class="card">
+            <h3>The name</h3>
+            <ul>
+              <li><strong>Context</strong></li>
+              <li><strong>Containers</strong></li>
+              <li><strong>Components</strong></li>
+              <li><strong>Code</strong></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Why this helps</h3>
+            <ul>
+              <li>The name already tells you the four abstraction levels.</li>
+              <li>It gives the room a shared language for architectural scope.</li>
+              <li>For this session we only need the first two levels.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">C4 zooming</div>
+        <h2>Think of C4 as zooming into WhatsApp</h2>
+        <div class="lead">Same system, different levels of detail. Each step zooms into the previous box.</div>
+        <div class="content">
+          <svg viewBox="0 0 920 480" width="100%" role="img" aria-label="C4 zooming example using WhatsApp from system context to containers, components, and code">
+            <defs>
+              <linearGradient id="zoomLevel" x1="0" x2="1">
+                <stop offset="0%" stop-color="#164194" />
+                <stop offset="100%" stop-color="#0f2b6d" />
+              </linearGradient>
+              <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+                <polygon points="0 0, 7 3.5, 0 7" fill="#164194" />
+              </marker>
+            </defs>
+
+            <rect x="18" y="18" width="884" height="84" rx="26" fill="#f8fbff" stroke="rgba(11,31,77,0.15)" />
+            <text x="740" y="42" fill="#405789" font-size="13" font-family="Inter, sans-serif">Level 1</text>
+            <text x="740" y="61" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif" font-weight="700">System Context</text>
+
+            <circle cx="48" cy="60" r="18" fill="#ffffff" stroke="rgba(11,31,77,0.25)" />
+            <circle cx="48" cy="46" r="7" fill="none" stroke="#0b1f4d" stroke-width="2" />
+            <path d="M36 73c4-10 20-10 24 0" fill="none" stroke="#0b1f4d" stroke-width="2" />
+            <text x="28" y="92" fill="#405789" font-size="12" font-family="Inter, sans-serif">Alice</text>
+
+            <rect x="108" y="34" width="120" height="50" rx="14" fill="#ffffff" stroke="rgba(11,31,77,0.18)" stroke-dasharray="5 4" />
+            <text x="168" y="64" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif">WhatsApp</text>
+
+            <rect x="280" y="34" width="134" height="50" rx="14" fill="#ffffff" stroke="rgba(11,31,77,0.18)" stroke-dasharray="5 4" />
+            <text x="347" y="55" text-anchor="middle" fill="#0b1f4d" font-size="14" font-family="Inter, sans-serif">Apple / Google</text>
+            <text x="347" y="72" text-anchor="middle" fill="#405789" font-size="12" font-family="Inter, sans-serif">push notifications</text>
+
+            <line x1="66" y1="56" x2="108" y2="56" stroke="#0f2b6d" stroke-width="2.5" />
+            <line x1="228" y1="56" x2="280" y2="56" stroke="#0f2b6d" stroke-width="2.5" />
+
+            <circle cx="458" cy="60" r="16" fill="#ffd84d" stroke="#8b6a00" stroke-width="1.5" />
+            <text x="458" y="65" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif" font-weight="700">1</text>
+            <text x="485" y="64" fill="#405789" font-size="13" font-family="Inter, sans-serif">WhatsApp in its environment</text>
+
+            <path d="M470 84 C 490 112, 515 120, 540 128" fill="none" stroke="#164194" stroke-width="3" marker-end="url(#arrowHead)" />
+
+            <rect x="18" y="124" width="884" height="118" rx="26" fill="#dff8ea" stroke="rgba(11,31,77,0.1)" />
+            <text x="764" y="148" fill="#405789" font-size="13" font-family="Inter, sans-serif">Level 2</text>
+            <text x="764" y="167" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif" font-weight="700">Containers</text>
+
+            <rect x="64" y="160" width="124" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.18)" />
+            <text x="126" y="182" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif">Mobile App</text>
+            <text x="126" y="200" text-anchor="middle" fill="#405789" font-size="12" font-family="Inter, sans-serif">iOS / Android</text>
+
+            <rect x="220" y="160" width="124" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.18)" />
+            <text x="282" y="182" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif">Web App</text>
+            <text x="282" y="200" text-anchor="middle" fill="#405789" font-size="12" font-family="Inter, sans-serif">Browser client</text>
+
+            <rect x="378" y="160" width="124" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.18)" />
+            <text x="440" y="182" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif">API Gateway</text>
+            <text x="440" y="200" text-anchor="middle" fill="#405789" font-size="12" font-family="Inter, sans-serif">Entry point</text>
+
+            <rect x="538" y="150" width="148" height="74" rx="18" fill="#ffffff" stroke="#164194" stroke-width="2.5" stroke-dasharray="7 5" />
+            <text x="612" y="180" text-anchor="middle" fill="#0b1f4d" font-size="16" font-family="Inter, sans-serif" font-weight="700">Messaging Service</text>
+            <text x="612" y="200" text-anchor="middle" fill="#405789" font-size="12" font-family="Inter, sans-serif">zoom in next</text>
+
+            <rect x="720" y="160" width="136" height="54" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.18)" />
+            <text x="788" y="182" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif">Media Service</text>
+            <text x="788" y="200" text-anchor="middle" fill="#405789" font-size="12" font-family="Inter, sans-serif">attachments</text>
+
+            <line x1="188" y1="187" x2="220" y2="187" stroke="#0f2b6d" stroke-width="2.5" />
+            <line x1="344" y1="187" x2="378" y2="187" stroke="#0f2b6d" stroke-width="2.5" />
+            <line x1="502" y1="187" x2="538" y2="187" stroke="#0f2b6d" stroke-width="2.5" />
+            <line x1="686" y1="187" x2="720" y2="187" stroke="#0f2b6d" stroke-width="2.5" />
+
+            <circle cx="474" cy="136" r="16" fill="#ffd84d" stroke="#8b6a00" stroke-width="1.5" />
+            <text x="474" y="141" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif" font-weight="700">2</text>
+            <text x="500" y="140" fill="#405789" font-size="13" font-family="Inter, sans-serif">Main apps and services</text>
+
+            <path d="M612 224 C 612 252, 612 258, 612 270" fill="none" stroke="#164194" stroke-width="3" marker-end="url(#arrowHead)" />
+
+            <rect x="18" y="264" width="884" height="116" rx="26" fill="#ffe8ea" stroke="rgba(11,31,77,0.1)" />
+            <text x="748" y="288" fill="#405789" font-size="13" font-family="Inter, sans-serif">Level 3</text>
+            <text x="748" y="307" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif" font-weight="700">Components</text>
+
+            <rect x="120" y="302" width="146" height="50" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.18)" />
+            <text x="193" y="332" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif">Delivery Logic</text>
+
+            <rect x="300" y="302" width="136" height="50" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.18)" />
+            <text x="368" y="332" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif">Presence</text>
+
+            <rect x="468" y="302" width="136" height="50" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.18)" />
+            <text x="536" y="332" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif">Message Store</text>
+
+            <rect x="636" y="302" width="150" height="50" rx="16" fill="#ffffff" stroke="rgba(11,31,77,0.18)" />
+            <text x="711" y="332" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif">Encryption Coord.</text>
+
+            <circle cx="92" cy="288" r="16" fill="#ffd84d" stroke="#8b6a00" stroke-width="1.5" />
+            <text x="92" y="293" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif" font-weight="700">3</text>
+            <text x="118" y="292" fill="#405789" font-size="13" font-family="Inter, sans-serif">Inside one service</text>
+
+            <path d="M193 352 C 193 378, 193 386, 193 396" fill="none" stroke="#164194" stroke-width="3" marker-end="url(#arrowHead)" />
+
+            <rect x="18" y="400" width="884" height="62" rx="24" fill="#fff8d8" stroke="rgba(11,31,77,0.1)" />
+            <text x="796" y="424" fill="#405789" font-size="13" font-family="Inter, sans-serif">Level 4</text>
+            <text x="796" y="443" fill="#0b1f4d" font-size="18" font-family="Inter, sans-serif" font-weight="700">Code</text>
+
+            <circle cx="92" cy="430" r="16" fill="#ffd84d" stroke="#8b6a00" stroke-width="1.5" />
+            <text x="92" y="435" text-anchor="middle" fill="#0b1f4d" font-size="15" font-family="Inter, sans-serif" font-weight="700">4</text>
+            <text x="118" y="434" fill="#405789" font-size="13" font-family="Inter, sans-serif">Implementation</text>
+
+            <rect x="238" y="414" width="446" height="34" rx="10" fill="#ffffff" stroke="rgba(11,31,77,0.16)" />
+            <text x="258" y="436" fill="#0b1f4d" font-size="13" font-family="Menlo, Monaco, monospace">deliverMessage() → encrypt() → persist() → notifyRecipient()</text>
+          </svg>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">C4 focus</div>
+        <h2>We stay at Context and Containers</h2>
+        <div class="content compare">
+          <div class="card">
+            <h3>Level 1 — System Context</h3>
+            <ul>
+              <li>What is our system?</li>
+              <li>Who uses it?</li>
+              <li>Which external systems interact with it?</li>
+            </ul>
+          </div>
+          <div class="vs">VS</div>
+          <div class="card">
+            <h3>Level 2 — Container</h3>
+            <ul>
+              <li>Which apps, services, and data stores exist?</li>
+              <li>How do those containers communicate?</li>
+              <li>Where do API styles fit between those boxes?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">C4 guardrails</div>
+        <h2>How to keep the discussion in scope</h2>
+        <div class="content three-col">
+          <div class="card">
+            <h3>Ask first</h3>
+            <ul>
+              <li>Which C4 level are we on?</li>
+              <li>Are we outside the system or inside it?</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Keep it clean</h3>
+            <ul>
+              <li>Talk about communication between boxes.</li>
+              <li>Avoid implementation details inside a service.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Useful examples</h3>
+            <ul>
+              <li><strong>SOAP</strong> fits naturally at Level 1.</li>
+              <li><strong>gRPC</strong> still fits cleanly at Level 2.</li>
             </ul>
           </div>
         </div>
@@ -352,22 +393,107 @@
 
       <section class="slide">
         <div class="eyebrow">Facilitation</div>
-        <h2>Questions to keep asking during the session</h2>
+        <h2>The room rule for this session</h2>
+        <div class="big-quote">We only talk about communication <strong>between boxes</strong>, not inside them.</div>
+        <div class="content two-col">
+          <div class="card">
+            <h3>Why this matters</h3>
+            <ul>
+              <li>It prevents the discussion from dropping into implementation too early.</li>
+              <li>It keeps API choices connected to architecture and interactions.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>What it clarifies</h3>
+            <ul>
+              <li><strong>SOAP</strong> can be discussed as an external system integration.</li>
+              <li><strong>gRPC</strong> can be discussed as a container-to-container communication choice.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Interactive session</div>
+        <h2>Work through the case as one room</h2>
+        <div class="content step-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Identify the relevant interactions</h3>
+              <div class="lead">List the important user, system, and external system interactions in the delivery platform.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Choose an API style per interaction</h3>
+              <div class="lead">Assign the style that best matches the communication need.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Explain the trade-off</h3>
+              <div class="lead">Why this style, and what are we accepting by choosing it?</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div>
+              <h3>Name the C4 level</h3>
+              <div class="lead">State whether the decision belongs to Context or Containers.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Prompts</div>
+        <h2>Questions to keep asking during the room exercise</h2>
         <div class="content two-col">
           <div class="card">
             <h3>About scope</h3>
             <ul>
               <li>Which C4 level is this decision on?</li>
-              <li>Is this inside the system or outside it?</li>
               <li>Are we still talking between boxes?</li>
+              <li>Is this inside the system or outside it?</li>
             </ul>
           </div>
           <div class="card">
-            <h3>About API choice</h3>
+            <h3>About trade-offs</h3>
             <ul>
               <li>Why does this interaction need this style?</li>
               <li>What trade-off are we making?</li>
-              <li>What would break if we used a different style?</li>
+              <li>What changes if traffic or latency changes?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Twist cards</div>
+        <h2>Add a constraint and revisit the API choice</h2>
+        <div class="content three-col">
+          <div class="card">
+            <h3>Real-time update</h3>
+            <ul>
+              <li>The customer now expects live status updates.</li>
+              <li>Does the API choice still fit?</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Latency target</h3>
+            <ul>
+              <li>A service interaction must stay below 100 ms.</li>
+              <li>What changes at container level?</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Legacy partner</h3>
+            <ul>
+              <li>A partner system only exposes SOAP.</li>
+              <li>Where does that sit in the model?</li>
             </ul>
           </div>
         </div>
@@ -379,10 +505,40 @@
         <div class="big-quote">Choose the style that fits the interaction, and explain it within the right C4 scope.</div>
         <div class="content">
           <div class="flow">
-            <span class="tag focus">Start at Level 1</span>
-            <span class="tag focus">Move to Level 2</span>
-            <span class="tag api">Label interactions</span>
+            <span class="tag focus">Start with the case</span>
+            <span class="tag focus">Label interactions</span>
+            <span class="tag focus">Use C4 guardrails</span>
             <span class="tag warn">Explain trade-offs</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="eyebrow">Cheat sheet</div>
+        <h2>Quick reference for the session</h2>
+        <div class="content two-col">
+          <div class="card">
+            <h3>API styles</h3>
+            <ul>
+              <li><strong>REST</strong>: straightforward request-response</li>
+              <li><strong>GraphQL</strong>: flexible frontend data shaping</li>
+              <li><strong>WebSocket</strong>: real-time updates</li>
+              <li><strong>Webhook</strong>: async callback from another system</li>
+              <li><strong>gRPC</strong>: container-to-container communication</li>
+              <li><strong>SOAP</strong>: legacy or enterprise integration</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>C4 framing</h3>
+            <ul>
+              <li><strong>Context</strong>: users and external systems</li>
+              <li><strong>Containers</strong>: apps and services inside the system</li>
+              <li><strong>Components</strong>: internal building blocks inside one container</li>
+              <li><strong>Code</strong>: implementation details in code</li>
+              <li>Stay at Level 1 and Level 2 for this session</li>
+              <li>Talk about communication between boxes</li>
+              <li>Explain the trade-off behind each choice</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -393,7 +549,7 @@
         <button id="prevBtn">← Prev</button>
         <button id="nextBtn">Next →</button>
       </div>
-      <div class="counter" id="counter">1 / 12</div>
+      <div class="counter" id="counter">1 / 18</div>
       <div class="hint">Use <span class="kbd">←</span> <span class="kbd">→</span> or space</div>
     </div>
   </div>
