@@ -145,3 +145,37 @@ Two points matter for this session:
 ## Files
 
 - [index.html](/Users/i18121/sourcen/lunchlab/session-2-api-styles/index.html)
+
+## Updated teaching concept (cartography zoom journey)
+
+Use one continuous metaphor across the full session:
+
+> Physical infrastructure choices (land/water/air/rail) mirror IT and API infrastructure choices.
+
+### Zoom narrative
+
+Use a Netherlands map sequence to make C4 levels intuitive:
+
+- **Level 1 (System Context):** national/regional boundary view with external connections crossing the system border.
+- **Level 2 (Container):** city-scale infrastructure inside the boundary with routes between internal places/containers.
+- **Level 3 (Component):** one building’s internal organization.
+- **Level 4 (Code):** engineering blueprint-level implementation detail.
+
+### Level 1 emphasis
+
+At Level 1, explicitly model different boundary route modalities:
+
+- sea routes
+- river routes
+- air routes
+- truck routes
+- rail routes
+
+Use these modalities to discuss differences in latency, governance, reliability, and coupling before selecting API styles.
+
+### Session delivery pattern
+
+- Start with zoom-level explanation slides (cartography metaphor).
+- Then run the full-room food-delivery puzzle (participants choose level first, style second).
+- Keep a complete solution sequence ready as backup only if discussion drifts too far from scope.
+
