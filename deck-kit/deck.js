@@ -96,6 +96,51 @@
       }
     }
 
+    function initTouchNavigation() {
+      const swipeThreshold = 48;
+      let touchStartX = null;
+      let touchStartY = null;
+
+      const container = document.querySelector('.slides');
+      if (!container) {
+        return;
+      }
+
+      container.addEventListener('touchstart', (e) => {
+        const touch = e.changedTouches?.[0];
+        if (!touch) {
+          return;
+        }
+
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e) => {
+        const touch = e.changedTouches?.[0];
+        if (!touch || touchStartX === null || touchStartY === null) {
+          return;
+        }
+
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        touchStartX = null;
+        touchStartY = null;
+
+        if (Math.abs(deltaX) < swipeThreshold || Math.abs(deltaX) < Math.abs(deltaY)) {
+          return;
+        }
+
+        if (deltaX < 0) {
+          next();
+          return;
+        }
+
+        prev();
+      }, { passive: true });
+    }
+
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);
 
@@ -121,4 +166,5 @@
     window.addEventListener('resize', fitActiveSlide);
 
     prepareSlides();
+    initTouchNavigation();
     render();
