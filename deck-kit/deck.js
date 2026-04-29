@@ -141,6 +141,59 @@
       }, { passive: true });
     }
 
+
+    function initFullscreenControl() {
+      const controls = document.querySelector('.controls');
+      if (!controls) {
+        return;
+      }
+
+      const fullscreenBtn = document.createElement('button');
+      fullscreenBtn.id = 'fullscreenBtn';
+      fullscreenBtn.type = 'button';
+      controls.appendChild(fullscreenBtn);
+
+      const isFullscreen = () => Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+
+      const updateLabel = () => {
+        fullscreenBtn.textContent = isFullscreen() ? 'Exit Fullscreen' : 'Fullscreen';
+      };
+
+      const requestFullscreen = () => {
+        const root = document.documentElement;
+        if (root.requestFullscreen) {
+          return root.requestFullscreen();
+        }
+        if (root.webkitRequestFullscreen) {
+          root.webkitRequestFullscreen();
+          return Promise.resolve();
+        }
+        return Promise.reject(new Error('Fullscreen API unavailable'));
+      };
+
+      const exitFullscreen = () => {
+        if (document.exitFullscreen) {
+          return document.exitFullscreen();
+        }
+        if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+          return Promise.resolve();
+        }
+        return Promise.reject(new Error('Fullscreen API unavailable'));
+      };
+
+      fullscreenBtn.addEventListener('click', () => {
+        const action = isFullscreen() ? exitFullscreen : requestFullscreen;
+        action().catch(() => {
+          // Ignore unsupported browser errors.
+        });
+      });
+
+      document.addEventListener('fullscreenchange', updateLabel);
+      document.addEventListener('webkitfullscreenchange', updateLabel);
+      updateLabel();
+    }
+
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);
 
@@ -167,4 +220,5 @@
 
     prepareSlides();
     initTouchNavigation();
+    initFullscreenControl();
     render();
