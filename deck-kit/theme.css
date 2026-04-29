@@ -319,3 +319,34 @@
       .two-col, .three-col, .level-grid, .compare, .requirement-grid { grid-template-columns: 1fr; }
       .vs { display: none; }
     }
+
+    @media (max-width: 900px) {
+      .deck {
+        padding: 8px 8px calc(10px + env(safe-area-inset-bottom));
+        gap: 8px;
+      }
+
+      .slide {
+        padding: 16px 14px 18px;
+      }
+
+      .footer {
+        padding: 8px 10px;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .controls {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .controls button {
+        flex: 1;
+        min-height: 44px;
+      }
+
+      .counter, .hint {
+        font-size: 0.85rem;
+      }
+    }

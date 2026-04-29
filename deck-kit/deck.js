@@ -96,6 +96,104 @@
       }
     }
 
+    function initTouchNavigation() {
+      const swipeThreshold = 48;
+      let touchStartX = null;
+      let touchStartY = null;
+
+      const container = document.querySelector('.slides');
+      if (!container) {
+        return;
+      }
+
+      container.addEventListener('touchstart', (e) => {
+        const touch = e.changedTouches?.[0];
+        if (!touch) {
+          return;
+        }
+
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e) => {
+        const touch = e.changedTouches?.[0];
+        if (!touch || touchStartX === null || touchStartY === null) {
+          return;
+        }
+
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        touchStartX = null;
+        touchStartY = null;
+
+        if (Math.abs(deltaX) < swipeThreshold || Math.abs(deltaX) < Math.abs(deltaY)) {
+          return;
+        }
+
+        if (deltaX < 0) {
+          next();
+          return;
+        }
+
+        prev();
+      }, { passive: true });
+    }
+
+
+    function initFullscreenControl() {
+      const controls = document.querySelector('.controls');
+      if (!controls) {
+        return;
+      }
+
+      const fullscreenBtn = document.createElement('button');
+      fullscreenBtn.id = 'fullscreenBtn';
+      fullscreenBtn.type = 'button';
+      controls.appendChild(fullscreenBtn);
+
+      const isFullscreen = () => Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+
+      const updateLabel = () => {
+        fullscreenBtn.textContent = isFullscreen() ? 'Exit Fullscreen' : 'Fullscreen';
+      };
+
+      const requestFullscreen = () => {
+        const root = document.documentElement;
+        if (root.requestFullscreen) {
+          return root.requestFullscreen();
+        }
+        if (root.webkitRequestFullscreen) {
+          root.webkitRequestFullscreen();
+          return Promise.resolve();
+        }
+        return Promise.reject(new Error('Fullscreen API unavailable'));
+      };
+
+      const exitFullscreen = () => {
+        if (document.exitFullscreen) {
+          return document.exitFullscreen();
+        }
+        if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+          return Promise.resolve();
+        }
+        return Promise.reject(new Error('Fullscreen API unavailable'));
+      };
+
+      fullscreenBtn.addEventListener('click', () => {
+        const action = isFullscreen() ? exitFullscreen : requestFullscreen;
+        action().catch(() => {
+          // Ignore unsupported browser errors.
+        });
+      });
+
+      document.addEventListener('fullscreenchange', updateLabel);
+      document.addEventListener('webkitfullscreenchange', updateLabel);
+      updateLabel();
+    }
+
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);
 
@@ -121,4 +219,6 @@
     window.addEventListener('resize', fitActiveSlide);
 
     prepareSlides();
+    initTouchNavigation();
+    initFullscreenControl();
     render();
