@@ -97,18 +97,7 @@ The helpful facilitation phrase remains:
 
 > We only talk about communication between boxes, not inside them.
 
-### 5. WhatsApp zoom example
-
-Use the WhatsApp SVG to explain C4 as zooming into the same system:
-
-- Level 1: system context
-- Level 2: containers
-- Level 3: components
-- Level 4: code
-
-This slide is there to make the abstraction levels intuitive, not to change the scope of the session.
-
-### 6. Whole-room exercise
+### 5. Whole-room exercise
 
 The exercise is done with the full room on the same food delivery case.
 
@@ -126,7 +115,7 @@ Useful prompt questions:
 - Why does this interaction need this style?
 - What trade-off are we making?
 
-### 7. Close
+### 6. Close
 
 End with:
 
@@ -144,9 +133,9 @@ Two points matter for this session:
 
 ## Files
 
-- [index.html](/Users/i18121/sourcen/lunchlab/session-2-api-styles/index.html)
+- [index.html](./index.html)
 
-## Updated teaching concept (cartography zoom journey)
+## Teaching concept (cartography zoom journey)
 
 Use one continuous metaphor across the full session:
 
@@ -173,9 +162,77 @@ At Level 1, explicitly model different boundary route modalities:
 
 Use these modalities to discuss differences in latency, governance, reliability, and coupling before selecting API styles.
 
-### Session delivery pattern
+### Workshop flow (facilitation order)
 
-- Start with zoom-level explanation slides (cartography metaphor).
-- Then run the full-room food-delivery puzzle (participants choose level first, style second).
-- Keep a complete solution sequence ready as backup only if discussion drifts too far from scope.
+Keep this order during facilitation:
 
+1. Zoom-level explanation first.
+2. Room puzzle on the food-delivery case second.
+3. Prepared solution slides as facilitator backup only.
+
+### C4 scope discipline for this LunchLab
+
+Preserve scope discipline in discussions and decision prompts:
+
+- Prioritize Level 1 and Level 2 decisions.
+- Treat Level 3 and Level 4 as useful context, but mostly out-of-scope for this lunch-and-learn.
+- Re-anchor with: “between boxes, not inside boxes” whenever conversation drifts.
+
+## C4 facilitation deepening notes (for future expansion)
+
+Use this section as a working draft for future iterations of the C4 chapter.
+
+### How to frame each level with the cartography metaphor
+
+- **Level 1 (Context):** national/regional map view. Focus on border crossings and external route choices.
+- **Level 2 (Container):** city logistics map. Focus on routes between hubs inside one boundary.
+- **Level 3 (Component):** one building floor plan. Focus on internal hand-offs in one container.
+- **Level 4 (Code):** engineering blueprint. Focus on implementation details and quality controls.
+
+### What decisions belong at each C level
+
+- **Level 1 (Context):** external integrations, trust boundaries, governance constraints, and boundary-level SLAs.
+- **Level 2 (Container):** service responsibilities, communication patterns (sync/async/stream/callback), and reliability/latency trade-offs between containers.
+- **Level 3 (Component):** internal module responsibilities, orchestration, and cohesion/coupling choices.
+- **Level 4 (Code):** concrete contracts, retries/timeouts, error mapping, observability instrumentation, and test implementation.
+
+### Facilitation question bank by C level
+
+#### Level 1 (Context)
+
+- Which systems or actors cross our boundary?
+- What do we exchange at that boundary?
+- Which trust, compliance, or governance constraints apply?
+- Which boundary route modality best fits this interaction (sea/river/air/truck/rail analogy)?
+- What failure behavior is acceptable at this boundary?
+
+#### Level 2 (Container)
+
+- Which containers are talking to each other?
+- Is this interaction request/response, event, stream, or callback?
+- What are the latency, throughput, and reliability expectations for this route?
+- Where should we place idempotency, retries, and fallback behavior?
+- Why is this API style the best fit for this specific container interaction?
+
+#### Level 3 (Component)
+
+- Which component owns this decision inside the container?
+- Where do business rules and invariants live?
+- What internal interfaces reduce coupling and improve changeability?
+- Which internal dependencies are allowed, and which should be blocked?
+
+#### Level 4 (Code)
+
+- How is the contract encoded in types/schemas?
+- How are errors mapped and surfaced consistently?
+- What exact timeout/retry/backoff values are implemented?
+- What tests prove behavior and protect against regressions?
+- What telemetry confirms this route meets its SLOs?
+
+### Scope-control prompts for facilitators
+
+Use these prompts live to keep depth aligned with lunch-and-learn scope:
+
+- “What C4 level are we on right now?”
+- “Are we still talking between boxes?”
+- “If this is Level 3 or 4, do we park it and return to Level 1 or 2 first?”
