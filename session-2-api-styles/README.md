@@ -4,13 +4,11 @@ This session is a trimmed LunchLab format focused on one practical question:
 
 > Which API style fits which interaction?
 
-The session uses one fixed case: a Deliveroo-like food delivery platform.
-
 ## Purpose
 
 - explain when a specific API style fits
 - practice explaining trade-offs
-- keep the discussion grounded in one real-world case
+- establish a shared C4/cartography vocabulary before introducing a case
 - use C4 to keep the discussion at the right scope
 
 ## Core message
@@ -33,36 +31,21 @@ Start with:
 - what participants should get out of it
 - the high-level session flow
 
-### 2. Shared case
+### 2. C4 cartography first
 
-Use one Deliveroo-like platform as the reference system.
+Before choosing a concrete product case, build a shared mental model for C4 using the cartography zoom journey.
 
 Cover:
 
-- customer app
-- restaurant portal
-- driver app
-- the delivery platform itself
+- why abstraction levels matter for architecture conversations
+- how zoom level changes the decisions we can responsibly make
+- how to separate boundary decisions from implementation details
 
-Main flow:
-
-- browse restaurants and menus
-- place and pay for an order
-- restaurant accepts the order
-- driver delivers the order
-- customer tracks progress
-
-Important constraints:
-
-- responsive mobile experience
-- reliable payment confirmation
-- low-latency tracking
-- scale during lunch and dinner peaks
-- realistic external and legacy integrations
+Use this phase to align language and facilitation expectations before introducing an app example.
 
 ### 3. API styles
 
-Explain API styles through the delivery case.
+Explain API styles through interaction archetypes first (request/response, streaming, callbacks, internal RPC, legacy boundary integrations).
 
 Current styles in scope:
 
@@ -73,7 +56,7 @@ Current styles in scope:
 - gRPC
 - SOAP
 
-Use the case to explain:
+Use interaction scenarios to explain:
 
 - client-facing interactions
 - service-to-service communication
@@ -88,32 +71,31 @@ Explain why the model is called C4:
 - Components
 - Code
 
-Then make the session rule explicit:
+After introducing all four levels, make the session rule explicit:
 
-- stay at Level 1 and Level 2
-- use Level 3 and Level 4 only as a warning that the discussion is going too deep
+- prioritize Level 1 and Level 2 decisions in workshop activities
+- use Level 3 and Level 4 as useful context and depth markers
 
 The helpful facilitation phrase remains:
 
 > We only talk about communication between boxes, not inside them.
 
-### 5. Whole-room exercise
+### 5. Guided C4 calibration exercise
 
-The exercise is done with the full room on the same food delivery case.
+Run a short full-room calibration before introducing any domain case.
 
 Ask the room to:
 
-- identify the relevant interactions
-- choose an API style per interaction
-- explain the trade-off
-- state the C4 level
+- classify sample architecture decisions by C4 level
+- explain why each decision belongs at that level
+- flag when a decision is drifting too deep for the current objective
 
 Useful prompt questions:
 
 - Which C4 level is this decision on?
 - Are we still talking between boxes?
-- Why does this interaction need this style?
-- What trade-off are we making?
+- What information is missing at this zoom level?
+- Should we decide this now or park it for a deeper level?
 
 ### 6. Close
 
@@ -126,10 +108,11 @@ The cheat sheet is there as a final reference, not as a new concept.
 
 ## C4 scope for API styles
 
-Two points matter for this session:
+Scope rule for this session design:
 
-- SOAP fits naturally at Level 1 when it represents an external legacy or enterprise integration.
-- gRPC fits naturally at Level 2 when it is framed as communication between containers or services.
+- Introduce all four C4 levels first so participants understand the full map.
+- Then explicitly focus workshop decision-making on Level 1 and Level 2.
+- Use Level 3 and Level 4 as depth references, not as the primary workshop scope.
 
 ## Files
 
@@ -167,7 +150,7 @@ Use these modalities to discuss differences in latency, governance, reliability,
 Keep this order during facilitation:
 
 1. Zoom-level explanation first.
-2. Room puzzle on the food-delivery case second.
+2. Domain-case puzzle second (choose the app example later).
 3. Prepared solution slides as facilitator backup only.
 
 ### C4 scope discipline for this LunchLab
