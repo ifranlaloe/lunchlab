@@ -219,3 +219,77 @@ Use these prompts live to keep depth aligned with lunch-and-learn scope:
 - “What C4 level are we on right now?”
 - “Are we still talking between boxes?”
 - “If this is Level 3 or 4, do we park it and return to Level 1 or 2 first?”
+
+### Country-first System Context (Level 1) detail pack
+
+When teaching C4 with cartography, start Level 1 from the country viewpoint before any app/domain example.
+
+#### What a country represents at System Context level
+
+Treat the country as one system boundary with external actors and interfaces around it.
+At this level, keep internals abstract and focus on cross-boundary behavior.
+
+Core aspects to map:
+
+1. **Boundary definition**
+   - National border, ports, and airspace as the visible system boundary.
+   - Clarify what is inside the system and what is outside.
+
+2. **External actors and systems**
+   - Neighboring countries, international partners, supranational institutions, and global logistics operators.
+   - Clarify which actor initiates or receives interactions.
+
+3. **Cross-boundary interfaces (route modalities)**
+   - Sea, river, air, truck, and rail routes as integration channels.
+   - Clarify that each channel has different constraints and capabilities.
+
+4. **Exchange contracts**
+   - What crosses the boundary: goods, people, documents/data, payments/fees, and permissions.
+   - Clarify required checks and validations before/after crossing.
+
+5. **Governance and trust constraints**
+   - Customs policy, legal agreements, identity checks, sanctions/compliance, and inspection requirements.
+   - Clarify where trust changes and which controls are mandatory.
+
+6. **Reliability and resilience expectations**
+   - Disruption handling (weather, strikes, outages, congestion, geopolitical changes).
+   - Clarify failover routes, rerouting rules, and acceptable degradation.
+
+7. **Performance and capacity envelope**
+   - Latency/cost/capacity trade-offs per modality.
+   - Clarify what “fast enough” and “economical enough” mean at boundary level.
+
+8. **Abstraction discipline**
+   - Keep focus on country-to-country/country-to-external interactions only.
+   - Park city-level routing for Level 2 and implementation details for Levels 3/4.
+
+#### Level 1 facilitator question set (country lens)
+
+Use these questions in sequence:
+
+1. Who are the external actors crossing this boundary?
+2. What is exchanged across the boundary?
+3. Which modality handles this exchange best, and why?
+4. Which governance/trust constraints apply at this crossing?
+5. What reliability is required, and what failure behavior is acceptable?
+6. What latency/cost/capacity trade-off is acceptable for this route?
+7. Are we still discussing between-system interactions (Level 1), or drifting into internals?
+
+#### Suggested workshop micro-flow for this section
+
+1. Draw country boundary and external actors.
+2. Add route modalities (sea/river/air/truck/rail).
+3. Label exchanges and constraints per route.
+4. Compare reliability/performance trade-offs.
+5. Capture unresolved internal questions in a “Level 2+ parking lot.”
+
+#### Mapping back to API architecture decisions
+
+Close the section by translating country-level observations into software architecture language:
+
+- Boundary crossings -> external API/integration decisions.
+- Modality differences -> protocol/style fit discussions.
+- Governance and trust checks -> security/compliance requirements.
+- Reliability and rerouting -> resilience patterns and fallback expectations.
+
+This keeps the country metaphor practical and prepares participants to zoom into Level 2 with shared context.
