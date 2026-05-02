@@ -81,13 +81,38 @@
         </section>
 
         <section class="slide">
-          <div class="eyebrow">C4 levels</div>
-          <h2>C4 levels mapped to infrastructure maps</h2>
-          <div class="content requirement-grid">
-            <div class="card"><h3>Level 1 — System Context</h3><p><strong>Regional infrastructure map</strong></p><ul><li>Main question: What surrounds and connects to our system?</li><li>Shows: users, external/partner/SaaS systems, identity and payment providers, system boundary.</li><li>Omits: internal services, databases, components, code.</li></ul></div>
-            <div class="card"><h3>Level 2 — Container</h3><p><strong>City infrastructure map</strong></p><ul><li>Main question: What are the main places and routes inside our system?</li><li>Shows: apps, services, databases, message brokers, caches, communication paths.</li><li>Omits: component internals, classes, functions, implementation detail.</li></ul></div>
-            <div class="card"><h3>Level 3 — Component</h3><p><strong>Building systems map</strong></p><ul><li>Main question: How is one building organized internally?</li><li>Shows: components/modules, responsibilities, dependencies in one service.</li><li>Omits: full platform landscape and code-level detail.</li></ul></div>
-            <div class="card"><h3>Level 4 — Code</h3><p><strong>Engineering blueprint</strong></p><ul><li>Main question: How is it constructed in detail?</li><li>Shows: classes, functions, interfaces, methods, packages, queries, implementation choices.</li><li>Omits: high-level context and broad relationships.</li></ul></div>
+          <div class="eyebrow">C4 level 1</div>
+          <h2>Level 1 — System Context</h2>
+          <div class="content two-col">
+            <div class="card"><p><strong>Regional infrastructure map</strong></p><ul><li>Main question: What surrounds and connects to our system?</li><li>Shows: users, external/partner/SaaS systems, identity and payment providers, system boundary.</li><li>Omits: internal services, databases, components, code.</li></ul></div>
+            <div class="card"><h3>Facilitation focus</h3><ul><li>Talk about boundary crossings and external constraints.</li><li>Name trust boundaries and governance obligations early.</li><li>Only compare styles after interaction shape is clear.</li></ul></div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">C4 level 2</div>
+          <h2>Level 2 — Container</h2>
+          <div class="content two-col">
+            <div class="card"><p><strong>City infrastructure map</strong></p><ul><li>Main question: What are the main places and routes inside our system?</li><li>Shows: apps, services, databases, message brokers, caches, communication paths.</li><li>Omits: component internals, classes, functions, implementation detail.</li></ul></div>
+            <div class="card"><h3>Facilitation focus</h3><ul><li>Clarify container responsibilities before protocol debates.</li><li>Match sync/async/stream/callback routes to needs.</li><li>Evaluate latency, throughput, and reliability trade-offs.</li></ul></div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">C4 level 3</div>
+          <h2>Level 3 — Component</h2>
+          <div class="content two-col">
+            <div class="card"><p><strong>Building systems map</strong></p><ul><li>Main question: How is one building organized internally?</li><li>Shows: components/modules, responsibilities, dependencies in one service.</li><li>Omits: full platform landscape and code-level detail.</li></ul></div>
+            <div class="card"><h3>Facilitation focus</h3><ul><li>Use for depth references, not primary workshop scope.</li><li>Discuss cohesion/coupling inside one container.</li><li>Park deep implementation choices for later follow-up.</li></ul></div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">C4 level 4</div>
+          <h2>Level 4 — Code</h2>
+          <div class="content two-col">
+            <div class="card"><p><strong>Engineering blueprint</strong></p><ul><li>Main question: How is it constructed in detail?</li><li>Shows: classes, functions, interfaces, methods, packages, queries, implementation choices.</li><li>Omits: high-level context and broad relationships.</li></ul></div>
+            <div class="card"><h3>Facilitation focus</h3><ul><li>Treat as implementation depth marker in this session.</li><li>Capture retries, contracts, and observability as parking-lot items.</li><li>Return focus to Level 1/2 workshop decisions.</li></ul></div>
           </div>
         </section>
 
@@ -219,7 +244,7 @@
         <button id="prevBtn">← Prev</button>
         <button id="nextBtn">Next →</button>
       </div>
-      <div class="counter" id="counter">1 / 13</div>
+      <div class="counter" id="counter">1 / 15</div>
       <div class="hint">Use swipe/controls, or <span class="kbd">←</span> <span class="kbd">→</span></div>
     </div>
   </div>
