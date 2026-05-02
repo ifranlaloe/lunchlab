@@ -88,6 +88,12 @@ Start with:
 
 Before choosing a concrete product case, build a shared mental model for C4 using the cartography zoom journey.
 
+Documentation update for the current deck plan:
+
+- replace the single C4-levels explainer slide with four focused slides (one per level)
+- keep one concept per slide so each level can be explained with concrete decisions
+- preserve one continuous zoom narrative across the four slides
+
 Cover:
 
 - why abstraction levels matter for architecture conversations
@@ -117,7 +123,7 @@ Use interaction scenarios to explain:
 
 ### 4. C4 framing
 
-Explain why the model is called C4:
+Explain why the model is called C4 using four sequential slides (one slide each for Context, Container, Component, and Code):
 
 - Context
 - Containers
