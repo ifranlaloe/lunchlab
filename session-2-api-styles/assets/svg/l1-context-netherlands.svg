@@ -1,30 +1,38 @@
 <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Level 1 System Context topology</title>
-  <desc id="desc">Netherlands system boundary with external actors and cross-boundary links.</desc>
+  <title id="title">West Europe map zoom with Netherlands highlighted</title>
+  <desc id="desc">A simplified West Europe map where the Netherlands is highlighted, showing the first zoom level in a continuous sequence.</desc>
   <defs>
     <style>
-      .bg{fill:#f6f9ff}.boundary{fill:#e8f0ff;stroke:#164194;stroke-width:6;stroke-dasharray:20 12}
-      .node{fill:#fff;stroke:#164194;stroke-width:4}.label{font:600 28px Inter,Arial,sans-serif;fill:#0b1f4d}
-      .edge{stroke:#164194;stroke-width:5;fill:none;marker-end:url(#arrow)}.muted{stroke:#7d92c2;stroke-dasharray:8 8}
-      .title{font:700 36px Inter,Arial,sans-serif;fill:#0b1f4d}
+      .sea { fill: #eaf3ff; }
+      .land { fill: #f7f9fc; stroke: #9db0cf; stroke-width: 3; }
+      .nl { fill: #ffd9a8; stroke: #b36b00; stroke-width: 5; }
+      .city { fill: #164194; }
+      .txt { font: 600 24px Inter, Arial, sans-serif; fill: #102a5c; }
+      .title { font: 700 38px Inter, Arial, sans-serif; fill: #0b1f4d; }
+      .halo { fill: none; stroke: #b36b00; stroke-width: 4; stroke-dasharray: 12 8; }
     </style>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#164194"/>
-    </marker>
   </defs>
-  <rect class="bg" x="0" y="0" width="1600" height="900"/>
-  <path class="boundary" d="M560 120 L760 100 L930 150 L1030 270 L1060 410 L990 540 L860 640 L720 700 L560 680 L470 600 L430 500 L420 360 L470 230 Z"/>
-  <text class="title" x="610" y="90">System Boundary (Netherlands)</text>
-  <circle class="node" cx="230" cy="220" r="78"/><text class="label" x="170" y="230">Users</text>
-  <rect class="node" x="1180" y="120" width="280" height="120" rx="24"/><text class="label" x="1220" y="190">Identity Provider</text>
-  <rect class="node" x="1140" y="360" width="320" height="120" rx="24"/><text class="label" x="1210" y="430">Payment Partner</text>
-  <rect class="node" x="1160" y="610" width="300" height="120" rx="24"/><text class="label" x="1230" y="680">Logistics SaaS</text>
-  <rect class="node" x="120" y="620" width="320" height="120" rx="24"/><text class="label" x="170" y="690">Government Registry</text>
-  <path class="edge" d="M300 240 C420 250 480 260 560 280"/>
-  <path class="edge" d="M1180 180 C1100 190 1050 220 980 260"/>
-  <path class="edge" d="M1140 420 C1060 420 1020 430 980 450"/>
-  <path class="edge" d="M1160 670 C1030 640 980 610 900 580"/>
-  <path class="edge" d="M440 680 C510 670 560 650 620 620"/>
-  <path class="edge muted" d="M760 260 C790 320 810 370 830 430"/>
-  <path class="edge muted" d="M700 540 C760 500 810 500 870 520"/>
+
+  <rect class="sea" x="0" y="0" width="1600" height="900" />
+  <text class="title" x="70" y="80">Zoom 1 — West Europe context</text>
+
+  <!-- Simplified surrounding landmasses -->
+  <path class="land" d="M120 140 L560 120 L690 210 L710 330 L620 430 L430 510 L300 640 L120 610 Z" />
+  <path class="land" d="M720 110 L1060 120 L1220 210 L1210 350 L1060 430 L930 470 L820 430 L760 350 Z" />
+  <path class="land" d="M1060 400 L1430 430 L1490 590 L1400 740 L1170 790 L1020 730 L980 580 Z" />
+  <path class="land" d="M700 480 L980 470 L1010 730 L760 790 L640 700 L620 560 Z" />
+
+  <!-- Netherlands highlight in west europe cluster -->
+  <path class="nl" d="M785 225 L830 208 L870 220 L888 255 L873 300 L842 328 L808 340 L780 314 L772 273 Z" />
+  <circle class="halo" cx="830" cy="275" r="85" />
+
+  <circle class="city" cx="835" cy="258" r="8" />
+  <text class="txt" x="860" y="265">Amsterdam</text>
+  <text class="txt" x="915" y="315">Netherlands</text>
+
+  <text class="txt" x="760" y="180">North Sea</text>
+  <text class="txt" x="540" y="320">United Kingdom</text>
+  <text class="txt" x="1030" y="325">Germany</text>
+  <text class="txt" x="1010" y="520">Belgium</text>
+  <text class="txt" x="1140" y="680">France</text>
 </svg>
