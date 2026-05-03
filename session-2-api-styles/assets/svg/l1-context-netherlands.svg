@@ -1,38 +1,19 @@
 <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">West Europe map zoom with Netherlands highlighted</title>
-  <desc id="desc">A simplified West Europe map where the Netherlands is highlighted, showing the first zoom level in a continuous sequence.</desc>
-  <defs>
-    <style>
-      .sea { fill: #eaf3ff; }
-      .land { fill: #f7f9fc; stroke: #9db0cf; stroke-width: 3; }
-      .nl { fill: #ffd9a8; stroke: #b36b00; stroke-width: 5; }
-      .city { fill: #164194; }
-      .txt { font: 600 24px Inter, Arial, sans-serif; fill: #102a5c; }
-      .title { font: 700 38px Inter, Arial, sans-serif; fill: #0b1f4d; }
-      .halo { fill: none; stroke: #b36b00; stroke-width: 4; stroke-dasharray: 12 8; }
-    </style>
-  </defs>
-
-  <rect class="sea" x="0" y="0" width="1600" height="900" />
-  <text class="title" x="70" y="80">Zoom 1 — West Europe context</text>
-
-  <!-- Simplified surrounding landmasses -->
-  <path class="land" d="M120 140 L560 120 L690 210 L710 330 L620 430 L430 510 L300 640 L120 610 Z" />
-  <path class="land" d="M720 110 L1060 120 L1220 210 L1210 350 L1060 430 L930 470 L820 430 L760 350 Z" />
-  <path class="land" d="M1060 400 L1430 430 L1490 590 L1400 740 L1170 790 L1020 730 L980 580 Z" />
-  <path class="land" d="M700 480 L980 470 L1010 730 L760 790 L640 700 L620 560 Z" />
-
-  <!-- Netherlands highlight in west europe cluster -->
-  <path class="nl" d="M785 225 L830 208 L870 220 L888 255 L873 300 L842 328 L808 340 L780 314 L772 273 Z" />
-  <circle class="halo" cx="830" cy="275" r="85" />
-
-  <circle class="city" cx="835" cy="258" r="8" />
-  <text class="txt" x="860" y="265">Amsterdam</text>
-  <text class="txt" x="915" y="315">Netherlands</text>
-
-  <text class="txt" x="760" y="180">North Sea</text>
-  <text class="txt" x="540" y="320">United Kingdom</text>
-  <text class="txt" x="1030" y="325">Germany</text>
-  <text class="txt" x="1010" y="520">Belgium</text>
-  <text class="txt" x="1140" y="680">France</text>
+<title id="title">West Europe map centered on Netherlands</title>
+<desc id="desc">Geographic map based on country boundary geojson outlines for Netherlands and direct neighbours Belgium, Germany, and Luxembourg.</desc>
+<defs><style>.sea{fill:#eaf3ff}.land{fill:#f8fbff;stroke:#8ca4cf;stroke-width:2}.nl{fill:#ffd9a8;stroke:#a85f00;stroke-width:3}.txt{font:600 24px Inter,Arial,sans-serif;fill:#102a5c}.title{font:700 36px Inter,Arial,sans-serif;fill:#0b1f4d}.frame{fill:none;stroke:#9fb4d8;stroke-width:2}</style></defs>
+<rect class="sea" x="0" y="0" width="1600" height="900"/>
+<text class="title" x="70" y="74">Zoom 1 — Netherlands with direct neighbours (geographic)</text>
+<rect class="frame" x="90" y="120" width="1420" height="660" rx="10"/>
+<path class="land" d="M 401.2 496.8 L 574.5 507.1 L 793.8 479.7 L 943.7 537.5 L 1073.7 568.3 L 1046.9 657.5 L 985.2 662.5 L 959.5 736.5 L 752.5 676.3 L 631.0 686.6 L 465.9 624.4 L 355.8 571.4 L 245.8 569.2 L 211.5 522.8 L 401.2 496.8 Z"/>
+<path class="land" d="M 1510.0 120.0 L 1510.0 120.0 L 1510.0 120.0 L 1510.0 145.3 L 1510.0 120.5 L 1510.0 120.0 L 1510.0 136.4 L 1510.0 178.5 L 1510.0 245.6 L 1510.0 280.9 L 1510.0 327.9 L 1510.0 398.5 L 1510.0 444.0 L 1510.0 528.3 L 1510.0 542.1 L 1510.0 526.9 L 1510.0 552.0 L 1510.0 577.6 L 1510.0 610.5 L 1510.0 639.2 L 1510.0 678.5 L 1510.0 734.1 L 1510.0 765.9 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1510.0 780.0 L 1383.8 780.0 L 1413.8 780.0 L 1510.0 780.0 L 1192.4 779.7 L 1080.8 745.2 L 1094.1 687.3 L 1046.9 657.5 L 1073.7 568.3 L 1034.0 430.0 L 1176.2 429.9 L 1236.1 380.2 L 1295.1 259.4 L 1250.9 214.8 L 1297.1 186.8 L 1494.9 179.6 L 1510.0 208.7 L 1510.0 143.7 L 1510.0 120.0 L 1510.0 120.0 L 1510.0 120.0 L 1510.0 120.0 Z"/>
+<path class="land" d="M 1046.9 657.5 L 1094.1 687.3 L 1080.8 745.2 L 1012.5 748.0 L 959.5 736.5 L 985.2 662.5 L 1046.9 657.5 Z"/>
+<path class="nl" d="M 1054.2 211.0 L 1250.9 214.8 L 1295.1 259.4 L 1236.1 380.2 L 1176.2 429.9 L 1034.0 430.0 L 1073.7 568.3 L 943.7 537.5 L 793.8 479.7 L 574.5 507.1 L 401.2 496.8 L 523.2 460.5 L 730.4 266.3 L 1054.2 211.0 Z"/>
+<text class="txt" x="871.0" y="384.0">Netherlands</text>
+<circle cx="776.3" cy="361.6" r="6" fill="#164194"/>
+<text class="txt" x="788.3" y="353.6">Amsterdam</text>
+<text class="txt" x="729.0" y="568.8">Belgium</text>
+<text class="txt" x="1273.3" y="450.0">Germany</text>
+<text class="txt" x="1067.4" y="700.8">Luxembourg</text>
+<text class="txt" x="350.3" y="252.0">North Sea</text>
 </svg>
