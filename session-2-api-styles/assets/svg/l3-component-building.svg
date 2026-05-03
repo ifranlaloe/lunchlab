@@ -1,0 +1,17 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<title id="title">Level 3 Component topology</title><desc id="desc">Building floor topology representing components within one container.</desc>
+<defs><style>.bg{fill:#f6f9ff}.shell{fill:#eaf1ff;stroke:#164194;stroke-width:6}.room{fill:#fff;stroke:#164194;stroke-width:4}
+.txt{font:600 24px Inter,Arial,sans-serif;fill:#0b1f4d}.edge{stroke:#164194;stroke-width:5;fill:none;marker-end:url(#a)}.title{font:700 34px Inter,Arial,sans-serif;fill:#0b1f4d}
+</style><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#164194"/></marker></defs>
+<rect class="bg" width="1600" height="900"/>
+<text class="title" x="70" y="80">Single Building Topology (One Container)</text>
+<rect class="shell" x="160" y="130" width="1280" height="650" rx="28"/>
+<rect class="room" x="240" y="220" width="300" height="180" rx="18"/><text class="txt" x="285" y="315">API Facade</text>
+<rect class="room" x="640" y="220" width="320" height="180" rx="18"/><text class="txt" x="705" y="315">Orchestrator</text>
+<rect class="room" x="1060" y="220" width="280" height="180" rx="18"/><text class="txt" x="1120" y="315">Policy Engine</text>
+<rect class="room" x="300" y="500" width="300" height="180" rx="18"/><text class="txt" x="360" y="595">Adapter</text>
+<rect class="room" x="740" y="500" width="300" height="180" rx="18"/><text class="txt" x="810" y="595">Repository</text>
+<path class="edge" d="M540 310 L640 310"/><path class="edge" d="M960 310 L1060 310"/>
+<path class="edge" d="M800 400 L800 500"/><path class="edge" d="M540 580 L740 580"/>
+<path class="edge" d="M390 400 L390 500"/>
+</svg>

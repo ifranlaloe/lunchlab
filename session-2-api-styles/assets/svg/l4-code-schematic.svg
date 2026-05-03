@@ -1,0 +1,23 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<title id="title">Level 4 Code topology</title><desc id="desc">Technical wiring schematic representing code-level interfaces and call paths.</desc>
+<defs><style>.bg{fill:#f6f9ff}.grid{stroke:#dbe6fb;stroke-width:1}.node{fill:#fff;stroke:#164194;stroke-width:3}
+.txt{font:600 20px Inter,Arial,sans-serif;fill:#0b1f4d}.edge{stroke:#164194;stroke-width:4;fill:none;marker-end:url(#a)}.title{font:700 32px Inter,Arial,sans-serif;fill:#0b1f4d}
+.note{font:500 17px Inter,Arial,sans-serif;fill:#2f4b83}
+</style><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#164194"/></marker></defs>
+<rect class="bg" width="1600" height="900"/>
+<g>
+<path class="grid" d="M0 100H1600M0 200H1600M0 300H1600M0 400H1600M0 500H1600M0 600H1600M0 700H1600M0 800H1600"/>
+<path class="grid" d="M100 0V900M300 0V900M500 0V900M700 0V900M900 0V900M1100 0V900M1300 0V900M1500 0V900"/>
+</g>
+<text class="title" x="70" y="70">Technical Wiring Topology (Code Level)</text>
+<rect class="node" x="140" y="170" width="240" height="90" rx="14"/><text class="txt" x="175" y="225">HTTP Handler</text>
+<rect class="node" x="500" y="170" width="260" height="90" rx="14"/><text class="txt" x="555" y="225">UseCase Service</text>
+<rect class="node" x="900" y="170" width="250" height="90" rx="14"/><text class="txt" x="955" y="225">Policy Interface</text>
+<rect class="node" x="1250" y="170" width="220" height="90" rx="14"/><text class="txt" x="1295" y="225">Policy Impl</text>
+<rect class="node" x="500" y="430" width="260" height="90" rx="14"/><text class="txt" x="565" y="485">Repo Port</text>
+<rect class="node" x="900" y="430" width="250" height="90" rx="14"/><text class="txt" x="940" y="485">Repo Adapter</text>
+<rect class="node" x="1250" y="430" width="220" height="90" rx="14"/><text class="txt" x="1315" y="485">Postgres</text>
+<path class="edge" d="M380 215 L500 215"/><path class="edge" d="M760 215 L900 215"/><path class="edge" d="M1150 215 L1250 215"/>
+<path class="edge" d="M630 260 L630 430"/><path class="edge" d="M760 475 L900 475"/><path class="edge" d="M1150 475 L1250 475"/>
+<text class="note" x="410" y="145">sync call</text><text class="note" x="790" y="145">contract</text><text class="note" x="790" y="405">data access path</text>
+</svg>

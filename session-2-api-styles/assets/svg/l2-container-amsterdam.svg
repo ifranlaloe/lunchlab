@@ -1,0 +1,25 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<title id="title">Level 2 Container topology</title><desc id="desc">Amsterdam city-style container topology with internal hubs and routes.</desc>
+<defs><style>
+.bg{fill:#f6f9ff}.zone{fill:#eef3ff;stroke:#b7c8ef;stroke-width:3}.node{fill:#fff;stroke:#164194;stroke-width:4}
+.txt{font:600 24px Inter,Arial,sans-serif;fill:#0b1f4d}.edge{stroke:#164194;stroke-width:5;fill:none;marker-end:url(#a)}
+.title{font:700 34px Inter,Arial,sans-serif;fill:#0b1f4d}
+</style><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#164194"/></marker></defs>
+<rect class="bg" width="1600" height="900"/>
+<text class="title" x="70" y="80">Amsterdam Internal Topology (Containers)</text>
+<rect class="zone" x="80" y="120" width="460" height="690" rx="30"/><text class="txt" x="110" y="170">Edge Zone</text>
+<rect class="zone" x="570" y="120" width="500" height="690" rx="30"/><text class="txt" x="600" y="170">Core Services</text>
+<rect class="zone" x="1100" y="120" width="420" height="690" rx="30"/><text class="txt" x="1130" y="170">Data / Events</text>
+<rect class="node" x="140" y="230" width="300" height="100" rx="20"/><text class="txt" x="210" y="292">Web App</text>
+<rect class="node" x="140" y="390" width="300" height="100" rx="20"/><text class="txt" x="180" y="452">API Gateway</text>
+<rect class="node" x="640" y="250" width="350" height="100" rx="20"/><text class="txt" x="720" y="312">Order Service</text>
+<rect class="node" x="640" y="430" width="350" height="100" rx="20"/><text class="txt" x="720" y="492">Catalog Service</text>
+<rect class="node" x="640" y="610" width="350" height="100" rx="20"/><text class="txt" x="720" y="672">Notification Worker</text>
+<rect class="node" x="1160" y="260" width="280" height="100" rx="20"/><text class="txt" x="1240" y="322">Postgres</text>
+<rect class="node" x="1160" y="430" width="280" height="100" rx="20"/><text class="txt" x="1240" y="492">Redis</text>
+<rect class="node" x="1160" y="600" width="280" height="100" rx="20"/><text class="txt" x="1230" y="662">Event Bus</text>
+<path class="edge" d="M440 280 L640 300"/><path class="edge" d="M440 440 L640 470"/>
+<path class="edge" d="M815 350 L815 430"/><path class="edge" d="M990 300 L1160 310"/>
+<path class="edge" d="M990 470 L1160 480"/><path class="edge" d="M990 660 L1160 650"/>
+<path class="edge" d="M815 530 L815 610"/>
+</svg>
