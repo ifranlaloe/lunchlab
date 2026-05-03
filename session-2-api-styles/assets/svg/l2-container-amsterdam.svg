@@ -1,37 +1,18 @@
 <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Amsterdam city zoom with Concertgebouw area highlighted</title>
-  <desc id="desc">A stylized Amsterdam street and canal map with the Concertgebouw district emphasized for the second zoom level.</desc>
-  <defs>
-    <style>
-      .bg { fill: #eef5ff; }
-      .water { fill: #dcecff; stroke: #a7c4ef; stroke-width: 2; }
-      .road { fill: none; stroke: #ffffff; stroke-width: 16; }
-      .road-outline { fill: none; stroke: #b8c9e8; stroke-width: 20; }
-      .ring { fill: none; stroke: #7da3df; stroke-width: 12; }
-      .highlight { fill: rgba(255, 172, 64, 0.20); stroke: #b36b00; stroke-width: 5; }
-      .poi { fill: #164194; }
-      .txt { font: 600 24px Inter, Arial, sans-serif; fill: #102a5c; }
-      .title { font: 700 38px Inter, Arial, sans-serif; fill: #0b1f4d; }
-    </style>
-  </defs>
-
-  <rect class="bg" x="0" y="0" width="1600" height="900" />
-  <text class="title" x="70" y="80">Zoom 2 — Amsterdam topology</text>
-
-  <path class="water" d="M120 180 C320 130 500 130 720 180 C930 230 1160 230 1450 170 L1450 290 C1160 350 920 350 710 300 C510 250 330 250 120 300 Z"/>
-  <path class="water" d="M190 560 C380 530 560 540 770 590 C970 640 1180 640 1430 580 L1430 690 C1180 750 960 750 760 700 C560 650 380 650 190 680 Z"/>
-
-  <circle class="ring" cx="820" cy="470" r="260"/>
-  <circle class="ring" cx="820" cy="470" r="180"/>
-
-  <path class="road-outline" d="M280 760 C520 620 700 530 860 420 C1020 300 1190 220 1380 160"/>
-  <path class="road" d="M280 760 C520 620 700 530 860 420 C1020 300 1190 220 1380 160"/>
-
-  <path class="road-outline" d="M260 240 C470 320 620 380 810 470 C980 550 1160 610 1360 650"/>
-  <path class="road" d="M260 240 C470 320 620 380 810 470 C980 550 1160 610 1360 650"/>
-
-  <rect class="highlight" x="650" y="500" width="260" height="170" rx="18"/>
-  <circle class="poi" cx="770" cy="575" r="10"/>
-  <text class="txt" x="800" y="582">Concertgebouw area</text>
-  <text class="txt" x="1240" y="840">Amsterdam</text>
+<title id="title">Level 2 geographic map: Amsterdam municipality</title>
+<desc id="desc">Amsterdam municipality boundary from OpenStreetMap administrative polygon coordinates.</desc>
+<defs><style>.bg{fill:#eaf3ff}.city{fill:#d9e8ff;stroke:#28549c;stroke-width:2.2}.inner{fill:none;stroke:#95b2e0;stroke-width:1.5;stroke-dasharray:8 6}.txt{font:600 22px Inter,Arial,sans-serif;fill:#12305f}.title{font:700 34px Inter,Arial,sans-serif;fill:#0b1f4d}</style></defs>
+<rect class="bg" width="1600" height="900"/>
+<text class="title" x="60" y="58">Zoom 2 — Amsterdam municipality (official boundary data)</text>
+<path class="city" d="M 170.69 252.50 L 275.05 269.75 L 279.70 344.11 L 270.03 350.82 L 277.72 377.26 L 264.53 433.87 L 267.34 443.44 L 392.55 504.75 L 418.50 532.86 L 481.98 564.53 L 492.72 574.54 L 568.08 566.81 L 568.33 559.16 L 584.44 554.56 L 627.42 554.14 L 630.40 592.30 L 772.42 587.98 L 794.84 592.68 L 818.56 605.84 L 830.19 605.86 L 837.04 596.60 L 824.29 590.15 L 826.51 585.93 L 822.86 583.07 L 835.60 578.85 L 832.19 553.31 L 866.74 542.28 L 871.11 532.18 L 888.40 527.20 L 916.89 535.82 L 963.72 519.59 L 1000.18 482.95 L 1022.18 449.67 L 1035.73 443.65 L 1053.32 449.80 L 1142.51 506.06 L 1181.55 502.93 L 1202.06 476.98 L 1285.25 450.19 L 1280.30 360.94 L 1429.31 304.15 L 1411.71 196.23 L 1390.18 184.58 L 1379.92 181.66 L 1321.60 190.70 L 1272.36 177.22 L 1252.88 188.49 L 1246.81 172.33 L 1222.58 164.59 L 1210.35 173.85 L 1145.51 146.50 L 1110.63 146.17 L 1106.10 155.37 L 1098.62 157.65 L 1082.58 140.85 L 1049.11 157.84 L 986.72 161.45 L 978.29 160.33 L 975.29 154.06 L 970.13 156.00 L 970.67 161.56 L 957.40 163.13 L 944.04 194.07 L 896.07 205.79 L 792.51 154.30 L 758.65 146.47 L 705.51 144.62 L 680.64 125.28 L 651.67 127.22 L 634.68 149.61 L 641.58 167.62 L 627.97 184.13 L 309.92 133.41 L 308.65 137.82 L 208.16 122.41 L 170.69 252.50 Z"/>
+<path class="city" d="M 891.09 647.49 L 984.17 777.03 L 1005.05 777.59 L 1009.33 768.88 L 1023.41 765.56 L 1028.83 771.55 L 1036.20 756.39 L 1085.70 725.33 L 1135.88 730.69 L 1151.38 714.94 L 1151.60 701.72 L 1156.54 700.92 L 1158.73 690.44 L 1163.86 690.94 L 1173.30 677.53 L 1191.61 668.61 L 1222.34 673.53 L 1209.37 584.67 L 1204.77 585.55 L 1202.90 579.02 L 1137.26 624.15 L 1134.54 609.53 L 1111.08 570.33 L 1083.35 552.14 L 1056.25 553.09 L 1038.10 571.91 L 1024.98 566.49 L 974.95 587.02 L 956.93 563.48 L 931.20 574.02 L 920.87 584.21 L 933.17 599.98 L 927.93 602.12 L 928.81 610.69 L 922.39 613.33 L 924.84 619.39 L 912.29 624.54 L 916.32 629.79 L 891.09 647.49 Z"/>
+<circle class="inner" cx="768.50" cy="383.23" r="140"/>
+<circle class="inner" cx="768.50" cy="383.23" r="240"/>
+<circle class="inner" cx="768.50" cy="383.23" r="320"/>
+<circle cx="768.50" cy="383.23" r="5" fill="#164194"/>
+<text class="txt" x="776.50" y="375.23">Amsterdam Centrum</text>
+<circle cx="710.31" cy="443.22" r="5" fill="#164194"/>
+<text class="txt" x="718.31" y="435.22">Concertgebouw</text>
+<circle cx="1001.27" cy="641.20" r="5" fill="#164194"/>
+<text class="txt" x="1009.27" y="633.20">Amsterdam Zuidoost</text>
 </svg>
