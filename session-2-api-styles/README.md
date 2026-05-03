@@ -93,6 +93,8 @@ Documentation update for the current deck plan:
 - replace the single C4-levels explainer slide with four focused slides (one per level)
 - keep one concept per slide so each level can be explained with concrete decisions
 - preserve one continuous zoom narrative across the four slides
+- use topology-first SVGs for the four C-level slides: Netherlands map (L1), Amsterdam city topology (L2), single-building topology (L3), and technical wiring schematic (L4).
+- make each SVG the dominant visual (~90% of slide area) and keep explanatory text in a compact legend.
 
 Cover:
 

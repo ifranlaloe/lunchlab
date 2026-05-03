@@ -1,0 +1,37 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Concertgebouw building zoom</title>
+  <desc id="desc">A stylized front and plan-oriented view of Amsterdam's Concertgebouw as the third zoom level.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f2f7ff; }
+      .base { fill: #d9e4f8; }
+      .building { fill: #f8fbff; stroke: #1c4a96; stroke-width: 5; }
+      .detail { fill: none; stroke: #1c4a96; stroke-width: 3; }
+      .window { fill: #cfe0fb; stroke: #6a8fcb; stroke-width: 2; }
+      .title { font: 700 38px Inter, Arial, sans-serif; fill: #0b1f4d; }
+      .txt { font: 600 24px Inter, Arial, sans-serif; fill: #102a5c; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="900"/>
+  <text class="title" x="70" y="80">Zoom 3 — Concertgebouw building</text>
+
+  <rect class="base" x="180" y="760" width="1240" height="70" rx="20"/>
+
+  <!-- Concertgebouw-inspired facade -->
+  <rect class="building" x="280" y="280" width="1040" height="470" rx="18"/>
+  <polygon class="building" points="250,280 800,130 1350,280"/>
+  <rect class="building" x="700" y="460" width="200" height="290"/>
+
+  <line class="detail" x1="280" y1="360" x2="1320" y2="360"/>
+  <line class="detail" x1="280" y1="430" x2="1320" y2="430"/>
+
+  <g>
+    <rect class="window" x="360" y="500" width="90" height="120"/>
+    <rect class="window" x="500" y="500" width="90" height="120"/>
+    <rect class="window" x="1010" y="500" width="90" height="120"/>
+    <rect class="window" x="1150" y="500" width="90" height="120"/>
+  </g>
+
+  <text class="txt" x="650" y="250">Het Concertgebouw, Amsterdam</text>
+</svg>
