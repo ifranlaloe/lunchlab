@@ -380,6 +380,16 @@
   grid-template-rows: auto minmax(0, 1fr);
 }
 
+.full-slide-svg .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.full-slide-svg h2 {
+  font-size: clamp(1.45rem, 3vw, 2.4rem);
+  line-height: 1.1;
+}
+
 .full-slide-svg .c4-visual-wrap {
   position: relative;
   grid-template-rows: minmax(0, 1fr);
