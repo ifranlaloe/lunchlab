@@ -1,9 +1,9 @@
 <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Level 2 geographic map: Amsterdam municipality</title>
   <desc id="desc">Amsterdam municipality boundary from OpenStreetMap administrative polygon coordinates.</desc>
-  <defs><style>.bg{fill:#eaf3ff}.city{fill:#d9e8ff;stroke:#28549c;stroke-width:2.2}.inner{fill:none;stroke:#95b2e0;stroke-width:1.5;stroke-dasharray:8 6}.txt{font:600 22px Inter,Arial,sans-serif;fill:#12305f}.title{font:700 34px Inter,Arial,sans-serif;fill:#0b1f4d}</style></defs>
+  <defs><style>.bg{fill:#eaf3ff}.city{fill:#d9e8ff;stroke:#28549c;stroke-width:2.2}.inner{fill:none;stroke:#95b2e0;stroke-width:1.5;stroke-dasharray:8 6}.txt{font:600 22px Inter,Arial,sans-serif;fill:#12305f}</style></defs>
   <rect class="bg" width="1600" height="900"/>
-  <text class="title" x="60" y="58">Zoom 2 — Amsterdam municipality (official boundary data)</text>
+  <g transform="translate(-60,-30) scale(1.1)">
   <path class="city" d="M 170.7,252.6 275.0,269.9 267.3,443.7 492.7,574.9 627.4,554.5 630.4,592.7 772.4,588.4 818.6,606.3 837.0,597.0 822.9,583.5 835.6,579.2 832.2,553.7 888.4,527.5 916.9,536.2 963.7,519.9 1035.7,443.9 1142.5,506.4 1181.5,503.3 1202.1,477.3 1285.2,450.5 1280.3,361.1 1429.3,304.3 1411.7,196.3 1390.2,184.6 1272.4,177.3 1252.9,188.6 1222.6,164.6 1210.3,173.9 1145.5,146.5 1098.6,157.7 1082.6,140.9 1049.1,157.9 975.3,154.1 944.0,194.1 896.1,205.9 792.5,154.3 705.5,144.6 680.6,125.3 651.7,127.2 628.0,184.2 208.2,122.4 170.7,252.6 Z"/>
   <path class="city" d="M 891.1,647.9 984.2,777.6 1028.8,772.1 1085.7,725.8 1135.9,731.2 1173.3,678.0 1222.3,674.0 1202.9,579.4 1137.3,624.6 1111.1,570.7 1083.3,552.5 975.0,587.4 956.9,563.9 931.2,574.4 924.8,619.8 891.1,647.9 Z"/>
   <path class="inner" d="M 905.0,620.0 C 940.0,615.0 970.0,620.0 1000.0,640.0"/>
@@ -16,4 +16,5 @@
   <text class="txt" x="718.3" y="435.5">Concertgebouw</text>
   <circle cx="976.1" cy="637.1" r="5" fill="#164194"/>
   <text class="txt" x="984.1" y="629.1">Amsterdam Zuidoost (Bijlmer)</text>
+  </g>
 </svg>
