@@ -60,6 +60,10 @@ Use a Netherlands map sequence to make C4 levels intuitive:
 - **Level 3 (Component):** one building’s internal organization.
 - **Level 4 (Code):** engineering blueprint-level implementation detail.
 
+### Level 1 visual framing
+
+For the Level 1 topology slide, keep the visual scoped to the Netherlands only and place it inside a simple rectangular context box to reinforce one-system boundary thinking.
+
 ### Level 1 emphasis
 
 At Level 1, explicitly model different boundary route modalities:
