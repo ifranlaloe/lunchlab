@@ -50,6 +50,24 @@ API styles are transport mechanisms between infrastructure domains, systems, or 
 - gRPC = Dedicated high-speed service corridor
 - SOAP = Regulated legacy cross-border rail connection
 
+## Full slide list (one-to-one with `index.html`)
+
+Current deck length: **13 slides**.
+
+1. **LunchLab #2** — Choosing the Right API Style  
+2. **C4 framing** — C4 as infrastructure cartography  
+3. **Cheat sheet** — C4 levels overview  
+4. **Level 1** — Level 1: The system in its external context  
+5. **Level 2** — Level 2: Main infrastructure domains inside the system  
+6. **Level 3** — Level 3: Inside one infrastructure domain  
+7. **Level 4** — Level 4: Engineering blueprint  
+8. **Level detail** — What each C4 level shows  
+9. **C4 at a glance** — All four levels on one page  
+10. **Depth references** — Level 3 and Level 4 (useful, but mostly out of scope today)  
+11. **API mapping** — API styles as transport mechanisms  
+12. **Facilitation** — Scope-control lines for the workshop  
+13. **Takeaway** — Final takeaway
+
 ## File
 
 - [index.html](./index.html)
