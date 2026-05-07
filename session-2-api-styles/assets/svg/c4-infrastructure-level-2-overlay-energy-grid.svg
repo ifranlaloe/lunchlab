@@ -1,0 +1,18 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Level 2 overlay — Energy grid anchor</title>
+  <desc id="desc">Level 2 overlay marker for Energy grid, aligned to Level 1 coordinates for stack/layer composition.</desc>
+  <defs>
+    <style>
+      .marker { fill: #22c55e; stroke: #000; stroke-width: 3; }
+      .ring { fill: none; stroke: #22c55e; stroke-width: 4; opacity: .45; }
+      .line { stroke: #000; stroke-width: 2.5; }
+      .tag { fill: #fff; stroke: #000; stroke-width: 2; rx: 8; }
+      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; }
+    </style>
+  </defs>
+  <circle class="ring" cx="1012" cy="248" r="30"/>
+  <circle class="marker" cx="1012" cy="248" r="11"/>
+  <path class="line" d="M 1012 248 L 1115 190"/>
+  <rect class="tag" x="1125" y="148" width="200" height="44"/>
+  <text class="txt" x="1160" y="178">Energy grid</text>
+</svg>

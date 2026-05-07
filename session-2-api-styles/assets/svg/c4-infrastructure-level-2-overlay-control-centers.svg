@@ -1,0 +1,18 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Level 2 overlay — Control centers anchor</title>
+  <desc id="desc">Level 2 overlay marker for Control centers, aligned to Level 1 coordinates for stack/layer composition.</desc>
+  <defs>
+    <style>
+      .marker { fill: #10b981; stroke: #000; stroke-width: 3; }
+      .ring { fill: none; stroke: #10b981; stroke-width: 4; opacity: .45; }
+      .line { stroke: #000; stroke-width: 2.5; }
+      .tag { fill: #fff; stroke: #000; stroke-width: 2; rx: 8; }
+      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; }
+    </style>
+  </defs>
+  <circle class="ring" cx="930" cy="468" r="30"/>
+  <circle class="marker" cx="930" cy="468" r="11"/>
+  <path class="line" d="M 930 468 L 1050 540"/>
+  <rect class="tag" x="1060" y="518" width="240" height="44"/>
+  <text class="txt" x="1095" y="548">Control centers</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Level 2 overlay — Water system anchor</title>
+  <desc id="desc">Level 2 overlay marker for Water system, aligned to Level 1 coordinates for stack/layer composition.</desc>
+  <defs>
+    <style>
+      .marker { fill: #06b6d4; stroke: #000; stroke-width: 3; }
+      .ring { fill: none; stroke: #06b6d4; stroke-width: 4; opacity: .45; }
+      .line { stroke: #000; stroke-width: 2.5; }
+      .tag { fill: #fff; stroke: #000; stroke-width: 2; rx: 8; }
+      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; }
+    </style>
+  </defs>
+  <circle class="ring" cx="768" cy="610" r="30"/>
+  <circle class="marker" cx="768" cy="610" r="11"/>
+  <path class="line" d="M 768 610 L 640 680"/>
+  <rect class="tag" x="390" y="658" width="220" height="44"/>
+  <text class="txt" x="425" y="688">Water system</text>
+</svg>
