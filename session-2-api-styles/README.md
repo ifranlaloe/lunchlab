@@ -30,7 +30,7 @@ SVG naming is now stable and metaphor-neutral:
 - `assets/svg/c4-infrastructure-level-3.svg`
 - `assets/svg/c4-infrastructure-level-4.svg`
 
-Level 2 teaching visuals can also be composed as layers: Level 1 base plus per-domain overlays in `assets/svg/c4-infrastructure-level-2-overlay-*.svg`.
+Level 2 teaching visuals are composed as a progressive build: each Level 2 slide keeps the Level 1 base and adds one more per-domain overlay from `assets/svg/c4-infrastructure-level-2-overlay-*.svg`.
 
 Levels 2–4 include an explicit system boundary treatment, aligned with the boundary framing in Level 1.
 
@@ -54,21 +54,27 @@ API styles are transport mechanisms between infrastructure domains, systems, or 
 
 ## Full slide list (one-to-one with `index.html`)
 
-Current deck length: **13 slides**.
+Current deck length: **19 slides**.
 
-1. **LunchLab #2** — Choosing the Right API Style  
-2. **C4 framing** — C4 as infrastructure cartography  
-3. **Cheat sheet** — C4 levels overview  
-4. **Level 1** — Level 1: The system in its external context  
-5. **Level 2** — Level 2: Main infrastructure domains inside the system  
-6. **Level 3** — Level 3: Inside one infrastructure domain  
-7. **Level 4** — Level 4: Engineering blueprint  
-8. **Level detail** — What each C4 level shows  
-9. **C4 at a glance** — All four levels on one page  
-10. **Depth references** — Level 3 and Level 4 (useful, but mostly out of scope today)  
-11. **API mapping** — API styles as transport mechanisms  
-12. **Facilitation** — Scope-control lines for the workshop  
-13. **Takeaway** — Final takeaway
+1. **LunchLab #2** - Choosing the Right API Style
+2. **C4 framing** - C4 as infrastructure cartography
+3. **Cheat sheet** - C4 levels overview
+4. **Level 1** - Level 1: The system in its external context
+5. **Level 2 build** - Road network layer
+6. **Level 2 build** - Rail network layer
+7. **Level 2 build** - Energy grid layer
+8. **Level 2 build** - Water system layer
+9. **Level 2 build** - Telecom layer
+10. **Level 2 build** - Data centers layer
+11. **Level 2 build** - Control centers layer
+12. **Level 3** - Level 3: Inside one infrastructure domain
+13. **Level 4** - Level 4: Engineering blueprint
+14. **Level detail** - What each C4 level shows
+15. **C4 at a glance** - All four levels on one page
+16. **Depth references** - Level 3 and Level 4 (useful, but mostly out of scope today)
+17. **API mapping** - API styles as transport mechanisms
+18. **Facilitation** - Scope-control lines for the workshop
+19. **Takeaway** - Final takeaway
 
 ## File
 
