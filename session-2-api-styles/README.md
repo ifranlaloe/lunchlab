@@ -23,6 +23,15 @@ Use C4 as **infrastructure cartography** to choose the right map scale first, th
 - **Level 3 — Component:** Inside one infrastructure domain.
 - **Level 4 — Code:** Engineering blueprint / construction specification.
 
+SVG naming is now stable and metaphor-neutral:
+
+- `assets/svg/c4-level-1.svg`
+- `assets/svg/c4-level-2.svg`
+- `assets/svg/c4-level-3.svg`
+- `assets/svg/c4-level-4.svg`
+
+Levels 2–4 include an explicit system boundary treatment, aligned with the boundary framing in Level 1.
+
 ## Facilitation lines
 
 - “Before choosing the transport mechanism, first agree on the map scale.”
