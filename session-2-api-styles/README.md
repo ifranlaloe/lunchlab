@@ -30,6 +30,8 @@ SVG naming is now stable and metaphor-neutral:
 - `assets/svg/c4-infrastructure-level-3.svg`
 - `assets/svg/c4-infrastructure-level-4.svg`
 
+Level 2 teaching visuals can also be composed as layers: Level 1 base plus per-domain overlays in `assets/svg/c4-infrastructure-level-2-overlay-*.svg`.
+
 Levels 2–4 include an explicit system boundary treatment, aligned with the boundary framing in Level 1.
 
 ## Facilitation lines

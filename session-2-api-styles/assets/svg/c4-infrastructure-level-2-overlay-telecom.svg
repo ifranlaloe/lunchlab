@@ -1,0 +1,18 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Level 2 overlay — Telecom anchor</title>
+  <desc id="desc">Level 2 overlay marker for Telecom, aligned to Level 1 coordinates for stack/layer composition.</desc>
+  <defs>
+    <style>
+      .marker { fill: #8b5cf6; stroke: #000; stroke-width: 3; }
+      .ring { fill: none; stroke: #8b5cf6; stroke-width: 4; opacity: .45; }
+      .line { stroke: #000; stroke-width: 2.5; }
+      .tag { fill: #fff; stroke: #000; stroke-width: 2; rx: 8; }
+      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; }
+    </style>
+  </defs>
+  <circle class="ring" cx="812" cy="372" r="30"/>
+  <circle class="marker" cx="812" cy="372" r="11"/>
+  <path class="line" d="M 812 372 L 670 300"/>
+  <rect class="tag" x="430" y="258" width="170" height="44"/>
+  <text class="txt" x="465" y="288">Telecom</text>
+</svg>

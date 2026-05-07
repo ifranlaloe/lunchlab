@@ -1,0 +1,18 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Level 2 overlay — Data centers anchor</title>
+  <desc id="desc">Level 2 overlay marker for Data centers, aligned to Level 1 coordinates for stack/layer composition.</desc>
+  <defs>
+    <style>
+      .marker { fill: #3b82f6; stroke: #000; stroke-width: 3; }
+      .ring { fill: none; stroke: #3b82f6; stroke-width: 4; opacity: .45; }
+      .line { stroke: #000; stroke-width: 2.5; }
+      .tag { fill: #fff; stroke: #000; stroke-width: 2; rx: 8; }
+      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; }
+    </style>
+  </defs>
+  <circle class="ring" cx="832" cy="352" r="30"/>
+  <circle class="marker" cx="832" cy="352" r="11"/>
+  <path class="line" d="M 832 352 L 930 300"/>
+  <rect class="tag" x="940" y="258" width="210" height="44"/>
+  <text class="txt" x="975" y="288">Data centers</text>
+</svg>
