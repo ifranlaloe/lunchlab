@@ -436,3 +436,23 @@
 .level1-slide .c4-visual-wrap {
   margin-top: 2px;
 }
+
+.image-only-slide {
+  grid-template-rows: minmax(0, 1fr);
+  gap: 0;
+}
+
+.image-only-slide .c4-visual-wrap {
+  height: 100%;
+  margin-top: 0;
+}
+
+.image-only-slide .c4-visual {
+  width: min(100%, calc((100vh - 4rem) * (16 / 9)));
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  justify-self: center;
+  align-self: center;
+  border-radius: 0;
+}
