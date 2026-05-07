@@ -7,7 +7,6 @@
       .context-box{fill:none;stroke:#000000;stroke-width:8}
       .nl{fill:#ffffff;stroke:#000000;stroke-width:4}
       .txt{font:700 30px Inter,Arial,sans-serif;fill:#000000}
-      .label{font:600 24px Inter,Arial,sans-serif;fill:#000000}
     </style>
   </defs>
 
@@ -19,5 +18,4 @@
   </g>
 
   <text class="txt" x="140" y="62">C4 Context Box</text>
-  <text class="label" x="730" y="465">Netherlands</text>
 </svg>
