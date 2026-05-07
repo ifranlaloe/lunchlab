@@ -1,0 +1,35 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Level 4: Engineering blueprint</title>
+  <desc id="desc">Blueprint-style implementation details with grid, measurement lines, and exact labels.</desc>
+  <defs>
+    <style>
+      .bg{fill:#081226}.grid{stroke:#1d315a;stroke-width:1}.panel{fill:#0e1f3f;stroke:#85b7ff;stroke-width:3}
+      .wire{stroke:#78d3ff;stroke-width:3;fill:none}.measure{stroke:#b5cbff;stroke-width:2;stroke-dasharray:6 6}
+      .title{font:700 38px Inter,Arial,sans-serif;fill:#ecf4ff}.txt{font:600 20px Inter,Arial,sans-serif;fill:#d9e9ff}
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="900"/>
+  <g>
+    <path class="grid" d="M0 100H1600 M0 200H1600 M0 300H1600 M0 400H1600 M0 500H1600 M0 600H1600 M0 700H1600 M0 800H1600"/>
+    <path class="grid" d="M100 0V900 M250 0V900 M400 0V900 M550 0V900 M700 0V900 M850 0V900 M1000 0V900 M1150 0V900 M1300 0V900 M1450 0V900"/>
+  </g>
+  <text class="title" x="70" y="78">Level 4 — Engineering blueprint / construction specification</text>
+
+  <rect class="panel" x="120" y="130" width="1360" height="730" rx="24"/>
+  <text class="txt" x="160" y="175">System boundary</text>
+  <rect class="panel" x="200" y="200" width="1200" height="590" rx="20"/>
+  <rect class="panel" x="280" y="250" width="290" height="120" rx="12"/><text class="txt" x="320" y="320">Signal wiring</text>
+  <rect class="panel" x="670" y="250" width="290" height="120" rx="12"/><text class="txt" x="720" y="320">Protocol detail</text>
+  <rect class="panel" x="1060" y="250" width="260" height="120" rx="12"/><text class="txt" x="1140" y="320">Config</text>
+
+  <rect class="panel" x="320" y="510" width="320" height="130" rx="12"/><text class="txt" x="400" y="585">Class / function</text>
+  <rect class="panel" x="760" y="510" width="360" height="130" rx="12"/><text class="txt" x="850" y="585">Database query</text>
+
+  <path class="wire" d="M570 310 L670 310"/>
+  <path class="wire" d="M960 310 L1060 310"/>
+  <path class="wire" d="M425 370 L480 510"/>
+  <path class="wire" d="M815 370 L940 510"/>
+  <path class="measure" d="M280 700 H1320"/>
+  <path class="measure" d="M280 690 V710 M1320 690 V710"/>
+  <text class="txt" x="720" y="690">implementation detail span</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Level 2: Main infrastructure domains inside the system</title>
+  <desc id="desc">Abstract infrastructure-domain map showing major internal domains and their communication paths.</desc>
+  <defs>
+    <style>
+      .bg { fill: #0d1324; }
+      .system { fill: #141e36; stroke: #78a8ff; stroke-width: 4; }
+      .domain { fill: #1f2c4d; stroke: #93bbff; stroke-width: 2.5; }
+      .path { stroke: #6dc8ff; stroke-width: 3; fill: none; opacity: 0.85; }
+      .title { font: 700 38px Inter, Arial, sans-serif; fill: #e8f1ff; }
+      .txt { font: 600 22px Inter, Arial, sans-serif; fill: #d7e8ff; }
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="900"/>
+  <text class="title" x="70" y="78">Level 2 — Main infrastructure domains inside the system</text>
+
+  <rect class="system" x="120" y="130" width="1360" height="700" rx="40"/>
+  <text class="txt" x="150" y="175">System / The Netherlands (boundary)</text>
+
+  <g>
+    <rect class="domain" x="220" y="250" width="230" height="110" rx="18"/><text class="txt" x="255" y="315">Road network</text>
+    <rect class="domain" x="520" y="230" width="230" height="110" rx="18"/><text class="txt" x="560" y="295">Rail network</text>
+    <rect class="domain" x="830" y="250" width="230" height="110" rx="18"/><text class="txt" x="865" y="315">Energy grid</text>
+    <rect class="domain" x="1140" y="230" width="230" height="110" rx="18"/><text class="txt" x="1180" y="295">Water system</text>
+
+    <rect class="domain" x="250" y="500" width="230" height="110" rx="18"/><text class="txt" x="315" y="565">Telecom</text>
+    <rect class="domain" x="570" y="530" width="260" height="110" rx="18"/><text class="txt" x="620" y="595">Data centers</text>
+    <rect class="domain" x="910" y="520" width="280" height="110" rx="18"/><text class="txt" x="940" y="585">Control centers</text>
+  </g>
+
+  <g>
+    <path class="path" d="M450 305 L520 285"/>
+    <path class="path" d="M750 285 L830 305"/>
+    <path class="path" d="M1060 305 L1140 285"/>
+    <path class="path" d="M340 360 L365 500"/>
+    <path class="path" d="M635 340 L700 530"/>
+    <path class="path" d="M945 360 L1035 520"/>
+    <path class="path" d="M480 555 L570 585"/>
+    <path class="path" d="M830 585 L910 575"/>
+    <path class="path" d="M700 530 L910 520"/>
+  </g>
+</svg>

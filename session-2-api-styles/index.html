@@ -35,206 +35,153 @@
         </section>
 
         <section class="slide">
-          <div class="eyebrow">Session flow</div>
-          <h2>Today’s facilitation order</h2>
-          <div class="content step-list">
-            <div class="step"><div class="step-num">1</div><div><h3>C4 cartography first</h3><div class="lead">Align map language before any domain-case puzzle.</div></div></div>
-            <div class="step"><div class="step-num">2</div><div><h3>API styles by interaction archetype</h3><div class="lead">Match route behavior to communication needs.</div></div></div>
-            <div class="step"><div class="step-num">3</div><div><h3>Guided C4 calibration exercise</h3><div class="lead">Classify decisions by C-level before choosing technology.</div></div></div>
-            <div class="step"><div class="step-num">4</div><div><h3>Takeaway + cheat sheet close</h3><div class="lead">End with reference material, not new concepts.</div></div></div>
-          </div>
-        </section>
-
-        <section class="slide">
           <div class="eyebrow">C4 framing</div>
           <h2>C4 as infrastructure cartography</h2>
           <div class="content two-col">
             <div class="card">
-              <h3>Core idea</h3>
+              <h3>Core message</h3>
               <ul>
                 <li>Architecture diagrams are maps.</li>
                 <li>Good maps are designed for a purpose.</li>
                 <li>Different infrastructure questions need different maps.</li>
                 <li>A useful map is not complete; it is purposeful.</li>
+                <li>C4 helps us choose the right infrastructure map before discussing design decisions.</li>
               </ul>
             </div>
             <div class="card">
               <h3>Facilitation intent</h3>
               <ul>
-                <li>We align C4 language first, before any app example.</li>
-                <li>First choose the map scale, then discuss decisions.</li>
-                <li>Today we focus mostly on Level 1 and Level 2.</li>
+                <li>Agree on map scale before choosing transport mechanisms.</li>
+                <li>Keep today mostly at Level 1 and Level 2.</li>
+                <li>Use Level 3 and Level 4 as references, not the main exercise scope.</li>
               </ul>
             </div>
           </div>
         </section>
 
         <section class="slide">
-          <div class="eyebrow">C4 naming</div>
-          <h2>Why it is called C4</h2>
+          <div class="eyebrow">Cheat sheet</div>
+          <h2>C4 levels overview</h2>
           <div class="content four-up">
-            <div class="card"><h3>Context</h3><p>System boundary and external actors.</p></div>
-            <div class="card"><h3>Containers</h3><p>Main runtime building blocks and routes.</p></div>
-            <div class="card"><h3>Components</h3><p>Internal modules inside one container.</p></div>
-            <div class="card"><h3>Code</h3><p>Implementation-level structures and details.</p></div>
+            <div class="card"><h3>Level 1 — System Context</h3><p><strong>Infrastructure map:</strong> The Netherlands in its external context.<br><strong>Question:</strong> What surrounds and connects to our system?</p></div>
+            <div class="card"><h3>Level 2 — Container</h3><p><strong>Infrastructure map:</strong> Main infrastructure domains inside the Netherlands.<br><strong>Question:</strong> What are the major parts inside the system, and how do they connect?</p></div>
+            <div class="card"><h3>Level 3 — Component</h3><p><strong>Infrastructure map:</strong> Inside one infrastructure domain.<br><strong>Question:</strong> How is one major part structured internally?</p></div>
+            <div class="card"><h3>Level 4 — Code</h3><p><strong>Infrastructure map:</strong> Engineering blueprint / construction specification.<br><strong>Question:</strong> How is it built in exact detail?</p></div>
           </div>
         </section>
 
         <section class="slide c4-visual-slide full-slide-svg level1-slide image-only-slide">
+          <div class="eyebrow">Level 1</div>
+          <h2>Level 1: The system in its external context</h2>
           <div class="content c4-visual-wrap">
-            <img class="c4-visual" src="assets/svg/l1-context-netherlands.svg" alt="System context topology using a Netherlands map with external actors and boundary-crossing routes." />
-            <div class="c4-legend"><strong>Legend:</strong> Boundary + external nodes + cross-border routes only.</div>
+            <img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="System context map with one system boundary and external actors and connections." />
+            <div class="c4-legend"><strong>Facilitator question:</strong> Is this inside our system boundary, or outside it?</div>
           </div>
         </section>
 
         <section class="slide c4-visual-slide full-slide-svg">
-          <div class="eyebrow">C4 level 2</div>
-          <h2>Level 2 — Container Topology</h2>
+          <div class="eyebrow">Level 2</div>
+          <h2>Level 2: Main infrastructure domains inside the system</h2>
           <div class="content c4-visual-wrap">
-            <img class="c4-visual" src="assets/svg/l2-container-amsterdam.svg" alt="Container topology shown as an Amsterdam city-style infrastructure map with container hubs and routes." />
-            <div class="c4-legend"><strong>Legend:</strong> Internal containers as city hubs, arrows show primary service routes.</div>
+            <img class="c4-visual" src="assets/svg/c4-infrastructure-level-2.svg" alt="Main infrastructure domains inside one system and communication paths between them." />
+            <div class="c4-legend"><strong>Facilitator question:</strong> Which major parts need to communicate, and what kind of traffic moves between them?</div>
           </div>
         </section>
 
         <section class="slide c4-visual-slide">
-          <div class="eyebrow">C4 level 3</div>
-          <h2>Level 3 — Component Topology</h2>
+          <div class="eyebrow">Level 3</div>
+          <h2>Level 3: Inside one infrastructure domain</h2>
           <div class="content c4-visual-wrap">
-            <img class="c4-visual" src="assets/svg/l3-component-building.svg" alt="Component topology shown as one building floor with internal subsystem connections." />
-            <div class="c4-legend"><strong>Legend:</strong> One container only; rooms represent components and dependency paths.</div>
+            <img class="c4-visual" src="assets/svg/c4-infrastructure-level-3.svg" alt="Internal structure of one selected infrastructure domain with components and dependencies." />
+            <div class="c4-legend"><strong>Facilitation line:</strong> That sounds like we are now inside one infrastructure domain. Useful, but for today let’s first finish the Level 1 and Level 2 maps.</div>
           </div>
         </section>
 
         <section class="slide c4-visual-slide">
-          <div class="eyebrow">C4 level 4</div>
-          <h2>Level 4 — Code Topology</h2>
+          <div class="eyebrow">Level 4</div>
+          <h2>Level 4: Engineering blueprint</h2>
           <div class="content c4-visual-wrap">
-            <img class="c4-visual" src="assets/svg/l4-code-schematic.svg" alt="Code topology represented as a technical building systems schematic with implementation wiring." />
-            <div class="c4-legend"><strong>Legend:</strong> Interfaces, adapters, and implementation call paths at wiring detail.</div>
+            <img class="c4-visual" src="assets/svg/c4-infrastructure-level-4.svg" alt="Blueprint style implementation detail map with wiring, config, and protocol detail." />
+            <div class="c4-legend"><strong>Facilitation line:</strong> That belongs on the engineering blueprint. Let’s first agree on the infrastructure map.</div>
           </div>
         </section>
 
         <section class="slide">
-          <div class="eyebrow">Level 1</div>
-          <h2>Level 1 route modalities and trade-offs</h2>
+          <div class="eyebrow">Level detail</div>
+          <h2>What each C4 level shows</h2>
           <div class="content two-col">
             <div class="card">
-              <h3>Modalities at the boundary</h3>
-              <ul>
-                <li>Sea route: high capacity, slower cadence.</li>
-                <li>River route: constrained channels, policy sensitivity.</li>
-                <li>Air route: fast, expensive, strict controls.</li>
-                <li>Truck route: flexible, variable reliability.</li>
-                <li>Rail route: scheduled, formal, governance-heavy.</li>
-              </ul>
+              <h3>Level 1 — System Context</h3>
+              <p>Draw the system as one whole. Show surrounding actors, external and partner systems, cross-boundary connections, and the system boundary.</p>
+              <p><strong>Netherlands analogy:</strong> citizens, businesses, travelers, Belgium/Germany/EU systems, ports, airports, cross-border rail/highways, energy imports, internet backbone links.</p>
             </div>
             <div class="card">
-              <h3>Decision dimensions</h3>
-              <ul>
-                <li>Latency expectations</li>
-                <li>Governance and trust controls</li>
-                <li>Reliability and resilience behavior</li>
-                <li>Coupling and contract rigidity</li>
-              </ul>
+              <h3>Level 2 — Container</h3>
+              <p>Map major internal domains and communication paths between them.</p>
+              <p><strong>Infrastructure examples:</strong> road network, rail network, energy grid, water management, telecom, ports/airports, control centers, emergency network, data centers.</p>
+              <p><strong>Software equivalents:</strong> apps, services, databases, message brokers, caches, gateways, platform services.</p>
             </div>
           </div>
         </section>
 
         <section class="slide">
-          <div class="eyebrow">Archetypes</div>
-          <h2>Start with interaction archetypes, then style</h2>
+          <div class="eyebrow">C4 at a glance</div>
+          <h2>All four levels on one page</h2>
+          <div class="content four-up">
+            <div class="card"><h3>Level 1</h3><img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="C4 level 1 visual" /></div>
+            <div class="card"><h3>Level 2</h3><img class="c4-visual" src="assets/svg/c4-infrastructure-level-2.svg" alt="C4 level 2 visual" /></div>
+            <div class="card"><h3>Level 3</h3><img class="c4-visual" src="assets/svg/c4-infrastructure-level-3.svg" alt="C4 level 3 visual" /></div>
+            <div class="card"><h3>Level 4</h3><img class="c4-visual" src="assets/svg/c4-infrastructure-level-4.svg" alt="C4 level 4 visual" /></div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">Depth references</div>
+          <h2>Level 3 and Level 4 (useful, but mostly out of scope today)</h2>
           <div class="content two-col">
             <div class="card">
-              <h3>Archetype</h3>
-              <ul>
-                <li>Request/response</li>
-                <li>Streaming real-time</li>
-                <li>Event callback</li>
-                <li>Internal RPC</li>
-                <li>Legacy boundary integration</li>
-              </ul>
+              <h3>Level 3 — One domain internally</h3>
+              <p>Inside rail network: stations, tracks, switches, signals, control rooms, timetable systems, depots, ticket gates, power sections.</p>
+              <p>Inside road network: highways, junctions, tunnels, bridges, traffic lights, dynamic signage, sensors, incident response units.</p>
+              <p><strong>Software:</strong> controllers, adapters, domain logic, repositories, validators, event publishers, internal modules.</p>
             </div>
             <div class="card">
-              <h3>Likely style candidates</h3>
-              <ul>
-                <li>REST, GraphQL</li>
-                <li>WebSocket</li>
-                <li>Webhook</li>
-                <li>gRPC</li>
-                <li>SOAP</li>
-              </ul>
+              <h3>Level 4 — Exact implementation</h3>
+              <p>Bridge materials, track gauge, signal wiring, sensor configuration, traffic-light control logic, PLC programs, concrete composition, bolt sizes, safety protocol implementation.</p>
+              <p><strong>Software:</strong> classes, functions, methods, interfaces, database queries, config files, implementation code.</p>
             </div>
           </div>
         </section>
 
         <section class="slide">
           <div class="eyebrow">API mapping</div>
-          <h2>API styles as infrastructure choices</h2>
+          <h2>API styles as transport mechanisms</h2>
+          <div class="subtitle">API styles are transport mechanisms between infrastructure domains, systems, or access points.</div>
           <div class="content three-col">
-            <div class="card"><h3>REST = Normal road</h3><p>Simple request-response traffic.</p></div>
-            <div class="card"><h3>GraphQL = Route planner / smart junction</h3><p>Client asks for exactly the data it needs.</p></div>
-            <div class="card"><h3>WebSocket = Dedicated open lane</h3><p>Continuous two-way real-time traffic.</p></div>
-            <div class="card"><h3>Webhook = Delivery drop-off route</h3><p>One system delivers an event when something happens.</p></div>
-            <div class="card"><h3>gRPC = High-speed service tunnel</h3><p>Fast internal service-to-service traffic.</p></div>
-            <div class="card"><h3>SOAP = Regulated legacy rail line</h3><p>Strict, formal, often older enterprise integration.</p></div>
+            <div class="card"><h3>REST = Standard public road access</h3><p>Simple request-response interaction.</p></div>
+            <div class="card"><h3>GraphQL = Smart route planner / custom itinerary</h3><p>Consumer asks exactly for the data it needs.</p></div>
+            <div class="card"><h3>WebSocket = Live traffic control channel</h3><p>Continuous two-way updates.</p></div>
+            <div class="card"><h3>Webhook = Scheduled delivery/drop-off from outside</h3><p>External system notifies us when something happens.</p></div>
+            <div class="card"><h3>gRPC = Dedicated high-speed service corridor</h3><p>Efficient internal service-to-service communication.</p></div>
+            <div class="card"><h3>SOAP = Regulated legacy cross-border rail connection</h3><p>Strict, formal, enterprise or legacy integration.</p></div>
           </div>
         </section>
 
         <section class="slide">
           <div class="eyebrow">Facilitation</div>
-          <h2>Keeping the discussion at the right map scale</h2>
+          <h2>Scope-control lines for the workshop</h2>
           <div class="content two-col">
-            <div class="card"><ul><li>“Before choosing the road type, first agree on the map scale.”</li><li>“That sounds like a building-systems question. Useful, but for now we are still designing the city infrastructure.”</li></ul></div>
-            <div class="card"><ul><li>“That belongs on the engineering blueprint. Let’s first agree on the infrastructure map.”</li><li>“If we are discussing bridge materials, we probably zoomed in too far.”</li><li>“Are we still talking between boxes?”</li></ul></div>
-          </div>
-        </section>
-
-        <section class="slide">
-          <div class="eyebrow">Exercise</div>
-          <h2>Guided C4 calibration before domain case</h2>
-          <div class="content two-col">
-            <div class="card">
-              <h3>Sample decisions to classify</h3>
-              <ul>
-                <li>“Partner sends status updates to us.”</li>
-                <li>“Service A needs low-latency calls to Service B.”</li>
-                <li>“Retry policy should be exponential backoff.”</li>
-                <li>“Need field-level query flexibility for mobile.”</li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>Prompt bank</h3>
-              <ul>
-                <li>Which C4 level is this decision on?</li>
-                <li>Are we still talking between boxes?</li>
-                <li>What information is missing at this zoom level?</li>
-                <li>Should we decide this now or park it for Level 3/4?</li>
-              </ul>
-            </div>
+            <div class="card"><ul><li>“Before choosing the transport mechanism, first agree on the map scale.”</li><li>“Are we discussing the system boundary, the major internal domains, one domain internally, or engineering detail?”</li><li>“That sounds like we are inside one infrastructure domain. Let’s park it unless we intentionally move to Level 3.”</li></ul></div>
+            <div class="card"><ul><li>“That belongs on the engineering blueprint. Let’s first agree on the infrastructure map.”</li><li>“If we are discussing materials, wiring, or low-level protocol details, we probably zoomed in too far for this exercise.”</li></ul></div>
           </div>
         </section>
 
         <section class="slide">
           <div class="eyebrow">Takeaway</div>
-          <h2>Cartography first, implementation later</h2>
-          <div class="big-quote">No universal best API style. Fit depends on interaction, boundary, and route constraints.</div>
-          <div class="content"><div class="flow"><span class="tag focus">Choose map scale first</span><span class="tag focus">Level 1 + Level 2 now</span><span class="tag focus">APIs = infrastructure choices</span><span class="tag warn">Avoid zooming too far too early</span></div></div>
-        </section>
-
-        <section class="slide">
-          <div class="eyebrow">Cheat sheet</div>
-          <h2>API style selection cheat sheet (final reference)</h2>
-          <div class="content requirement-grid">
-            <div class="card"><h3>Client query flexibility</h3><p>Start with REST; use GraphQL when client-specific data shaping is central.</p></div>
-            <div class="card"><h3>Real-time bidirectional</h3><p>Use WebSocket when both sides need continuous low-latency updates.</p></div>
-            <div class="card"><h3>Asynchronous notification</h3><p>Use Webhook when producer pushes events to consumer endpoints.</p></div>
-            <div class="card"><h3>Internal low-latency RPC</h3><p>Use gRPC for typed, high-throughput service-to-service communication.</p></div>
-            <div class="card"><h3>Legacy regulated integration</h3><p>Use SOAP when enterprise governance/contracts require it.</p></div>
-            <div class="card"><h3>Facilitator rule</h3><p>Decide boundary and container interactions first; park Level 3/4 implementation details.</p></div>
-          </div>
+          <h2>Final takeaway</h2>
+          <div class="big-quote">Today we mostly use the system context map and the infrastructure-domain map. API styles are the transport mechanisms between systems, domains, and access points.</div>
         </section>
       </div>
-    </div>
     </div>
 
     <div class="footer">
@@ -242,8 +189,8 @@
         <button id="prevBtn">← Prev</button>
         <button id="nextBtn">Next →</button>
       </div>
-      <div class="counter" id="counter">1 / 15</div>
-      <div class="hint">Use swipe/controls, or <span class="kbd">←</span> <span class="kbd">→</span></div>
+      <div class="counter" id="counter">1 / 13</div>
+      <div class="hint">Use swipe/controls, or <span class="kbd">←</span> <span class="kbd">→</span> and <span class="kbd">Space</span></div>
     </div>
   </div>
 
