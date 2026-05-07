@@ -422,3 +422,17 @@
   padding: 6px 10px;
   justify-self: start;
 }
+
+.level1-slide {
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 4px;
+}
+
+.level1-slide h2 {
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  line-height: 1.05;
+}
+
+.level1-slide .c4-visual-wrap {
+  margin-top: 2px;
+}
