@@ -105,7 +105,7 @@
     }
 
     h1 { font-size: clamp(2.4rem, 6vw, 5rem); }
-    h2 { font-size: clamp(2rem, 4.8vw, 3.8rem); }
+    h2 { font-size: clamp(1.45rem, 3vw, 2.4rem); }
 
     .subtitle, .lead {
       color: var(--muted);
@@ -414,11 +414,6 @@
   letter-spacing: 0.1em;
 }
 
-.full-slide-svg h2 {
-  font-size: clamp(1.45rem, 3vw, 2.4rem);
-  line-height: 1.1;
-}
-
 .full-slide-svg .c4-visual-wrap {
   position: relative;
   height: 100%;
@@ -520,11 +515,6 @@
 
   grid-template-rows: auto minmax(0, 1fr);
   gap: 4px;
-}
-
-.level1-slide h2 {
-  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
-  line-height: 1.05;
 }
 
 .level1-slide .c4-visual-wrap {
