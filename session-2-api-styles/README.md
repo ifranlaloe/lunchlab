@@ -34,16 +34,18 @@ SVG naming is now stable and metaphor-neutral:
 - `assets/svg/c4-infrastructure-level-2-overlay-road-network.svg`
 - `assets/svg/c4-infrastructure-level-2-overlay-rail-network.svg`
 - `assets/svg/c4-infrastructure-level-2-overlay-water-system.svg`
+- `assets/svg/c4-infrastructure-level-2-overlay-airports.svg`
 - `assets/svg/c4-infrastructure-level-3.svg`
 - `assets/svg/c4-infrastructure-level-4.svg`
 
-Level 2 teaching visuals are now a traveler-mode progressive build: road → rail → water.
+Level 2 teaching visuals are now a traveler-mode progressive build: road → rail → water → air.
 
 Official data sources used in Level 2 geometry overlays:
 
 - Road network: PDOK / Rijkswaterstaat `NWB - Wegen` OGC API, collection `wegvakken` (main A-road-focused filter).
 - Rail network: PDOK / ProRail `Spoorwegen` OGC API, collection `trace`.
 - Water system: PDOK / Rijkswaterstaat `NWB - Vaarwegen` OGC API, collection `vaarwegvakken`.
+- Air airports: LVNL Geoportaal `Aerodrome_data` Feature Service, layers `Aerodrome Civil` and `Aerodrome Joint`.
 
 Levels 2–4 include an explicit system boundary treatment, aligned with the boundary framing in Level 1.
 
@@ -68,7 +70,7 @@ API styles are transport mechanisms between infrastructure domains, systems, or 
 
 ## Full slide list (one-to-one with `index.html`)
 
-Current deck length: **16 slides**.
+Current deck length: **17 slides**.
 
 1. **LunchLab #2** - Choosing the Right API Style
 2. **C4 framing** - C4 as infrastructure cartography
@@ -78,14 +80,15 @@ Current deck length: **16 slides**.
 6. **Level 2 build** - Road network layer
 7. **Level 2 build** - Rail network layer
 8. **Level 2 build** - Water system layer
-9. **Level 3** - Level 3: Inside one infrastructure domain
-10. **Level 4** - Level 4: Engineering blueprint
-11. **Level detail** - What each C4 level shows
-12. **C4 at a glance** - All four levels on one page
-13. **Depth references** - Level 3 and Level 4 (useful, but mostly out of scope today)
-14. **API mapping** - API styles as transport mechanisms
-15. **Facilitation** - Scope-control lines for the workshop
-16. **Takeaway** - Final takeaway
+9. **Level 2 build** - Air airports layer
+10. **Level 3** - Level 3: Inside one infrastructure domain
+11. **Level 4** - Level 4: Engineering blueprint
+12. **Level detail** - What each C4 level shows
+13. **C4 at a glance** - All four levels on one page
+14. **Depth references** - Level 3 and Level 4 (useful, but mostly out of scope today)
+15. **API mapping** - API styles as transport mechanisms
+16. **Facilitation** - Scope-control lines for the workshop
+17. **Takeaway** - Final takeaway
 
 ## File
 
