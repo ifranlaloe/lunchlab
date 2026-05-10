@@ -245,7 +245,6 @@
       pointer-events: none;
     }
 
-    .deck:hover .footer,
     .deck.controls-visible .footer {
       opacity: 1;
       transform: translateY(0);

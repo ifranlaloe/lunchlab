@@ -203,10 +203,34 @@
       function showControls() {
         deck.classList.add('controls-visible');
         clearTimeout(hideTimer);
-        hideTimer = setTimeout(() => deck.classList.remove('controls-visible'), 3000);
       }
 
-      deck.addEventListener('touchstart', showControls, { passive: true });
+      function scheduleHide(delay = 300) {
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => deck.classList.remove('controls-visible'), delay);
+      }
+
+      function inBottomZone(clientY) {
+        const rect = deck.getBoundingClientRect();
+        return clientY > rect.bottom - rect.height * 0.2;
+      }
+
+      deck.addEventListener('mousemove', (e) => {
+        if (inBottomZone(e.clientY)) {
+          showControls();
+        } else {
+          scheduleHide();
+        }
+      });
+
+      deck.addEventListener('mouseleave', () => scheduleHide());
+
+      deck.addEventListener('touchstart', (e) => {
+        const touch = e.changedTouches?.[0];
+        if (!touch || !inBottomZone(touch.clientY)) return;
+        showControls();
+        scheduleHide(3000);
+      }, { passive: true });
     }
 
     prevBtn.addEventListener('click', prev);
