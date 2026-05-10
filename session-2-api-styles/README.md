@@ -8,7 +8,7 @@ This session focuses on one practical question:
 
 There is no single best API style.
 
-Use C4 as **infrastructure cartography** to choose the right map scale first, then pick the transport mechanism.
+Use C4 as **traveler-system cartography** to choose the right map scale first, then pick the transport mechanism.
 
 ## Current focus pivot
 
@@ -24,7 +24,7 @@ Use C4 as **infrastructure cartography** to choose the right map scale first, th
 ## C4 mapping used in this deck
 
 - **Level 1 — System Context:** The Netherlands in its external context.
-- **Level 2 — Container:** Main infrastructure domains inside the Netherlands.
+- **Level 2 — Container:** Main traveler domains inside the system.
 - **Level 3 — Component:** Inside one infrastructure domain.
 - **Level 4 — Code:** Engineering blueprint / construction specification.
 
@@ -70,12 +70,12 @@ API styles are transport mechanisms between infrastructure domains, systems, or 
 
 ## Full slide list (one-to-one with `index.html`)
 
-Current deck length: **17 slides**.
+Current deck length: **15 slides**.
 
 1. **LunchLab #2** - Choosing the Right API Style
-2. **C4 framing** - C4 as infrastructure cartography
+2. **C4 framing** - C4 for traveler-system mapping
 3. **Cheat sheet** - C4 levels overview
-4. **Level 1** - Level 1: The system in its external context (with C4 Level 1 questions)
+4. **Level 1** - Level 1: Traveler System Context (with C4 Level 1 questions)
 5. **Level 1 answers** - Level 1: The system in its external context (with modality-specific traveler answers)
 6. **Level 2 build** - Road network layer
 7. **Level 2 build** - Rail network layer
@@ -83,12 +83,10 @@ Current deck length: **17 slides**.
 9. **Level 2 build** - Air airports layer
 10. **Level 3** - Level 3: Inside one infrastructure domain
 11. **Level 4** - Level 4: Engineering blueprint
-12. **Level detail** - What each C4 level shows
-13. **C4 at a glance** - All four levels on one page
-14. **Depth references** - Level 3 and Level 4 (useful, but mostly out of scope today)
-15. **API mapping** - API styles as transport mechanisms
-16. **Facilitation** - Scope-control lines for the workshop
-17. **Takeaway** - Final takeaway
+12. **C4 matrix** - All four levels in one 2×2 view
+13. **API mapping** - API styles as transport mechanisms
+14. **Facilitation** - Scope-control lines for the workshop
+15. **Takeaway** - Final takeaway
 
 ## File
 

@@ -36,16 +36,16 @@
 
         <section class="slide">
           <div class="eyebrow">C4 framing</div>
-          <h2>C4 as infrastructure cartography</h2>
+          <h2>C4 for traveler-system mapping</h2>
           <div class="content two-col">
             <div class="card">
               <h3>Core message</h3>
               <ul>
                 <li>Architecture diagrams are maps.</li>
                 <li>Good maps are designed for a purpose.</li>
-                <li>Different infrastructure questions need different maps.</li>
+                <li>Different traveler questions need different maps.</li>
                 <li>A useful map is not complete; it is purposeful.</li>
-                <li>C4 helps us choose the right infrastructure map before discussing design decisions.</li>
+                <li>C4 helps us choose the right traveler-system map before discussing design decisions.</li>
               </ul>
             </div>
             <div class="card">
@@ -63,21 +63,21 @@
           <div class="eyebrow">Cheat sheet</div>
           <h2>C4 levels overview</h2>
           <div class="content four-up">
-            <div class="card"><h3>Level 1 — System Context</h3><p><strong>Infrastructure map:</strong> The Netherlands in its external context.<br><strong>Question:</strong> What surrounds and connects to our system?</p></div>
-            <div class="card"><h3>Level 2 — Container</h3><p><strong>Infrastructure map:</strong> Main infrastructure domains inside the Netherlands.<br><strong>Question:</strong> What are the major parts inside the system, and how do they connect?</p></div>
-            <div class="card"><h3>Level 3 — Component</h3><p><strong>Infrastructure map:</strong> Inside one infrastructure domain.<br><strong>Question:</strong> How is one major part structured internally?</p></div>
-            <div class="card"><h3>Level 4 — Code</h3><p><strong>Infrastructure map:</strong> Engineering blueprint / construction specification.<br><strong>Question:</strong> How is it built in exact detail?</p></div>
+            <div class="card"><h3>Level 1 — System Context</h3><p><strong>Traveler-system map:</strong> The Netherlands in traveler context.<br><strong>Question:</strong> What surrounds and connects to our system?</p></div>
+            <div class="card"><h3>Level 2 — Container</h3><p><strong>Traveler-system map:</strong> Main traveler domains inside the system.<br><strong>Question:</strong> What are the major traveler domains inside the system, and how do they connect?</p></div>
+            <div class="card"><h3>Level 3 — Component</h3><p><strong>Traveler-system map:</strong> Inside one traveler domain.<br><strong>Question:</strong> How is one major part structured internally?</p></div>
+            <div class="card"><h3>Level 4 — Code</h3><p><strong>Traveler-system map:</strong> Implementation blueprint / specification.<br><strong>Question:</strong> How is it built in exact detail?</p></div>
           </div>
         </section>
 
         <section class="slide c4-visual-slide level1-questions-slide">
           <div class="eyebrow">Level 1</div>
-          <h2>Level 1: The system in its external context</h2>
+          <h2>Level 1: Traveler System Context</h2>
           <div class="content c4-visual-wrap level1-questions-wrap">
             <img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="System context map with one system boundary and external actors and connections." />
             <div class="level1-questions">
               <ol>
-                <li>What is the software system we are building?</li>
+                <li>What is the system we are building?</li>
                 <li>Who is using it?</li>
                 <li>How does it fit into the existing environment?</li>
               </ol>
@@ -92,9 +92,9 @@
             <img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="System context map with one system boundary and external actors and connections." />
             <div class="level1-questions">
               <ol>
-                <li>A national mobility platform that coordinates journey planning, disruptions, and traveler information.</li>
-                <li>Travelers by road, water, air, and railway.</li>
-                <li>It integrates external transport and municipal systems with internal domain services through managed APIs.</li>
+                <li>A system that enables travelers to move using multiple transport methods.</li>
+                <li>Travelers by road, railway, water, and air.</li>
+                <li>It integrates with external road, rail, water, and air systems in neighboring and other countries.</li>
               </ol>
             </div>
           </div>
@@ -102,9 +102,9 @@
 
         <section class="slide c4-visual-slide full-slide-svg">
           <div class="eyebrow">Level 2</div>
-          <h2>Level 2: Main infrastructure domains inside the system</h2>
+          <h2>Level 2: Traveler domains — Road</h2>
           <div class="content c4-visual-wrap">
-            <div class="c4-layer-stack" role="img" aria-label="Main infrastructure domains layered on top of the Netherlands Level 1 base map: road network.">
+            <div class="c4-layer-stack" role="img" aria-label="Traveler domains layered on top of the Netherlands Level 1 base map: road network.">
               <img class="c4-layer base" src="assets/svg/c4-infrastructure-level-1.svg" alt="" aria-hidden="true" />
               <img class="c4-layer" src="assets/svg/c4-infrastructure-level-2-overlay-road-network.svg" alt="" aria-hidden="true" />
             </div>
@@ -112,9 +112,9 @@
         </section>
         <section class="slide c4-visual-slide full-slide-svg">
           <div class="eyebrow">Level 2</div>
-          <h2>Level 2: Main infrastructure domains inside the system</h2>
+          <h2>Level 2: Traveler domains — Road + Rail</h2>
           <div class="content c4-visual-wrap">
-            <div class="c4-layer-stack" role="img" aria-label="Main infrastructure domains layered on top of the Netherlands Level 1 base map: road network, rail network.">
+            <div class="c4-layer-stack" role="img" aria-label="Traveler domains layered on top of the Netherlands Level 1 base map: road network, rail network.">
               <img class="c4-layer base" src="assets/svg/c4-infrastructure-level-1.svg" alt="" aria-hidden="true" />
               <img class="c4-layer" src="assets/svg/c4-infrastructure-level-2-overlay-road-network.svg" alt="" aria-hidden="true" />
               <img class="c4-layer" src="assets/svg/c4-infrastructure-level-2-overlay-rail-network.svg" alt="" aria-hidden="true" />
@@ -123,9 +123,9 @@
         </section>
         <section class="slide c4-visual-slide full-slide-svg">
           <div class="eyebrow">Level 2</div>
-          <h2>Level 2: Main infrastructure domains inside the system</h2>
+          <h2>Level 2: Traveler domains — Road + Rail + Water</h2>
           <div class="content c4-visual-wrap">
-            <div class="c4-layer-stack" role="img" aria-label="Main infrastructure domains layered on top of the Netherlands Level 1 base map: road network, rail network, water system.">
+            <div class="c4-layer-stack" role="img" aria-label="Traveler domains layered on top of the Netherlands Level 1 base map: road network, rail network, water system.">
               <img class="c4-layer base" src="assets/svg/c4-infrastructure-level-1.svg" alt="" aria-hidden="true" />
               <img class="c4-layer" src="assets/svg/c4-infrastructure-level-2-overlay-road-network.svg" alt="" aria-hidden="true" />
               <img class="c4-layer" src="assets/svg/c4-infrastructure-level-2-overlay-rail-network.svg" alt="" aria-hidden="true" />
@@ -135,9 +135,9 @@
         </section>
         <section class="slide c4-visual-slide full-slide-svg">
           <div class="eyebrow">Level 2</div>
-          <h2>Level 2: Main infrastructure domains inside the system</h2>
+          <h2>Level 2: Traveler domains — Road + Rail + Water + Air</h2>
           <div class="content c4-visual-wrap">
-            <div class="c4-layer-stack" role="img" aria-label="Main infrastructure domains layered on top of the Netherlands Level 1 base map: road network, rail network, water system, airports.">
+            <div class="c4-layer-stack" role="img" aria-label="Traveler domains layered on top of the Netherlands Level 1 base map: road network, rail network, water system, airports.">
               <img class="c4-layer base" src="assets/svg/c4-infrastructure-level-1.svg" alt="" aria-hidden="true" />
               <img class="c4-layer" src="assets/svg/c4-infrastructure-level-2-overlay-road-network.svg" alt="" aria-hidden="true" />
               <img class="c4-layer" src="assets/svg/c4-infrastructure-level-2-overlay-rail-network.svg" alt="" aria-hidden="true" />
@@ -163,48 +163,32 @@
         </section>
 
         <section class="slide">
-          <div class="eyebrow">Level detail</div>
-          <h2>What each C4 level shows</h2>
-          <div class="content two-col">
-            <div class="card">
-              <h3>Level 1 — System Context</h3>
-              <p>Draw the system as one whole. Show surrounding actors, external and partner systems, cross-boundary connections, and the system boundary.</p>
-              <p><strong>Netherlands analogy:</strong> citizens, businesses, travelers, Belgium/Germany/EU systems, ports, airports, cross-border rail/highways, energy imports, internet backbone links.</p>
+          <div class="content c4-quadrant-grid">
+            <div class="card c4-quadrant-card">
+              <h3>Level 1 — Traveler System Context</h3>
+              <img class="c4-quadrant-image" src="assets/svg/c4-infrastructure-level-1.svg" alt="C4 Level 1 traveler system context visual." />
+              <p>Define the system boundary, external systems, and traveler actors.</p>
             </div>
-            <div class="card">
-              <h3>Level 2 — Container</h3>
-              <p>Map major internal domains and communication paths between them.</p>
-              <p><strong>Infrastructure examples:</strong> road network, rail network, water system, and air travel context through airports and air corridors.</p>
-              <p><strong>Software equivalents:</strong> apps, services, databases, message brokers, caches, gateways, platform services.</p>
+            <div class="card c4-quadrant-card">
+              <h3>Level 2 — Traveler Domains</h3>
+              <div class="c4-quadrant-stack" role="img" aria-label="C4 Level 2 traveler domains visual with road, rail, water, and airports overlays.">
+                <img class="c4-quadrant-layer" src="assets/svg/c4-infrastructure-level-1.svg" alt="" aria-hidden="true" />
+                <img class="c4-quadrant-layer" src="assets/svg/c4-infrastructure-level-2-overlay-road-network.svg" alt="" aria-hidden="true" />
+                <img class="c4-quadrant-layer" src="assets/svg/c4-infrastructure-level-2-overlay-rail-network.svg" alt="" aria-hidden="true" />
+                <img class="c4-quadrant-layer" src="assets/svg/c4-infrastructure-level-2-overlay-water-system.svg" alt="" aria-hidden="true" />
+                <img class="c4-quadrant-layer" src="assets/svg/c4-infrastructure-level-2-overlay-airports.svg" alt="" aria-hidden="true" />
+              </div>
+              <p>Map the major road, railway, water, and air domains and how they connect.</p>
             </div>
-          </div>
-        </section>
-
-        <section class="slide">
-          <div class="eyebrow">C4 at a glance</div>
-          <h2>All four levels on one page</h2>
-          <div class="content four-up">
-            <div class="card"><h3>Level 1</h3><img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="C4 level 1 visual" /></div>
-            <div class="card"><h3>Level 2</h3><img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="C4 level 2 visual uses layered Level 1 base with Level 2 overlays" /></div>
-            <div class="card"><h3>Level 3</h3><img class="c4-visual" src="assets/svg/c4-infrastructure-level-3.svg" alt="C4 level 3 visual" /></div>
-            <div class="card"><h3>Level 4</h3><img class="c4-visual" src="assets/svg/c4-infrastructure-level-4.svg" alt="C4 level 4 visual" /></div>
-          </div>
-        </section>
-
-        <section class="slide">
-          <div class="eyebrow">Depth references</div>
-          <h2>Level 3 and Level 4 (useful, but mostly out of scope today)</h2>
-          <div class="content two-col">
-            <div class="card">
-              <h3>Level 3 — One domain internally</h3>
-              <p>Inside rail network: stations, tracks, switches, signals, control rooms, timetable systems, depots, ticket gates, power sections.</p>
-              <p>Inside road network: highways, junctions, tunnels, bridges, traffic lights, dynamic signage, sensors, incident response units.</p>
-              <p><strong>Software:</strong> controllers, adapters, domain logic, repositories, validators, event publishers, internal modules.</p>
+            <div class="card c4-quadrant-card">
+              <h3>Level 3 — Domain Internals</h3>
+              <img class="c4-quadrant-image" src="assets/svg/c4-infrastructure-level-3.svg" alt="C4 Level 3 domain internals visual." />
+              <p>Zoom into one traveler domain to see components and dependencies.</p>
             </div>
-            <div class="card">
-              <h3>Level 4 — Exact implementation</h3>
-              <p>Bridge materials, track gauge, signal wiring, sensor configuration, traffic-light control logic, PLC programs, concrete composition, bolt sizes, safety protocol implementation.</p>
-              <p><strong>Software:</strong> classes, functions, methods, interfaces, database queries, config files, implementation code.</p>
+            <div class="card c4-quadrant-card">
+              <h3>Level 4 — Implementation</h3>
+              <img class="c4-quadrant-image" src="assets/svg/c4-infrastructure-level-4.svg" alt="C4 Level 4 implementation visual." />
+              <p>Capture exact implementation details for engineering and delivery.</p>
             </div>
           </div>
         </section>
@@ -227,7 +211,7 @@
           <div class="eyebrow">Facilitation</div>
           <h2>Scope-control lines for the workshop</h2>
           <div class="content two-col">
-            <div class="card"><ul><li>“Before choosing the transport mechanism, first agree on the map scale.”</li><li>“Are we discussing the system boundary, the major internal domains, one domain internally, or engineering detail?”</li><li>“That sounds like we are inside one infrastructure domain. Let’s park it unless we intentionally move to Level 3.”</li></ul></div>
+            <div class="card"><ul><li>“Before choosing the transport mechanism, first agree on the map scale.”</li><li>“Are we discussing the system boundary, the major internal domains, one domain internally, or engineering detail?”</li><li>“When we say travelers, are we talking about road, water, air, or railway users?”</li><li>“That sounds like we are inside one infrastructure domain. Let’s park it unless we intentionally move to Level 3.”</li></ul></div>
             <div class="card"><ul><li>“That belongs on the engineering blueprint. Let’s first agree on the infrastructure map.”</li><li>“If we are discussing materials, wiring, or low-level protocol details, we probably zoomed in too far for this exercise.”</li></ul></div>
           </div>
         </section>
@@ -235,7 +219,7 @@
         <section class="slide">
           <div class="eyebrow">Takeaway</div>
           <h2>Final takeaway</h2>
-          <div class="big-quote">Today we mostly use the system context map and the infrastructure-domain map. API styles are the transport mechanisms between systems, domains, and access points.</div>
+          <div class="big-quote">Today we mostly use the system context map and the traveler-domain map. API styles are the transport mechanisms between systems, traveler domains, and access points.</div>
         </section>
       </div>
     </div>
@@ -245,7 +229,7 @@
         <button id="prevBtn">← Prev</button>
         <button id="nextBtn">Next →</button>
       </div>
-      <div class="counter" id="counter">1 / 19</div>
+      <div class="counter" id="counter">1 / 15</div>
       <div class="hint">Use swipe/controls, or <span class="kbd">←</span> <span class="kbd">→</span> and <span class="kbd">Space</span></div>
     </div>
   </div>
