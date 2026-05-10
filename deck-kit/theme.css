@@ -478,6 +478,31 @@
   justify-self: start;
 }
 
+.level1-questions-slide {
+  grid-template-rows: minmax(0, 1fr);
+  gap: 0;
+  padding-bottom: 2px;
+}
+
+.level1-questions-slide .slide-frame {
+  gap: 10px;
+  padding-bottom: 0;
+}
+
+.level1-questions-slide .slide-header {
+  gap: 6px;
+  padding-bottom: 2px;
+}
+
+.level1-questions-slide .slide-body {
+  gap: 0;
+  padding-bottom: 0;
+}
+
+.level1-questions-slide .level1-questions-wrap {
+  gap: 2px;
+}
+
 .level1-questions-wrap {
   display: flex;
   flex-direction: column;
@@ -492,13 +517,18 @@
 
 .level1-questions {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-top: 1px solid var(--border);
-  padding: 4px 0 3px;
+  padding: 0;
 }
 
 .level1-questions ol {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 24px;
   gap: 0;
   margin: 0;
   padding: 0;
@@ -508,12 +538,16 @@
 
 .level1-questions li {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   counter-increment: lq-counter;
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   color: var(--muted);
   font-weight: 500;
-  line-height: 1.4;
-  padding-right: 20px;
+  line-height: 1.2;
+  text-align: center;
+  padding: 0 8px;
 }
 
 .level1-questions li::before {
