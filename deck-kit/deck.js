@@ -194,6 +194,21 @@
       updateLabel();
     }
 
+    function initFooterOverlay() {
+      const deck = document.querySelector('.deck');
+      if (!deck) return;
+
+      let hideTimer = null;
+
+      function showControls() {
+        deck.classList.add('controls-visible');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => deck.classList.remove('controls-visible'), 3000);
+      }
+
+      deck.addEventListener('touchstart', showControls, { passive: true });
+    }
+
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);
 
@@ -221,4 +236,5 @@
     prepareSlides();
     initTouchNavigation();
     initFullscreenControl();
+    initFooterOverlay();
     render();

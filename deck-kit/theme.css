@@ -23,9 +23,10 @@
       width: 100vw;
       height: 100vh;
       display: grid;
-      grid-template-rows: minmax(0, 1fr) auto;
+      grid-template-rows: 1fr;
       padding: 12px 18px 14px;
       gap: 10px;
+      position: relative;
     }
 
     .stage {
@@ -226,6 +227,10 @@
     .arrow { opacity: 0.75; font-size: 1.3rem; }
 
     .footer {
+      position: absolute;
+      bottom: 14px;
+      left: 18px;
+      right: 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -234,6 +239,17 @@
       border: 1px solid rgba(11,31,77,0.08);
       border-radius: 20px;
       backdrop-filter: blur(12px);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+
+    .deck:hover .footer,
+    .deck.controls-visible .footer {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     .controls {
@@ -315,12 +331,6 @@
     }
 
     @media (max-width: 900px) {
-      .slide { padding: 28px 24px 84px; }
-      .two-col, .three-col, .level-grid, .compare, .requirement-grid { grid-template-columns: 1fr; }
-      .vs { display: none; }
-    }
-
-    @media (max-width: 900px) {
       .deck {
         padding: 8px 8px calc(10px + env(safe-area-inset-bottom));
         gap: 8px;
@@ -331,6 +341,9 @@
       }
 
       .footer {
+        bottom: calc(8px + env(safe-area-inset-bottom));
+        left: 8px;
+        right: 8px;
         padding: 8px 10px;
         gap: 8px;
         flex-wrap: wrap;
