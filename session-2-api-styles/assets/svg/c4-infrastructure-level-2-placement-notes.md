@@ -1,26 +1,46 @@
-# Level 2 placement notes (overlay anchors)
+# Level 2 placement notes
 
-These anchors are used to position Level 2 component overlays on top of `c4-infrastructure-level-1.svg`.
+These overlays are positioned on top of `c4-infrastructure-level-1.svg`.
 
-## Official references used
+## Base map
 
-- Road network anchor near **Utrecht** (national motorway hub around Knooppunt Oudenrijn):
-  - Rijkswaterstaat page for A12 Woerden–Oudenrijn project area: https://open.rijkswaterstaat.nl/%40300128/tracebesluit-a12-woerden-oudenrijn/
-- Rail network anchor at **Utrecht Centraal**:
-  - NS station page: https://www.ns.nl/stationsinformatie/ut/utrecht-centraal
-- Energy grid anchor at **Eemshaven**:
-  - TenneT on Eemshaven 380 kV station and hub role: https://www.tennet.eu/news/detail/tennet-commissions-new-high-voltage-station-for-wind-and-solar-energy-in-eemshaven
-- Water system anchor at **Port of Rotterdam / Rhine–Meuse delta**:
-  - Port of Rotterdam Authority homepage: https://www.portofrotterdam.com/en/home/
-- Telecom anchor at **Amsterdam** (major digital/telecom exchange point):
-  - AMS-IX about page: https://www.ams-ix.net/about-ams-ix
-- Data centers anchor in **Amsterdam metro region**:
-  - Amsterdam city portal on datacenter region context: https://www.amsterdam.nl/en/policy/policy-datacentres/
-- Control centers anchor near **Arnhem** (national electricity system operation):
-  - TenneT company profile (Dutch high-voltage TSO): https://www.tennet.eu/about-tennet
+- Level 1 Netherlands boundary:
+  - Source: PDOK / Kadaster `Bestuurlijke Gebieden` OGC API.
+  - Collection: `landgebied`.
+  - Feature: `Nederland`.
+  - Use: the largest land-boundary polygon is simplified for presentation-scale rendering inside the C4 context box.
+
+## Geometry-backed overlays
+
+- Waterways:
+  - Source: PDOK / Rijkswaterstaat `NWB - Vaarwegen` OGC API.
+  - Collection: `vaarwegvakken`.
+  - Use: selected national-scale inland routes such as Maas, Waal, Lek, Neder-Rijn, Geldersche IJssel, Amsterdam-Rijnkanaal, Noordzeekanaal, Prinses Margrietkanaal, Schelde-Rijnverbinding, and major delta waterways.
+  - Styling: main waterways use a stronger blue stroke; secondary waterways use a lighter blue stroke.
+- Rail network:
+  - Source: PDOK / ProRail `Spoorwegen` OGC API.
+  - Collection: `trace`.
+  - Use: simplified trace midlines over 250 meters, clipped to the Netherlands map extent.
+  - Styling: one consistent orange rail stroke so the layer remains readable in the Level 2 build slides.
+
+## Anchor-only overlays
+
+The remaining Level 2 overlays are still conceptual anchor overlays:
+
+- Road network anchor near Utrecht.
+- Energy grid anchor near Eemshaven.
+- Telecom anchor near Amsterdam.
+- Data centers anchor in the Amsterdam metro region.
+- Control centers anchor near Arnhem.
 
 ## Coordinate approach
 
-- ViewBox and geometry are kept identical to Level 1 (`1600x900`) for direct stacking.
-- Anchor points are chosen to match approximate real-world city positions over the existing NL outline in Level 1.
-- Each overlay contains one highlighted marker and callout only.
+- ViewBox and geometry remain identical to Level 1 (`1600x900`) for direct stacking.
+- Official route geometries are fetched in CRS84 longitude/latitude from PDOK OGC API Features.
+- The Level 1 country boundary uses the same transform as the Level 2 route overlays.
+- Coordinates are transformed into the existing simplified Level 1 SVG outline using a deck-specific lon/lat-to-viewBox fit:
+  - longitude range `3.25..7.25`
+  - latitude range `50.75..53.60`
+  - SVG x range `235.7..1364.5`
+  - SVG y range `734.7..166.6`
+- The result is not intended as a survey map; it is a facilitation map aligned to the deck's simplified Level 1 country outline.
