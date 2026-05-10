@@ -3,8 +3,8 @@
   <desc id="desc">A selected rail network domain with internal elements and dependencies.</desc>
   <defs>
     <style>
-      .bg{fill:#0d1324}.panel{fill:#141e36;stroke:#7dabff;stroke-width:4}.inner{fill:#1f2c4d;stroke:#9ec2ff;stroke-width:2.5}
-      .line{stroke:#73d2ff;stroke-width:3;fill:none}.title{font:700 38px Inter,Arial,sans-serif;fill:#e8f1ff}.txt{font:600 22px Inter,Arial,sans-serif;fill:#d9e9ff}
+      .bg{fill:none}.panel{fill:#141e36;stroke:#7dabff;stroke-width:4}.inner{fill:#1f2c4d;stroke:#9ec2ff;stroke-width:2.5}
+      .line{stroke:#1a6ab5;stroke-width:3;fill:none}.title{font:700 38px Inter,Arial,sans-serif;fill:#0b1f4d}.txt{font:600 22px Inter,Arial,sans-serif;fill:#d9e9ff}
     </style>
   </defs>
   <rect class="bg" width="1600" height="900"/>

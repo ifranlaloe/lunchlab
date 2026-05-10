@@ -3,7 +3,7 @@
   <desc id="desc">Abstract infrastructure-domain map showing major internal domains and their communication paths.</desc>
   <defs>
     <style>
-      .bg { fill: #0d1324; }
+      .bg { fill: none; }
       .system { fill: #141e36; stroke: #78a8ff; stroke-width: 4; }
       .domain { fill: #1f2c4d; stroke: #93bbff; stroke-width: 2.5; }
       .path { stroke: #6dc8ff; stroke-width: 3; fill: none; opacity: 0.85; }

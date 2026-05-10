@@ -4,7 +4,7 @@
   <metadata>Source: PDOK / Kadaster Bestuurlijke Gebieden OGC API, collection landgebied, feature Nederland, CC BY 4.0. Coordinates transformed from CRS84 lon/lat to this deck's 1600x900 SVG viewBox using the same fit as the Level 2 rail and waterways overlays.</metadata>
   <defs>
     <style>
-      .sea{fill:#ffffff}
+      .sea{fill:none}
       .context-box{fill:none;stroke:#000000;stroke-width:8}
       .nl{fill:#ffffff;stroke:#000000;stroke-width:4;stroke-linejoin:round}
       .txt{font:700 30px Inter,Arial,sans-serif;fill:#000000}
