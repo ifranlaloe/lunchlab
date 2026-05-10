@@ -59,7 +59,7 @@ Current deck length: **19 slides**.
 1. **LunchLab #2** - Choosing the Right API Style
 2. **C4 framing** - C4 as infrastructure cartography
 3. **Cheat sheet** - C4 levels overview
-4. **Level 1** - Level 1: The system in its external context
+4. **Level 1** - Level 1: The system in its external context (with C4 Level 1 questions)
 5. **Level 2 build** - Road network layer
 6. **Level 2 build** - Rail network layer
 7. **Level 2 build** - Energy grid layer
