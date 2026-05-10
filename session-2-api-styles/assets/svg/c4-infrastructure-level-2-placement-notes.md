@@ -12,6 +12,11 @@ These overlays are positioned on top of `c4-infrastructure-level-1.svg`.
 
 ## Geometry-backed overlays
 
+- Road network:
+  - Source: PDOK / Rijkswaterstaat `NWB - Wegen` OGC API.
+  - Collection: `wegvakken`.
+  - Use: main A-road network only, derived from Rijksbeheer segments and A-route metadata in the same official dataset, then simplified for facilitation-scale readability.
+  - Styling: dual red/orange stroke to keep road structure visible on top of the Level 1 base.
 - Waterways:
   - Source: PDOK / Rijkswaterstaat `NWB - Vaarwegen` OGC API.
   - Collection: `vaarwegvakken`.
@@ -22,16 +27,6 @@ These overlays are positioned on top of `c4-infrastructure-level-1.svg`.
   - Collection: `trace`.
   - Use: simplified trace midlines over 250 meters, clipped to the Netherlands map extent.
   - Styling: one consistent orange rail stroke so the layer remains readable in the Level 2 build slides.
-
-## Anchor-only overlays
-
-The remaining Level 2 overlays are still conceptual anchor overlays:
-
-- Road network anchor near Utrecht.
-- Energy grid anchor near Eemshaven.
-- Telecom anchor near Amsterdam.
-- Data centers anchor in the Amsterdam metro region.
-- Control centers anchor near Arnhem.
 
 ## Coordinate approach
 
