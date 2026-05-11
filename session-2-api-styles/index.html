@@ -288,11 +288,41 @@
         </section>
 
         <section class="slide">
+          <div class="eyebrow">New case</div>
+          <h2>GoPuff case: goal and requirements</h2>
+          <div class="content">
+            <div class="card">
+              <h3>Goal</h3>
+              <p>Design a system where customers can quickly see what is deliverable from nearby distribution centers and place multi-item orders without double-booking physical inventory.</p>
+            </div>
+            <div class="two-col">
+              <div class="card">
+                <h3>Functional requirements</h3>
+                <ul>
+                  <li>Customers can query item availability by location for delivery within 1 hour.</li>
+                  <li>Availability reflects the union of inventory across nearby DCs.</li>
+                  <li>Customers can place one order containing multiple items.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Non-functional requirements</h3>
+                <ul>
+                  <li>Availability lookups should be fast (&lt;100ms).</li>
+                  <li>Ordering must be strongly consistent to prevent double booking.</li>
+                  <li>Scale target: up to 10k DCs and 100k catalog items.</li>
+                  <li>Order throughput target: ~10 million orders/day.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
           <div class="eyebrow">Facilitation</div>
           <h2>Scope-control lines for the workshop</h2>
           <div class="content two-col">
-            <div class="card"><ul><li>“Before choosing the transport mechanism, first agree on the map scale.”</li><li>“Are we discussing the system boundary, the major internal domains, one domain internally, or engineering detail?”</li><li>“When we say travelers, are we talking about road, water, air, or railway users?”</li><li>“That sounds like we are inside one infrastructure domain. Let’s park it unless we intentionally move to Level 3.”</li></ul></div>
-            <div class="card"><ul><li>“That belongs on the engineering blueprint. Let’s first agree on the infrastructure map.”</li><li>“If we are discussing materials, wiring, or low-level protocol details, we probably zoomed in too far for this exercise.”</li></ul></div>
+            <div class="card"><ul><li>“Before choosing an API style, let’s agree on the C4 level we are discussing.”</li><li>“Are we discussing system context, containers, components, or implementation detail?”</li><li>“That sounds like a Level 3 concern; let’s park it until we intentionally zoom in.”</li><li>“Let’s finish boundaries and responsibilities first, then choose protocols.”</li></ul></div>
+            <div class="card"><ul><li>“This belongs at implementation level; first align on the container interactions.”</li><li>“If we are debating frameworks or low-level protocol settings, we may be zoomed in too far.”</li><li>“Can we restate this decision in terms of latency, consistency, and ownership boundaries?”</li></ul></div>
           </div>
         </section>
 
@@ -309,7 +339,7 @@
         <button id="prevBtn">← Prev</button>
         <button id="nextBtn">Next →</button>
       </div>
-      <div class="counter" id="counter">1 / 18</div>
+      <div class="counter" id="counter">1 / 19</div>
       <div class="hint">Use swipe/controls, or <span class="kbd">←</span> <span class="kbd">→</span> and <span class="kbd">Space</span></div>
     </div>
   </div>
