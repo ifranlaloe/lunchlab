@@ -182,6 +182,37 @@
       line-height: 1.45;
     }
 
+    .c4-matrix-slide .slide-frame {
+      grid-template-rows: minmax(0, 1fr);
+      gap: 0;
+      padding-bottom: 0;
+    }
+
+    .c4-matrix-slide .slide-body {
+      min-height: 0;
+      height: 100%;
+      grid-template-rows: minmax(0, 1fr);
+      align-content: stretch;
+      padding-bottom: 0;
+    }
+
+    .c4-matrix-slide .c4-quadrant-grid {
+      height: 100%;
+      min-height: 0;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      align-content: stretch;
+    }
+
+    .c4-matrix-slide .c4-quadrant-card {
+      min-height: 0;
+    }
+
+    .c4-matrix-slide .c4-quadrant-image,
+    .c4-matrix-slide .c4-quadrant-stack {
+      height: 100%;
+      min-height: 0;
+    }
+
     .card {
       background: transparent;
       border: 0;
@@ -413,6 +444,21 @@
 
       .c4-quadrant-grid {
         grid-template-columns: 1fr;
+      }
+
+      .c4-matrix-slide .slide-body {
+        height: auto;
+        grid-template-rows: auto;
+      }
+
+      .c4-matrix-slide .c4-quadrant-grid {
+        height: auto;
+        grid-template-rows: none;
+      }
+
+      .c4-matrix-slide .c4-quadrant-image,
+      .c4-matrix-slide .c4-quadrant-stack {
+        height: 208px;
       }
     }
 
