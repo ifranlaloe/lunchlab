@@ -673,3 +673,27 @@
   align-self: center;
   border-radius: 0;
 }
+
+.whatsapp-logo-slide .slide-frame {
+  grid-template-rows: minmax(0, 1fr);
+  gap: 0;
+  padding-bottom: 0;
+}
+
+.whatsapp-logo-slide .slide-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0;
+}
+
+.whatsapp-logo-slide .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsapp-logo {
+  width: min(36vw, 360px);
+  height: auto;
+}
