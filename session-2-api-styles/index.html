@@ -193,6 +193,86 @@
           </div>
         </section>
 
+        <section class="slide whatsapp-logo-slide">
+          <div class="content">
+            <img class="whatsapp-logo" src="assets/svg/whatsapp-logo.svg" alt="WhatsApp logo" />
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">Previous case</div>
+          <h2>WhatsApp case: C4 context at Level 1 and Level 2</h2>
+          <div class="content two-col">
+            <div class="card">
+              <h3>L1</h3>
+              <ul>
+                <li><strong>Actors:</strong> sender and receiver users.</li>
+                <li><strong>Boundary:</strong> WhatsApp messaging platform.</li>
+                <li><strong>External systems:</strong> APNs/FCM, SMS/OTP provider, device contacts.</li>
+                <li><strong>Main interaction:</strong> secure chat/media exchange with offline push delivery.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>L2</h3>
+              <ul>
+                <li><strong>Clients:</strong> mobile/web/desktop apps with local message state.</li>
+                <li><strong>Realtime edge:</strong> API gateway and persistent connection handling.</li>
+                <li><strong>Core services:</strong> identity/auth + key management, messaging/fan-out, presence/receipts.</li>
+                <li><strong>Platform services:</strong> media service, notification service, and data stores/queues/cache.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide">
+          <div class="eyebrow">Previous case</div>
+          <h2>WhatsApp case: C4 context at Level 1 and Level 2</h2>
+          <div class="content">
+            <div class="two-col">
+              <div class="card">
+                <h3>L1</h3>
+                <ul>
+                  <li><strong>Actors:</strong> sender and receiver users.</li>
+                  <li><strong>Boundary:</strong> WhatsApp messaging platform.</li>
+                  <li><strong>External systems:</strong> APNs/FCM, SMS/OTP provider, device contacts.</li>
+                  <li><strong>Main interaction:</strong> secure chat/media exchange with offline push delivery.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>L2</h3>
+                <ul>
+                  <li><strong>Clients:</strong> mobile/web/desktop apps with local message state.</li>
+                  <li><strong>Realtime edge:</strong> API gateway and persistent connection handling.</li>
+                  <li><strong>Core services:</strong> identity/auth + key management, messaging/fan-out, presence/receipts.</li>
+                  <li><strong>Platform services:</strong> media service, notification service, and data stores/queues/cache.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="two-col">
+              <div class="card">
+                <h3>L3</h3>
+                <ul>
+                  <li><strong>Chat server internals:</strong> connection map, participant lookup, fan-out, ack handling.</li>
+                  <li><strong>Durable delivery flow:</strong> write message + per-recipient inbox before realtime publish.</li>
+                  <li><strong>Offline recovery:</strong> inbox lookup, message fetch, replay on reconnect, delete on ack.</li>
+                  <li><strong>Media path:</strong> attachment upload via separate HTTP/media service, then message reference.</li>
+                  <li><strong>Scale/failure controls:</strong> Redis pub/sub routing, heartbeats, sequence checks, retry polling.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>L4</h3>
+                <ul>
+                  <li><strong>Command contracts:</strong> createChat, sendMessage, createAttachment, modifyChatParticipants, newMessage, chatUpdate, RECEIVED ack.</li>
+                  <li><strong>Data model details:</strong> Chat, ChatParticipant (+ participantId↔chatId GSI), Message, Inbox (TTL), Clients tables.</li>
+                  <li><strong>Connection details:</strong> WebSocket over TLS via L4 load balancer; user-level channel subscription.</li>
+                  <li><strong>Ordering behavior:</strong> server timestamps (NTP-synced) drive UI ordering, not strict causal order.</li>
+                  <li><strong>Implementation limits:</strong> group size 100, offline retention 30 days, bounded client count per account.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section class="slide">
           <div class="eyebrow">API mapping</div>
           <h2>API styles as transport mechanisms</h2>
@@ -229,7 +309,7 @@
         <button id="prevBtn">← Prev</button>
         <button id="nextBtn">Next →</button>
       </div>
-      <div class="counter" id="counter">1 / 15</div>
+      <div class="counter" id="counter">1 / 18</div>
       <div class="hint">Use swipe/controls, or <span class="kbd">←</span> <span class="kbd">→</span> and <span class="kbd">Space</span></div>
     </div>
   </div>
