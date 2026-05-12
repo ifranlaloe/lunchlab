@@ -1,25 +1,23 @@
-# LunchLab #2: Choosing the Right API Style
+# LunchLab #2: Zooming with C4
 
-This session focuses on one practical question:
+This session focuses on one practical capability:
 
-> Which API style fits which interaction?
+> Keep architecture discussions at the right zoom level.
 
 ## Core message
 
-There is no single best API style.
-
-Use C4 as **traveler-system cartography** to choose the right map scale first, then pick the transport mechanism.
-
-## Current focus pivot
-
-- In Level 1 discussions, split "travelers" into four actor groups: road, water, air, and railway.
-- Keep this modality split explicit in prompts, example answers, and facilitation language.
+Use C4 as **traveler-system cartography**: agree on the map scale first, then decide what details belong in scope.
 
 ## Scope rule
 
 - Introduce all four C4 levels.
 - Keep workshop decisions mostly at **Level 1 (System Context)** and **Level 2 (Container)**.
-- Treat Level 3 and Level 4 as useful depth references, not the main facilitation scope.
+- Treat Level 3 and Level 4 as useful depth references, not the default facilitation scope.
+
+## Traveler framing in this deck
+
+- In Level 1 discussions, split "travelers" into four actor groups: road, water, air, and railway.
+- Keep this modality split explicit in prompts and example answers.
 
 ## C4 mapping used in this deck
 
@@ -28,7 +26,7 @@ Use C4 as **traveler-system cartography** to choose the right map scale first, t
 - **Level 3 — Component:** Inside one infrastructure domain.
 - **Level 4 — Code:** Engineering blueprint / construction specification.
 
-SVG naming is now stable and metaphor-neutral:
+SVG naming is stable and metaphor-neutral:
 
 - `assets/svg/c4-infrastructure-level-1.svg`
 - `assets/svg/c4-infrastructure-level-2-overlay-road-network.svg`
@@ -38,55 +36,44 @@ SVG naming is now stable and metaphor-neutral:
 - `assets/svg/c4-infrastructure-level-3.svg`
 - `assets/svg/c4-infrastructure-level-4.svg`
 
-Level 2 teaching visuals are now a traveler-mode progressive build: road → rail → water → air.
+Level 2 teaching visuals use a progressive build: road → rail → water → air.
 
-Official data sources used in Level 2 geometry overlays:
+## Case inserts in this deck
 
-- Road network: PDOK / Rijkswaterstaat `NWB - Wegen` OGC API, collection `wegvakken` (main A-road-focused filter).
-- Rail network: PDOK / ProRail `Spoorwegen` OGC API, collection `trace`.
-- Water system: PDOK / Rijkswaterstaat `NWB - Vaarwegen` OGC API, collection `vaarwegvakken`.
-- Air airports: LVNL Geoportaal `Aerodrome_data` Feature Service, layers `Aerodrome Civil` and `Aerodrome Joint`.
-
-Levels 2–4 include an explicit system boundary treatment, aligned with the boundary framing in Level 1.
+- WhatsApp transition + C4 context slides (L1/L2 and expanded L3/L4 view).
+- Flink transition + case brief (goal, functional requirements, non-functional requirements).
 
 ## Facilitation lines
 
-- “Before choosing the transport mechanism, first agree on the map scale.”
-- “Are we discussing the system boundary, the major internal domains, one domain internally, or engineering detail?”
-- “When we say travelers, are we talking about road, water, air, or railway users?”
-- “That sounds like we are inside one infrastructure domain. Let’s park it unless we intentionally move to Level 3.”
-- “That belongs on the engineering blueprint. Let’s first agree on the infrastructure map.”
-
-## API style mapping used in this deck
-
-API styles are transport mechanisms between infrastructure domains, systems, or access points:
-
-- REST = Standard public road access
-- GraphQL = Smart route planner / custom itinerary
-- WebSocket = Live traffic control channel
-- Webhook = Scheduled delivery/drop-off from outside
-- gRPC = Dedicated high-speed service corridor
-- SOAP = Regulated legacy cross-border rail connection
+- “Before deciding, let’s agree on the C4 level we are discussing.”
+- “Are we discussing system context, containers, components, or implementation detail?”
+- “That sounds like a Level 3 concern; let’s park it until we intentionally zoom in.”
+- “Let’s finish boundaries and responsibilities first, then discuss detailed design choices.”
+- “If we are debating framework or protocol specifics, we may be zoomed in too far.”
 
 ## Full slide list (one-to-one with `index.html`)
 
-Current deck length: **15 slides**.
+Current deck length: **19 slides**.
 
-1. **LunchLab #2** - Choosing the Right API Style
+1. **LunchLab #2** - Zooming with C4
 2. **C4 framing** - C4 for traveler-system mapping
 3. **Cheat sheet** - C4 levels overview
-4. **Level 1** - Level 1: Traveler System Context (with C4 Level 1 questions)
-5. **Level 1 answers** - Level 1: The system in its external context (with modality-specific traveler answers)
+4. **Level 1** - Level 1: Traveler System Context
+5. **Level 1 answers** - The system in its external context
 6. **Level 2 build** - Road network layer
-7. **Level 2 build** - Rail network layer
-8. **Level 2 build** - Water system layer
-9. **Level 2 build** - Air airports layer
-10. **Level 3** - Level 3: Inside one infrastructure domain
-11. **Level 4** - Level 4: Engineering blueprint
-12. **C4 matrix** - All four levels in one 2×2 view
-13. **API mapping** - API styles as transport mechanisms
-14. **Facilitation** - Scope-control lines for the workshop
-15. **Takeaway** - Final takeaway
+7. **Level 2 build** - Road + rail layers
+8. **Level 2 build** - Road + rail + water layers
+9. **Level 2 build** - Road + rail + water + air layers
+10. **Level 3** - Inside one infrastructure domain
+11. **Level 4** - Engineering blueprint
+12. **C4 matrix** - All four levels in one 2x2 view
+13. **Transition** - WhatsApp logo
+14. **Previous case** - WhatsApp L1/L2 context
+15. **Previous case** - WhatsApp L1/L2 plus L3/L4 details
+16. **Transition** - Flink logo
+17. **New case** - Flink goal and requirements
+18. **Facilitation** - Scope-control lines for the workshop
+19. **Takeaway** - Final takeaway
 
 ## File
 
