@@ -363,18 +363,24 @@
               <div class="card">
                 <h3>Functional requirements</h3>
                 <ul>
-                  <li>Customers can query item availability by location for delivery within 1 hour.</li>
-                  <li>Availability reflects the union of inventory across nearby DCs.</li>
+                  <li>Customers can query which items are available for 1-hour delivery to their location,<br />combining inventory from nearby distribution centers.</li>
                   <li>Customers can place one order containing multiple items.</li>
+                </ul>
+                <h3 style="margin-top: 24px;">Bonus requirements</h3>
+                <ul>
+                  <li>Customers can browse products before checking availability.</li>
+                  <li>Customers can inspect stock by local hub.</li>
+                  <li>Orders can be assigned to a courier.</li>
+                  <li>Customers can track order status after checkout.</li>
                 </ul>
               </div>
               <div class="card">
                 <h3>Non-functional requirements</h3>
                 <ul>
-                  <li>Availability lookups should be fast (&lt;100ms).</li>
-                  <li>Ordering must be strongly consistent to prevent double booking.</li>
-                  <li>Scale target: up to 10k DCs and 100k catalog items.</li>
-                  <li>Order throughput target: ~10 million orders/day.</li>
+                  <li>Availability requests should return quickly, ideally under 100 ms.</li>
+                  <li>Ordering must prevent two customers from buying the same physical item.</li>
+                  <li>The system should support 10k distribution centers and 100k catalog items.</li>
+                  <li>The system should handle around 10 million orders per day.</li>
                 </ul>
               </div>
             </div>
