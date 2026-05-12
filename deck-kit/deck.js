@@ -4,6 +4,34 @@
     const nextBtn = document.getElementById('nextBtn');
     let index = 0;
 
+    function clampIndex(value) {
+      return Math.min(slides.length - 1, Math.max(0, value));
+    }
+
+    function getIndexFromHash() {
+      const match = window.location.hash.match(/^#(\d+)$/);
+      if (!match) {
+        return null;
+      }
+
+      const parsed = Number.parseInt(match[1], 10);
+      if (Number.isNaN(parsed)) {
+        return null;
+      }
+
+      return clampIndex(parsed - 1);
+    }
+
+    function syncHashToIndex() {
+      const nextHash = `#${index + 1}`;
+      if (window.location.hash === nextHash) {
+        return;
+      }
+
+      const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
+      window.history.replaceState(null, '', nextUrl);
+    }
+
     function prepareSlides() {
       slides.forEach((slide) => {
         if (slide.querySelector('.slide-frame')) {
@@ -80,6 +108,7 @@
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === slides.length - 1;
       fitActiveSlide();
+      syncHashToIndex();
     }
 
     function next() {
@@ -255,9 +284,23 @@
       }
     });
 
+    window.addEventListener('hashchange', () => {
+      const hashIndex = getIndexFromHash();
+      if (hashIndex === null || hashIndex === index) {
+        return;
+      }
+
+      index = hashIndex;
+      render();
+    });
+
     window.addEventListener('resize', fitActiveSlide);
 
     prepareSlides();
+    const initialIndex = getIndexFromHash();
+    if (initialIndex !== null) {
+      index = initialIndex;
+    }
     initTouchNavigation();
     initFullscreenControl();
     initFooterOverlay();
