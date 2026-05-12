@@ -1,13 +1,13 @@
 <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Level 2 overlay - Rail network trace</title>
-  <desc id="desc">Official ProRail Spoorwegen trace geometry simplified and aligned to the Level 1 Netherlands SVG.</desc>
+  <title id="title">Level 2 overlay - Rail Service</title>
+  <desc id="desc">Rail Service layer based on official ProRail Spoorwegen trace geometry, aligned to the Level 1 Netherlands SVG.</desc>
   <metadata>Source: PDOK / ProRail Spoorwegen OGC API, collection trace, CC0 1.0. Coordinates transformed from CRS84 lon/lat to this deck's 1600x900 Level 1 SVG viewBox.</metadata>
   <defs>
     <style>
       .rail-line { fill: none; stroke: #f59e0b; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; opacity: .72; }
       .hub { fill: #f59e0b; stroke: #000; stroke-width: 3; }
       .tag { fill: rgba(255,255,255,.76); stroke: #000; stroke-width: 2; rx: 8; }
-      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; }
+      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; text-anchor: middle; }
     </style>
   </defs>
   <g id="rail-trace">
@@ -301,6 +301,6 @@
   </g>
   <circle class="hub" cx="760" cy="467" r="9"/>
   <path class="rail-line" d="M 760 467 L 940 354"/>
-  <rect class="tag" x="950" y="312" width="220" height="44"/>
-  <text class="txt" x="990" y="342">Rail network</text>
+  <rect class="tag" x="962" y="312" width="196" height="44"/>
+  <text class="txt" x="1060" y="342">Rail Service</text>
 </svg>

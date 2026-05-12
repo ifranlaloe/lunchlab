@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Level 2 overlay - Waterways network</title>
-  <desc id="desc">Official Rijkswaterstaat NWB Vaarwegen route geometry simplified and aligned to the Level 1 Netherlands SVG.</desc>
+  <title id="title">Level 2 overlay - Water Service</title>
+  <desc id="desc">Water Service layer based on official Rijkswaterstaat NWB Vaarwegen route geometry, aligned to the Level 1 Netherlands SVG.</desc>
   <metadata>Source: PDOK / Rijkswaterstaat NWB - Vaarwegen OGC API, collection vaarwegvakken, CC0 1.0. Coordinates transformed from CRS84 lon/lat to this deck's 1600x900 Level 1 SVG viewBox.</metadata>
   <defs>
     <style>
@@ -8,7 +8,7 @@
       .water-secondary { fill: none; stroke: #38bdf8; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; opacity: .66; }
       .port-node { fill: #06b6d4; stroke: #000; stroke-width: 3; }
       .tag { fill: rgba(255,255,255,.76); stroke: #000; stroke-width: 2; rx: 8; }
-      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; }
+      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; text-anchor: middle; }
     </style>
   </defs>
   <g id="waterways-secondary">
@@ -255,6 +255,6 @@
   </g>
   <circle class="port-node" cx="590" cy="492" r="9"/>
   <path class="water-secondary" d="M 590 492 L 430 622"/>
-  <rect class="tag" x="300" y="598" width="170" height="44"/>
-  <text class="txt" x="330" y="628">Waterways</text>
+  <rect class="tag" x="281" y="598" width="208" height="44"/>
+  <text class="txt" x="385" y="628">Water Service</text>
 </svg>

@@ -22,7 +22,7 @@ Use C4 as **traveler-system cartography**: agree on the map scale first, then de
 ## C4 mapping used in this deck
 
 - **Level 1 — Context:** The Netherlands in its external context.
-- **Level 2 — Container:** Main traveler domains inside the system.
+- **Level 2 — Container:** Main services inside the system.
 - **Level 3 — Component:** Inside one infrastructure domain.
 - **Level 4 — Code:** Engineering blueprint / construction specification.
 
@@ -36,7 +36,7 @@ SVG naming is stable and metaphor-neutral:
 - `assets/svg/c4-infrastructure-level-3.svg`
 - `assets/svg/c4-infrastructure-level-4.svg`
 
-Level 2 teaching visuals use a progressive build: road → rail → water → air.
+Level 2 teaching visuals use a progressive build of service layers (1/4 to 4/4).
 
 ## Case inserts in this deck
 
@@ -62,11 +62,11 @@ Current deck length: **23 slides**.
 5. **C4 Explained** - Level 3: Component
 6. **C4 Explained** - Level 4: Code
 7. **Level 1** - Level 1: Traveler Context
-8. **Level 1 answers** - The system in its external context
-9. **Level 2 build** - Road network layer
-10. **Level 2 build** - Road + rail layers
-11. **Level 2 build** - Road + rail + water layers
-12. **Level 2 build** - Road + rail + water + air layers
+8. **Level 1** - Level 1: Traveler Context (answers)
+9. **Level 2 build** - Containers (1/4)
+10. **Level 2 build** - Containers (2/4)
+11. **Level 2 build** - Containers (3/4)
+12. **Level 2 build** - Containers (4/4)
 13. **Level 3** - Inside one infrastructure domain
 14. **Level 4** - Engineering blueprint
 15. **C4 matrix** - All four levels in one 2x2 view

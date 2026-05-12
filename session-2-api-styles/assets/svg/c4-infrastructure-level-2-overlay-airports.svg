@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Level 2 overlay - Airports</title>
-  <desc id="desc">Official LVNL aerodrome locations for key Dutch airports, shown as purple circles and aligned to the Level 1 Netherlands SVG.</desc>
+  <title id="title">Level 2 overlay - Air Service</title>
+  <desc id="desc">Air Service layer based on official LVNL aerodrome locations for key Dutch airports, aligned to the Level 1 Netherlands SVG.</desc>
   <metadata>Source: LVNL Geoportaal Aerodrome_data Feature Service (ArcGIS), layers 0 (Aerodrome Civil) and 2 (Aerodrome Joint), data source AeroDB, license CC BY 4.0. Selected airport designators: EHAM, EHRD, EHEH, EHBK, EHGG, EHLE. Coordinates transformed from WGS84 lon/lat to this deck's 1600x900 Level 1 SVG viewBox using the same fit as the other Level 2 overlays.</metadata>
   <defs>
     <style>
@@ -8,7 +8,7 @@
       .air-node { fill: #8b5cf6; stroke: #000; stroke-width: 3; }
       .air-link { fill: none; stroke: #8b5cf6; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: .86; }
       .tag { fill: rgba(255,255,255,.76); stroke: #000; stroke-width: 2; rx: 8; }
-      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; }
+      .txt { font: 700 22px Inter, Arial, sans-serif; fill: #000; text-anchor: middle; }
     </style>
   </defs>
 
@@ -31,6 +31,6 @@
   <circle class="air-node" cx="874.6" cy="395.2" r="7"/>
 
   <path class="air-link" d="M 835 595 L 860 540"/>
-  <rect class="tag" x="860" y="518" width="150" height="44"/>
-  <text class="txt" x="892" y="548">Airports</text>
+  <rect class="tag" x="843" y="518" width="184" height="44"/>
+  <text class="txt" x="935" y="548">Air Service</text>
 </svg>
