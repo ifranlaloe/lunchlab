@@ -1,34 +1,76 @@
 <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Level 3: Inside one infrastructure domain</title>
-  <desc id="desc">A selected rail network domain with internal elements and dependencies.</desc>
+  <title id="title">Level 3: Component (Rail Service Container)</title>
+  <desc id="desc">Level 3 component view inside the Rail Service container.</desc>
   <defs>
     <style>
-      .bg{fill:none}.panel{fill:#141e36;stroke:#7dabff;stroke-width:4}.inner{fill:#1f2c4d;stroke:#9ec2ff;stroke-width:2.5}
-      .line{stroke:#1a6ab5;stroke-width:3;fill:none}.title{font:700 38px Inter,Arial,sans-serif;fill:#0b1f4d}.txt{font:600 22px Inter,Arial,sans-serif;fill:#d9e9ff}
+      .context-box { fill: none; stroke: #000; stroke-width: 8; }
+      .context-label { font: 700 30px Inter, Arial, sans-serif; fill: #000; }
+      .container-label { font: 700 24px Inter, Arial, sans-serif; fill: #0b1f4d; }
+      .inner { fill: #eef4ff; stroke: #1f2c4d; stroke-width: 2.5; }
+      .component-txt { font: 600 20px Inter, Arial, sans-serif; fill: #0b1f4d; text-anchor: middle; dominant-baseline: middle; }
+      .line { stroke: #1a6ab5; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .edge { font: 600 17px Inter, Arial, sans-serif; fill: #1a4f8a; text-anchor: middle; }
     </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#1a6ab5" />
+    </marker>
   </defs>
-  <rect class="bg" width="1600" height="900"/>
-  <text class="title" x="70" y="78">Level 3 — Inside one infrastructure domain (Rail network)</text>
 
-  <rect class="panel" x="120" y="120" width="1360" height="720" rx="34"/>
-  <text class="txt" x="160" y="165">System boundary</text>
-  <rect class="panel" x="220" y="190" width="1160" height="620" rx="34"/>
-  <text class="txt" x="260" y="235">Selected Level 2 domain: Rail network</text>
+  <rect class="context-box" x="120" y="80" width="1360" height="740" />
+  <text class="context-label" x="140" y="62">C4 Context Box</text>
+  <text class="container-label" x="160" y="130">Container in scope (Level 2): Rail Service</text>
 
-  <rect class="inner" x="290" y="260" width="210" height="90" rx="14"/><text class="txt" x="335" y="315">Stations</text>
-  <rect class="inner" x="560" y="240" width="210" height="90" rx="14"/><text class="txt" x="620" y="295">Tracks</text>
-  <rect class="inner" x="830" y="260" width="210" height="90" rx="14"/><text class="txt" x="880" y="315">Switches</text>
-  <rect class="inner" x="1100" y="240" width="210" height="90" rx="14"/><text class="txt" x="1165" y="295">Signals</text>
+  <rect class="inner" x="260" y="230" width="240" height="96" rx="14" />
+  <text class="component-txt" x="380" y="278">Station Ingest</text>
 
-  <rect class="inner" x="370" y="500" width="260" height="100" rx="14"/><text class="txt" x="430" y="560">Control room</text>
-  <rect class="inner" x="700" y="490" width="280" height="100" rx="14"/><text class="txt" x="760" y="550">Timetable system</text>
-  <rect class="inner" x="1040" y="500" width="260" height="100" rx="14"/><text class="txt" x="1080" y="560">Power sections</text>
+  <rect class="inner" x="540" y="230" width="240" height="96" rx="14" />
+  <text class="component-txt" x="660" y="278">Track State</text>
 
-  <path class="line" d="M500 305 L560 285 L770 285 L830 305"/>
-  <path class="line" d="M1040 305 L1100 285"/>
-  <path class="line" d="M395 350 L500 500"/>
-  <path class="line" d="M665 330 L840 490"/>
-  <path class="line" d="M1180 330 L1170 500"/>
-  <path class="line" d="M630 550 L700 540"/>
-  <path class="line" d="M980 540 L1040 550"/>
+  <rect class="inner" x="820" y="230" width="240" height="96" rx="14" />
+  <text class="component-txt" x="940" y="268">
+    <tspan x="940" dy="-8">Switch</tspan>
+    <tspan x="940" dy="24">Controller</tspan>
+  </text>
+
+  <rect class="inner" x="1100" y="230" width="240" height="96" rx="14" />
+  <text class="component-txt" x="1220" y="268">
+    <tspan x="1220" dy="-8">Signal</tspan>
+    <tspan x="1220" dy="24">Orchestrator</tspan>
+  </text>
+
+  <rect class="inner" x="300" y="500" width="280" height="110" rx="14" />
+  <text class="component-txt" x="440" y="555">Control Console</text>
+
+  <rect class="inner" x="660" y="500" width="280" height="110" rx="14" />
+  <text class="component-txt" x="800" y="555">Timetable Engine</text>
+
+  <rect class="inner" x="1020" y="500" width="280" height="110" rx="14" />
+  <text class="component-txt" x="1160" y="555">Power Manager</text>
+
+  <path class="line" d="M 500 278 L 540 278" />
+  <text class="edge" x="520" y="262">publishes</text>
+
+  <path class="line" d="M 780 278 L 820 278" />
+  <text class="edge" x="800" y="262">updates</text>
+
+  <path class="line" d="M 1060 278 L 1100 278" />
+  <text class="edge" x="1080" y="262">controls</text>
+
+  <path class="line" d="M 380 326 Q 410 420 440 500" />
+  <text class="edge" x="392" y="428">feeds</text>
+
+  <path class="line" d="M 940 326 Q 860 415 800 500" />
+  <text class="edge" x="868" y="430">queries</text>
+
+  <path class="line" d="M 1220 326 Q 1196 420 1160 500" />
+  <text class="edge" x="1210" y="430">requests</text>
+
+  <path class="line" d="M 580 555 L 660 555" />
+  <text class="edge" x="620" y="539">queries</text>
+
+  <path class="line" d="M 940 555 L 1020 555" />
+  <text class="edge" x="980" y="539">updates</text>
+
+  <path class="line" d="M 660 326 Q 725 408 800 500" />
+  <text class="edge" x="734" y="422">publishes</text>
 </svg>
