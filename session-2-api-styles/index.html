@@ -389,10 +389,30 @@
 
         <section class="slide">
           <div class="eyebrow">Facilitation</div>
-          <h2>Scope-control lines for the workshop</h2>
+          <h2>Session master guide: guide, unblock, re-scope</h2>
           <div class="content two-col">
-            <div class="card"><ul><li>“Before deciding, let’s agree on the C4 level we are discussing.”</li><li>“Are we discussing context, containers, components, or implementation detail?”</li><li>“That sounds like a Level 3 concern; let’s park it until we intentionally zoom in.”</li><li>“Let’s finish boundaries and responsibilities first, then discuss detailed design choices.”</li></ul></div>
-            <div class="card"><ul><li>“This belongs at implementation level; first align on the container interactions.”</li><li>“If we are debating framework or protocol specifics, we may be zoomed in too far.”</li><li>“Can we restate this decision in terms of latency, consistency, and ownership boundaries?”</li></ul></div>
+            <div class="card">
+              <h3>Start and unblock</h3>
+              <ul>
+                <li>“Who uses the system, and who sits outside it?”</li>
+                <li>“What boundary are we drawing right now?”</li>
+                <li>“Which containers or services are needed?”</li>
+                <li>“Which container owns this responsibility?”</li>
+                <li>“What data or event crosses this boundary?”</li>
+                <li>“What would be good enough at Level 1 or Level 2?”</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>When the group is at the wrong level</h3>
+              <ul>
+                <li>If the group debates actors or external systems, bring it back to Level 1.</li>
+                <li>If the group debates service ownership or boundaries, keep it at Level 2.</li>
+                <li>If the group names internal components, allow a short Level 3 detour only if it clarifies a container.</li>
+                <li>If the group discusses retries, locks, schemas, algorithms, or class design, flag it as Level 4.</li>
+                <li>Capture Level 4 details in a parking lot and return to containers.</li>
+                <li>Ask: “Does this change a service boundary, or only an implementation detail?”</li>
+              </ul>
+            </div>
           </div>
         </section>
 

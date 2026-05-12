@@ -76,7 +76,7 @@ Current deck length: **23 slides**.
 19. **Previous case** - WhatsApp L1/L2 plus L3/L4 details
 20. **Transition** - Flink logo
 21. **New case** - Flink goal and requirements
-22. **Facilitation** - Scope-control lines for the workshop
+22. **Facilitation** - Session master guide
 23. **Takeaway** - Final takeaway
 
 ## File
