@@ -122,9 +122,14 @@
     }
 
     .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap;
       gap: 24px;
+    }
+
+    .two-col > * {
+      flex: 1 1 360px;
+      min-width: 0;
     }
 
     .three-col {
