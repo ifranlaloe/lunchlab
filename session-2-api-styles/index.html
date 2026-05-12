@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LunchLab #2 — Choosing the Right API Style</title>
+  <title>LunchLab #2 — Zooming with C4</title>
   <link rel="stylesheet" href="../deck-kit/theme.css" />
 </head>
 <body>
@@ -12,23 +12,23 @@
       <div class="slides">
         <section class="slide active">
           <div class="eyebrow">LunchLab #2</div>
-          <h1>Choosing the Right API Style</h1>
-          <div class="subtitle">There is no single best API style. The useful question is: <strong>what is the interaction, and which style fits it best?</strong></div>
+          <h1>Zooming with C4</h1>
+          <div class="subtitle">Strong architecture conversations start by agreeing on zoom level: <strong>context first, details later.</strong></div>
           <div class="content two-col">
             <div class="card">
               <h3>Why this session</h3>
               <ul>
-                <li>Choose API styles with clearer architectural scope.</li>
-                <li>Practice explaining trade-offs, not preferences.</li>
-                <li>Use shared C4 language before solution debates.</li>
+                <li>Align faster by naming the C4 level explicitly.</li>
+                <li>Avoid over-zooming too early in architecture discussions.</li>
+                <li>Use one shared language for scope and detail depth.</li>
               </ul>
             </div>
             <div class="card">
               <h3>What you will get</h3>
               <ul>
-                <li>A practical Level 1 + Level 2 decision workflow.</li>
-                <li>Interaction archetypes mapped to API styles.</li>
-                <li>Facilitation prompts to avoid over-zooming.</li>
+                <li>A practical Level 1 + Level 2 facilitation workflow.</li>
+                <li>Case-based examples to separate context from implementation.</li>
+                <li>Facilitation prompts to keep scope under control.</li>
               </ul>
             </div>
           </div>
@@ -51,7 +51,7 @@
             <div class="card">
               <h3>Facilitation intent</h3>
               <ul>
-                <li>Agree on map scale before choosing transport mechanisms.</li>
+                <li>Agree on map scale before discussing solution details.</li>
                 <li>Keep today mostly at Level 1 and Level 2.</li>
                 <li>Use Level 3 and Level 4 as references, not the main exercise scope.</li>
               </ul>
@@ -273,20 +273,6 @@
           </div>
         </section>
 
-        <section class="slide">
-          <div class="eyebrow">API mapping</div>
-          <h2>API styles as transport mechanisms</h2>
-          <div class="subtitle">API styles are transport mechanisms between infrastructure domains, systems, or access points.</div>
-          <div class="content three-col">
-            <div class="card"><h3>REST = Standard public road access</h3><p>Simple request-response interaction.</p></div>
-            <div class="card"><h3>GraphQL = Smart route planner / custom itinerary</h3><p>Consumer asks exactly for the data it needs.</p></div>
-            <div class="card"><h3>WebSocket = Live traffic control channel</h3><p>Continuous two-way updates.</p></div>
-            <div class="card"><h3>Webhook = Scheduled delivery/drop-off from outside</h3><p>External system notifies us when something happens.</p></div>
-            <div class="card"><h3>gRPC = Dedicated high-speed service corridor</h3><p>Efficient internal service-to-service communication.</p></div>
-            <div class="card"><h3>SOAP = Regulated legacy cross-border rail connection</h3><p>Strict, formal, enterprise or legacy integration.</p></div>
-          </div>
-        </section>
-
         <section class="slide whatsapp-logo-slide">
           <div class="content">
             <img class="flink-logo" src="assets/svg/flink-logo.svg" alt="Flink logo" />
@@ -327,15 +313,15 @@
           <div class="eyebrow">Facilitation</div>
           <h2>Scope-control lines for the workshop</h2>
           <div class="content two-col">
-            <div class="card"><ul><li>“Before choosing an API style, let’s agree on the C4 level we are discussing.”</li><li>“Are we discussing system context, containers, components, or implementation detail?”</li><li>“That sounds like a Level 3 concern; let’s park it until we intentionally zoom in.”</li><li>“Let’s finish boundaries and responsibilities first, then choose protocols.”</li></ul></div>
-            <div class="card"><ul><li>“This belongs at implementation level; first align on the container interactions.”</li><li>“If we are debating frameworks or low-level protocol settings, we may be zoomed in too far.”</li><li>“Can we restate this decision in terms of latency, consistency, and ownership boundaries?”</li></ul></div>
+            <div class="card"><ul><li>“Before deciding, let’s agree on the C4 level we are discussing.”</li><li>“Are we discussing system context, containers, components, or implementation detail?”</li><li>“That sounds like a Level 3 concern; let’s park it until we intentionally zoom in.”</li><li>“Let’s finish boundaries and responsibilities first, then discuss detailed design choices.”</li></ul></div>
+            <div class="card"><ul><li>“This belongs at implementation level; first align on the container interactions.”</li><li>“If we are debating framework or protocol specifics, we may be zoomed in too far.”</li><li>“Can we restate this decision in terms of latency, consistency, and ownership boundaries?”</li></ul></div>
           </div>
         </section>
 
         <section class="slide">
           <div class="eyebrow">Takeaway</div>
           <h2>Final takeaway</h2>
-          <div class="big-quote">Today we mostly use the system context map and the traveler-domain map. API styles are the transport mechanisms between systems, traveler domains, and access points.</div>
+          <div class="big-quote">Start with C4 zoom-level alignment. Most workshop decisions should stay at Level 1 and Level 2 before moving into implementation detail.</div>
         </section>
       </div>
     </div>
@@ -345,7 +331,7 @@
         <button id="prevBtn">← Prev</button>
         <button id="nextBtn">Next →</button>
       </div>
-      <div class="counter" id="counter">1 / 20</div>
+      <div class="counter" id="counter">1 / 19</div>
       <div class="hint">Use swipe/controls, or <span class="kbd">←</span> <span class="kbd">→</span> and <span class="kbd">Space</span></div>
     </div>
   </div>
