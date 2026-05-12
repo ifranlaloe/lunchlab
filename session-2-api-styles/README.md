@@ -56,17 +56,17 @@ Level 2 teaching visuals use a progressive build: road → rail → water → ai
 Current deck length: **19 slides**.
 
 1. **LunchLab #2** - Zooming with C4
-2. **C4 framing** - C4 for traveler-system mapping
-3. **Cheat sheet** - C4 levels overview
-4. **Level 1** - Level 1: Traveler System Context
-5. **Level 1 answers** - The system in its external context
-6. **Level 2 build** - Road network layer
-7. **Level 2 build** - Road + rail layers
-8. **Level 2 build** - Road + rail + water layers
-9. **Level 2 build** - Road + rail + water + air layers
-10. **Level 3** - Inside one infrastructure domain
-11. **Level 4** - Engineering blueprint
-12. **C4 matrix** - All four levels in one 2x2 view
+2. **Cheat sheet** - C4 levels overview
+3. **Level 1** - Level 1: Traveler System Context
+4. **Level 1 answers** - The system in its external context
+5. **Level 2 build** - Road network layer
+6. **Level 2 build** - Road + rail layers
+7. **Level 2 build** - Road + rail + water layers
+8. **Level 2 build** - Road + rail + water + air layers
+9. **Level 3** - Inside one infrastructure domain
+10. **Level 4** - Engineering blueprint
+11. **C4 matrix** - All four levels in one 2x2 view
+12. **C4 framing** - C4 as a map-and-zoom language
 13. **Transition** - WhatsApp logo
 14. **Previous case** - WhatsApp L1/L2 context
 15. **Previous case** - WhatsApp L1/L2 plus L3/L4 details
