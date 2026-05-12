@@ -24,7 +24,7 @@ Use C4 as **traveler-system cartography**: agree on the map scale first, then de
 - **Level 1 — Context:** The Netherlands in its external context.
 - **Level 2 — Container:** Main services inside the system.
 - **Level 3 — Component:** Inside one infrastructure domain.
-- **Level 4 — Code:** Engineering blueprint / construction specification.
+- **Level 4 — Code:** Implementation detail inside one component.
 
 SVG naming is stable and metaphor-neutral:
 
@@ -68,7 +68,7 @@ Current deck length: **23 slides**.
 11. **Level 2 build** - Travel Containers (Road + Rail + Water)
 12. **Level 2 build** - Travel Containers (Road + Rail + Water + Air)
 13. **Level 3** - Component (Rail Service Container)
-14. **Level 4** - Engineering blueprint
+14. **Level 4** - Code
 15. **C4 matrix** - All four levels in one 2x2 view
 16. **C4 framing** - C4 as a map-and-zoom language
 17. **Transition** - WhatsApp logo
