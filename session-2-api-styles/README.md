@@ -11,7 +11,7 @@ Use C4 as **traveler-system cartography**: agree on the map scale first, then de
 ## Scope rule
 
 - Introduce all four C4 levels.
-- Keep workshop decisions mostly at **Level 1 (System Context)** and **Level 2 (Container)**.
+- Keep workshop decisions mostly at **Level 1 (Context)** and **Level 2 (Container)**.
 - Treat Level 3 and Level 4 as useful depth references, not the default facilitation scope.
 
 ## Traveler framing in this deck
@@ -21,7 +21,7 @@ Use C4 as **traveler-system cartography**: agree on the map scale first, then de
 
 ## C4 mapping used in this deck
 
-- **Level 1 — System Context:** The Netherlands in its external context.
+- **Level 1 — Context:** The Netherlands in its external context.
 - **Level 2 — Container:** Main traveler domains inside the system.
 - **Level 3 — Component:** Inside one infrastructure domain.
 - **Level 4 — Code:** Engineering blueprint / construction specification.
@@ -46,34 +46,38 @@ Level 2 teaching visuals use a progressive build: road → rail → water → ai
 ## Facilitation lines
 
 - “Before deciding, let’s agree on the C4 level we are discussing.”
-- “Are we discussing system context, containers, components, or implementation detail?”
+- “Are we discussing context, containers, components, or implementation detail?”
 - “That sounds like a Level 3 concern; let’s park it until we intentionally zoom in.”
 - “Let’s finish boundaries and responsibilities first, then discuss detailed design choices.”
 - “If we are debating framework or protocol specifics, we may be zoomed in too far.”
 
 ## Full slide list (one-to-one with `index.html`)
 
-Current deck length: **19 slides**.
+Current deck length: **23 slides**.
 
 1. **LunchLab #2** - Zooming with C4
-2. **Cheat sheet** - C4 levels overview
-3. **Level 1** - Level 1: Traveler System Context
-4. **Level 1 answers** - The system in its external context
-5. **Level 2 build** - Road network layer
-6. **Level 2 build** - Road + rail layers
-7. **Level 2 build** - Road + rail + water layers
-8. **Level 2 build** - Road + rail + water + air layers
-9. **Level 3** - Inside one infrastructure domain
-10. **Level 4** - Engineering blueprint
-11. **C4 matrix** - All four levels in one 2x2 view
-12. **C4 framing** - C4 as a map-and-zoom language
-13. **Transition** - WhatsApp logo
-14. **Previous case** - WhatsApp L1/L2 context
-15. **Previous case** - WhatsApp L1/L2 plus L3/L4 details
-16. **Transition** - Flink logo
-17. **New case** - Flink goal and requirements
-18. **Facilitation** - Scope-control lines for the workshop
-19. **Takeaway** - Final takeaway
+2. **C4 Explained** - What is C4?
+3. **C4 Explained** - Level 1: Context
+4. **C4 Explained** - Level 2: Container
+5. **C4 Explained** - Level 3: Component
+6. **C4 Explained** - Level 4: Code
+7. **Level 1** - Level 1: Traveler Context
+8. **Level 1 answers** - The system in its external context
+9. **Level 2 build** - Road network layer
+10. **Level 2 build** - Road + rail layers
+11. **Level 2 build** - Road + rail + water layers
+12. **Level 2 build** - Road + rail + water + air layers
+13. **Level 3** - Inside one infrastructure domain
+14. **Level 4** - Engineering blueprint
+15. **C4 matrix** - All four levels in one 2x2 view
+16. **C4 framing** - C4 as a map-and-zoom language
+17. **Transition** - WhatsApp logo
+18. **Previous case** - WhatsApp L1/L2 context
+19. **Previous case** - WhatsApp L1/L2 plus L3/L4 details
+20. **Transition** - Flink logo
+21. **New case** - Flink goal and requirements
+22. **Facilitation** - Scope-control lines for the workshop
+23. **Takeaway** - Final takeaway
 
 ## File
 

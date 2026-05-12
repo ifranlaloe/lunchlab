@@ -36,22 +36,88 @@
           </div>
         </section>
 
-        <section class="slide">
-          <div class="eyebrow">Cheat sheet</div>
-          <h2>C4 levels overview</h2>
-          <div class="content four-up">
-            <div class="card"><h3>Level 1 — System Context</h3><p><strong>Traveler-system map:</strong> The Netherlands in traveler context.<br><strong>Question:</strong> What surrounds and connects to our system?</p></div>
-            <div class="card"><h3>Level 2 — Container</h3><p><strong>Traveler-system map:</strong> Main traveler domains inside the system.<br><strong>Question:</strong> What are the major traveler domains inside the system, and how do they connect?</p></div>
-            <div class="card"><h3>Level 3 — Component</h3><p><strong>Traveler-system map:</strong> Inside one traveler domain.<br><strong>Question:</strong> How is one major part structured internally?</p></div>
-            <div class="card"><h3>Level 4 — Code</h3><p><strong>Traveler-system map:</strong> Implementation blueprint / specification.<br><strong>Question:</strong> How is it built in exact detail?</p></div>
+        <section class="slide centered-content-slide">
+          <div class="eyebrow">C4 Explained</div>
+          <div class="content centered-stack">
+            <h1>What is C4?</h1>
+            <p class="lead">"The C4 model is an easy to learn, developer friendly approach to software architecture diagramming." — Simon Brown</p>
+          </div>
+        </section>
+
+        <section class="slide centered-content-slide">
+          <div class="eyebrow">C4 Explained</div>
+          <div class="content centered-stack">
+            <h1>Level 1 — Context</h1>
+            <p class="lead">Start with the outside view before the inside view.</p>
+            <div class="card">
+              <h3>Core prompt</h3>
+              <p><strong>What is inside our system boundary, and what is outside it?</strong></p>
+              <ul>
+                <li>Who are the primary users or actors?</li>
+                <li>Which external systems do we depend on?</li>
+                <li>What are the main interactions across the boundary?</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide centered-content-slide">
+          <div class="eyebrow">C4 Explained</div>
+          <div class="content centered-stack">
+            <h1>Level 2 — Container</h1>
+            <p class="lead">Now move one level in: from outside interactions to internal building blocks.</p>
+            <div class="card">
+              <h3>Core prompt</h3>
+              <p><strong>What are the major containers inside the system, and how do they collaborate?</strong></p>
+              <ul>
+                <li>Which core entities can we identify?</li>
+                <li>Which containers exist (apps, services, data stores)?</li>
+                <li>What is each container responsible for?</li>
+                <li>How do containers communicate and what flows between them?</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide centered-content-slide">
+          <div class="eyebrow">C4 Explained</div>
+          <div class="content centered-stack">
+            <h1>Level 3 — Component</h1>
+            <p class="lead">Zoom into one container to understand its internal structure.</p>
+            <div class="card">
+              <h3>Core prompt</h3>
+              <p><strong>How is this container organized internally to fulfill its responsibility?</strong></p>
+              <ul>
+                <li>Which components does this container contain?</li>
+                <li>How are responsibilities split across components?</li>
+                <li>Which interfaces and dependencies connect these components?</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide centered-content-slide">
+          <div class="eyebrow">C4 Explained</div>
+          <div class="content centered-stack">
+            <h1>Level 4 — Code</h1>
+            <p class="lead">Use this level only when implementation detail is needed.</p>
+            <div class="card">
+              <h3>Core prompt</h3>
+              <p><strong>How is this part implemented in code?</strong></p>
+              <ul>
+                <li>Which classes, modules, or functions implement the components?</li>
+                <li>What key data structures and algorithms are used?</li>
+                <li>What conventions or constraints matter for maintainability?</li>
+              </ul>
+            </div>
           </div>
         </section>
 
         <section class="slide c4-visual-slide level1-questions-slide">
           <div class="eyebrow">Level 1</div>
-          <h2>Level 1: Traveler System Context</h2>
+          <h2>Level 1: Traveler Context</h2>
           <div class="content c4-visual-wrap level1-questions-wrap">
-            <img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="System context map with one system boundary and external actors and connections." />
+            <img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="Context map with one system boundary and external actors and connections." />
             <div class="level1-questions">
               <ol>
                 <li>What is the system we are building?</li>
@@ -66,7 +132,7 @@
           <div class="eyebrow">Level 1 answers</div>
           <h2>Level 1: The system in its external context</h2>
           <div class="content c4-visual-wrap level1-questions-wrap">
-            <img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="System context map with one system boundary and external actors and connections." />
+            <img class="c4-visual" src="assets/svg/c4-infrastructure-level-1.svg" alt="Context map with one system boundary and external actors and connections." />
             <div class="level1-questions">
               <ol>
                 <li>A system that enables travelers to move using multiple transport methods.</li>
@@ -142,8 +208,8 @@
         <section class="slide c4-matrix-slide">
           <div class="content c4-quadrant-grid">
             <div class="card c4-quadrant-card">
-              <h3>Level 1 — Traveler System Context</h3>
-              <img class="c4-quadrant-image" src="assets/svg/c4-infrastructure-level-1.svg" alt="C4 Level 1 traveler system context visual." />
+              <h3>Level 1 — Traveler Context</h3>
+              <img class="c4-quadrant-image" src="assets/svg/c4-infrastructure-level-1.svg" alt="C4 Level 1 traveler context visual." />
               <p>Define the system boundary, external systems, and traveler actors.</p>
             </div>
             <div class="card c4-quadrant-card">
@@ -319,7 +385,7 @@
           <div class="eyebrow">Facilitation</div>
           <h2>Scope-control lines for the workshop</h2>
           <div class="content two-col">
-            <div class="card"><ul><li>“Before deciding, let’s agree on the C4 level we are discussing.”</li><li>“Are we discussing system context, containers, components, or implementation detail?”</li><li>“That sounds like a Level 3 concern; let’s park it until we intentionally zoom in.”</li><li>“Let’s finish boundaries and responsibilities first, then discuss detailed design choices.”</li></ul></div>
+            <div class="card"><ul><li>“Before deciding, let’s agree on the C4 level we are discussing.”</li><li>“Are we discussing context, containers, components, or implementation detail?”</li><li>“That sounds like a Level 3 concern; let’s park it until we intentionally zoom in.”</li><li>“Let’s finish boundaries and responsibilities first, then discuss detailed design choices.”</li></ul></div>
             <div class="card"><ul><li>“This belongs at implementation level; first align on the container interactions.”</li><li>“If we are debating framework or protocol specifics, we may be zoomed in too far.”</li><li>“Can we restate this decision in terms of latency, consistency, and ownership boundaries?”</li></ul></div>
           </div>
         </section>
@@ -339,7 +405,7 @@
         <button id="prevBtn">← Prev</button>
         <button id="nextBtn">Next →</button>
       </div>
-      <div class="counter" id="counter">1 / 19</div>
+      <div class="counter" id="counter">1 / 23</div>
       <div class="hint">Use swipe/controls, or <span class="kbd">←</span> <span class="kbd">→</span> and <span class="kbd">Space</span></div>
     </div>
   </div>
