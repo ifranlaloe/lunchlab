@@ -53,7 +53,7 @@ Level 2 teaching visuals use a progressive build of service layers (1/4 to 4/4).
 
 ## Full slide list (one-to-one with `index.html`)
 
-Current deck length: **23 slides**.
+Current deck length: **24 slides**.
 
 1. **LunchLab #2** - Zooming with C4
 2. **C4 Explained** - What is C4?
@@ -61,23 +61,24 @@ Current deck length: **23 slides**.
 4. **C4 Explained** - Level 2: Container
 5. **C4 Explained** - Level 3: Component
 6. **C4 Explained** - Level 4: Code
-7. **Level 1** - Level 1: Traveler Context
-8. **Level 1** - Level 1: Traveler Context (answers)
-9. **Level 2 build** - Travel Containers (Road Service)
-10. **Level 2 build** - Travel Containers (Road + Rail)
-11. **Level 2 build** - Travel Containers (Road + Rail + Water)
-12. **Level 2 build** - Travel Containers (Road + Rail + Water + Air)
-13. **Level 3** - Component (Rail Service Container)
-14. **Level 4** - Code
-15. **C4 matrix** - All four levels in one 2x2 view
-16. **C4 framing** - C4 as a map-and-zoom language
-17. **Transition** - WhatsApp logo
-18. **Previous case** - WhatsApp L1/L2 context
-19. **Previous case** - WhatsApp L1/L2 plus L3/L4 details
-20. **Transition** - Flink logo
-21. **New case** - Flink goal and requirements
-22. **Facilitation** - Session master guide
-23. **Takeaway** - Final takeaway
+7. **Transition** - From model to practice
+8. **Level 1** - Level 1: Traveler Context
+9. **Level 1** - Level 1: Traveler Context (answers)
+10. **Level 2 build** - Travel Containers (Road Service)
+11. **Level 2 build** - Travel Containers (Road + Rail)
+12. **Level 2 build** - Travel Containers (Road + Rail + Water)
+13. **Level 2 build** - Travel Containers (Road + Rail + Water + Air)
+14. **Level 3** - Component (Rail Service Container)
+15. **Level 4** - Code
+16. **C4 matrix** - All four levels in one 2x2 view
+17. **C4 framing** - C4 as a map-and-zoom language
+18. **Transition** - WhatsApp logo
+19. **Previous case** - WhatsApp L1/L2 context
+20. **Previous case** - WhatsApp L1/L2 plus L3/L4 details
+21. **Transition** - Flink logo
+22. **New case** - Flink goal and requirements
+23. **Facilitation** - Session master guide
+24. **Takeaway** - Final takeaway
 
 ## File
 
