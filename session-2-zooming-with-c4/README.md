@@ -36,7 +36,7 @@ SVG naming is stable and metaphor-neutral:
 - `public/assets/svg/c4-infrastructure-level-3.svg`
 - `public/assets/svg/c4-infrastructure-level-4.svg`
 
-Level 2 teaching visuals use a progressive build of service layers (1/4 to 4/4).
+Level 2 teaching visuals use a progressive build of service layers (1/4 to 4/4). Slide 10 opens on the context map; the first click reveals Road Service.
 
 ## Case inserts in this deck
 
