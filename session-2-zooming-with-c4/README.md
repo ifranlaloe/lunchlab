@@ -21,20 +21,20 @@ Use C4 as **traveler-system cartography**: agree on the map scale first, then de
 
 ## C4 mapping used in this deck
 
-- **Level 1 — Context:** The Netherlands in its external context.
+- **Level 1 — System Context:** The Netherlands in its external context.
 - **Level 2 — Container:** Main services inside the system.
 - **Level 3 — Component:** Inside one infrastructure domain.
 - **Level 4 — Code:** Implementation detail inside one component.
 
 SVG naming is stable and metaphor-neutral:
 
-- `assets/svg/c4-infrastructure-level-1.svg`
-- `assets/svg/c4-infrastructure-level-2-overlay-road-network.svg`
-- `assets/svg/c4-infrastructure-level-2-overlay-rail-network.svg`
-- `assets/svg/c4-infrastructure-level-2-overlay-water-system.svg`
-- `assets/svg/c4-infrastructure-level-2-overlay-airports.svg`
-- `assets/svg/c4-infrastructure-level-3.svg`
-- `assets/svg/c4-infrastructure-level-4.svg`
+- `public/assets/svg/c4-infrastructure-level-1.svg`
+- `public/assets/svg/c4-infrastructure-level-2-overlay-road-network.svg`
+- `public/assets/svg/c4-infrastructure-level-2-overlay-rail-network.svg`
+- `public/assets/svg/c4-infrastructure-level-2-overlay-water-system.svg`
+- `public/assets/svg/c4-infrastructure-level-2-overlay-airports.svg`
+- `public/assets/svg/c4-infrastructure-level-3.svg`
+- `public/assets/svg/c4-infrastructure-level-4.svg`
 
 Level 2 teaching visuals use a progressive build of service layers (1/4 to 4/4).
 
@@ -51,7 +51,7 @@ Level 2 teaching visuals use a progressive build of service layers (1/4 to 4/4).
 - “Let’s finish boundaries and responsibilities first, then discuss detailed design choices.”
 - “If we are debating framework or protocol specifics, we may be zoomed in too far.”
 
-## Full slide list (one-to-one with `index.html`)
+## Full slide list (one-to-one with `slides.md`)
 
 Current deck length: **24 slides**.
 
@@ -70,7 +70,7 @@ Current deck length: **24 slides**.
 13. **Level 2 build** - Travel Containers (Road + Rail + Water + Air)
 14. **Level 3** - Component (Rail Service Container)
 15. **Level 4** - Code
-16. **C4 matrix** - All four levels in one 2x2 view
+16. **C4 matrix** - System Context, Container, Component, and Code
 17. **C4 framing** - C4 as a map-and-zoom language
 18. **Transition** - WhatsApp logo
 19. **Previous case** - WhatsApp L1/L2 context
@@ -82,4 +82,4 @@ Current deck length: **24 slides**.
 
 ## File
 
-- [index.html](./index.html)
+- [slides.md](../slides.md)

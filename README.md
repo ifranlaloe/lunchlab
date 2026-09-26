@@ -1,22 +1,32 @@
-# lunchlab
+# LunchLab
 
-Presentations for the LunchLab.
+Slidev presentations for the LunchLab.
 
 ## Sessions
 
-- [LunchLab #2 — Choosing the Right API Style](./session-2-api-styles/)
+- [LunchLab #2 — Zooming with C4](./session-2-zooming-with-c4/README.md)
 
-## Deck framework
+## Run the deck
 
-All LunchLab decks share a small framework:
+Requires Node.js 22.12 or newer.
 
-- `deck-kit/theme.css` for the visual style system (colors, spacing, layout, components).
-- `deck-kit/deck.js` for slide navigation (buttons, keyboard controls, slide counter).
-- `deck-kit/base-session-template.html` as a starter template for new sessions.
+```sh
+npm ci
+npm run dev
+```
 
-To create a new deck, copy the base template into a new folder like `session-3-your-topic/index.html` and update the slide content.
+Slidev opens the presentation at `http://localhost:3030/`. Use its navigation, overview, presenter mode, and fullscreen controls while presenting.
 
+```sh
+npm run build
+npm run export -- --format pdf
+```
 
-## Session-2 facilitation note
+The static site is written to `dist/`. For a site hosted below a URL path, pass a base path to the build, for example `npm run build -- --base /lunchlab/`.
 
-LunchLab #2 uses a cartography-based C4 explanation with a Netherlands zoom journey and multi-modal Level 1 boundary routes (sea, river, air, truck, rail). See `session-2-api-styles/README.md` for the detailed flow and guardrails.
+## Edit the deck
+
+- [slides.md](./slides.md) holds the 24 slides in presentation order. The migrated slides retain HTML markup for layout fidelity; new slides can use Slidev Markdown and Vue components.
+- [style.css](./style.css) and [layouts/default.vue](./layouts/default.vue) preserve the LunchLab visual style.
+- `public/assets/` contains the diagrams and logos. Reference them from slides with `/assets/...` paths.
+- [session-2-zooming-with-c4/README.md](./session-2-zooming-with-c4/README.md) has the facilitation flow and complete slide list.
