@@ -7,6 +7,7 @@
     "dev:scaling": "slidev resource-scaling.md --port 3031",
     "build": "slidev build",
     "build:scaling": "slidev build resource-scaling.md --out dist/resource-scaling",
+    "build:pages": "node scripts/build-pages.mjs",
     "export": "slidev export",
     "export:scaling": "slidev export resource-scaling.md"
   },
