@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" role="img" aria-labelledby="t d">
+  <title id="t">Bottleneck migration stage one: API is saturated</title><desc id="d">Users send traffic to one API, which calls a database and external service. The API is marked as the current hotspot.</desc>
+  <style>text{font-family:Inter,Arial,sans-serif;fill:#0b1f4d}.label{font-size:25px;font-weight:700}.small{font-size:19px;fill:#405789}.box{fill:#fff;stroke:#164194;stroke-width:4}.hot{fill:#fff0e6;stroke:#db642b;stroke-width:6}.line{fill:none;stroke:#164194;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.fire{font-size:21px;font-weight:700;fill:#b54b1e}</style>
+  <text x="35" y="44" class="small">1 / 3  ·  Demand rises</text>
+  <rect x="38" y="159" width="180" height="122" rx="23" class="box"/><text x="128" y="230" class="label" text-anchor="middle">Users</text>
+  <path d="M222 220h102m-20-17 26 17-26 17" class="line"/>
+  <rect x="335" y="142" width="225" height="156" rx="24" class="hot"/><text x="447" y="208" class="label" text-anchor="middle">API</text><text x="447" y="246" class="fire" text-anchor="middle">HOTSPOT</text>
+  <path d="M564 220h86m-20-17 26 17-26 17" class="line"/>
+  <rect x="660" y="159" width="206" height="122" rx="23" class="box"/><text x="763" y="230" class="label" text-anchor="middle">Database</text>
+  <path d="M870 220h76m-20-17 26 17-26 17" class="line"/>
+  <rect x="957" y="159" width="205" height="122" rx="23" class="box"/><text x="1059" y="210" class="label" text-anchor="middle">External</text><text x="1059" y="243" class="label" text-anchor="middle">service</text>
+  <text x="600" y="386" class="small" text-anchor="middle">Throughput is limited at the API</text>
+</svg>

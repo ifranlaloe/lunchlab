@@ -143,3 +143,45 @@
 .lunchlab .logo-slide .content { display: flex; height: 100%; align-items: center; justify-content: center; }
 .lunchlab .whatsapp-logo { width: 360px; height: auto; }
 .lunchlab .flink-logo { width: 620px; height: auto; }
+
+/* Resource Scaling uses the same palette and typography, with a fixed visual stage. */
+.lunchlab .scaling-frame { display: grid; grid-template-rows: 104px minmax(0, 1fr) auto; gap: 12px; height: 100%; }
+.lunchlab .scaling-header { display: grid; align-content: start; gap: 9px; }
+.lunchlab .scaling-header h2 { font-size: 38px; }
+.lunchlab .scaling-body { position: relative; display: grid; min-height: 0; align-items: center; }
+.lunchlab .scaling-body > :first-child { min-width: 0; }
+.lunchlab .scaling-figure { display: block; width: 100%; max-width: 1216px; height: 100%; max-height: 500px; margin: 0 auto; object-fit: contain; }
+.lunchlab .scaling-prompt { display: flex; align-items: center; min-height: 54px; padding: 12px 20px; border-left: 5px solid var(--accent); background: rgba(22,65,148,.07); color: var(--text); font-size: 23px; font-weight: 700; line-height: 1.2; }
+.lunchlab .scaling-sequence { position: relative; width: 100%; height: 100%; max-height: 500px; }
+.lunchlab .scaling-sequence .scaling-figure { position: absolute; inset: 0; background: #f8fbff; }
+.lunchlab .scaling-kicker { color: var(--accent) !important; font-size: 25px !important; font-weight: 700; }
+.lunchlab .scaling-big { color: var(--text) !important; font-size: 37px !important; line-height: 1.18 !important; font-weight: 700; }
+.lunchlab .scaling-small { font-size: 17px !important; }
+.lunchlab .scaling-grid { display: grid; gap: 18px; width: 100%; }
+.lunchlab .scaling-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lunchlab .scaling-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lunchlab .scaling-panel { padding: 24px; border: 2px solid #c8d7ef; border-radius: 17px; background: #fff; }
+.lunchlab .scaling-panel h3 { margin-bottom: 12px; font-size: 24px; }
+.lunchlab .scaling-panel p, .lunchlab .scaling-panel li { font-size: 20px; line-height: 1.35; }
+.lunchlab .scaling-panel ul { padding-left: 1.1em; }
+.lunchlab .scaling-panel li + li { margin-top: 8px; }
+.lunchlab .scaling-panel.accent { border-color: #164194; }
+.lunchlab .scaling-panel.warning { border-color: #d9852b; }
+.lunchlab .scaling-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; max-width: 1120px; margin: auto; }
+.lunchlab .scaling-tag { padding: 15px 23px; border: 2px solid #c8d7ef; border-radius: 999px; background: white; color: var(--text); font-size: 23px; font-weight: 700; }
+.lunchlab .scaling-note { color: var(--muted) !important; font-size: 20px !important; text-align: center; }
+.lunchlab .scaling-table { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.lunchlab .scaling-table .scaling-panel { min-height: 148px; padding: 17px 19px; }
+.lunchlab .scaling-table h3 { font-size: 19px; margin-bottom: 7px; }
+.lunchlab .scaling-table p { font-size: 17px; line-height: 1.27; }
+.lunchlab .scaling-bridge { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px; width: 100%; }
+.lunchlab .scaling-bridge .scaling-panel { min-height: 245px; }
+.lunchlab .scaling-arrow { color: var(--accent); font-size: 54px; font-weight: 700; }
+.lunchlab .scaling-facilitator { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.lunchlab .scaling-facilitator .scaling-panel { min-height: 390px; }
+.lunchlab .scaling-facilitator li { font-size: 18px; line-height: 1.27; }
+.lunchlab .scaling-facilitator li + li { margin-top: 5px; }
+.lunchlab .scaling-case-note { position: absolute; right: 16px; bottom: 6px; color: #405789; font-size: 14px; }
+.lunchlab .scaling-centered { width: 100%; text-align: center; }
+.lunchlab .scaling-centered .scaling-big { max-width: 1050px; margin: 0 auto; font-size: 52px !important; }
+.lunchlab .scaling-centered .scaling-note { margin-top: 30px; }

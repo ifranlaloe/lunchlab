@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="t d">
+  <title id="t">A queue decouples arrival rate from worker capacity</title><desc id="d">A synchronous request includes heavy work before a response. After adding a queue, requests are acknowledged separately and three workers process queued jobs independently.</desc>
+  <style>text{font-family:Inter,Arial,sans-serif;fill:#0b1f4d}.head{font-size:25px;font-weight:700}.label{font-size:21px;font-weight:700}.small{font-size:18px;fill:#405789}.box{fill:#fff;stroke:#164194;stroke-width:4}.accent{fill:#edf3fc;stroke:#164194;stroke-width:4}.line{fill:none;stroke:#164194;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}</style>
+  <text x="30" y="48" class="head">Synchronous: response waits for work</text>
+  <rect x="30" y="82" width="204" height="85" rx="19" class="box"/><rect x="365" y="82" width="290" height="85" rx="19" class="box"/><rect x="785" y="82" width="210" height="85" rx="19" class="box"/>
+  <text x="132" y="135" class="label" text-anchor="middle">Request</text><text x="510" y="135" class="label" text-anchor="middle">Heavy work</text><text x="890" y="135" class="label" text-anchor="middle">Response</text>
+  <path d="M238 124h118m-20-16 24 16-24 16M659 124h116m-20-16 24 16-24 16" class="line"/>
+  <path d="M30 222h1140" stroke="#c8d7ef" stroke-width="3"/>
+  <text x="30" y="270" class="head">Asynchronous: arrivals and processing separate</text>
+  <rect x="30" y="305" width="204" height="85" rx="19" class="box"/><rect x="365" y="305" width="235" height="85" rx="19" class="accent"/>
+  <text x="132" y="358" class="label" text-anchor="middle">Request</text><text x="482" y="358" class="label" text-anchor="middle">Queue</text>
+  <path d="M238 347h117m-20-16 24 16-24 16M604 347h80m0-55v120m0-120h35m-35 55h35m-35 65h35" class="line"/>
+  <rect x="723" y="270" width="204" height="63" rx="16" class="box"/><rect x="723" y="346" width="204" height="63" rx="16" class="box"/><rect x="940" y="346" width="204" height="63" rx="16" class="box"/>
+  <text x="825" y="311" class="label" text-anchor="middle">Worker A</text><text x="825" y="387" class="label" text-anchor="middle">Worker B</text><text x="1042" y="387" class="label" text-anchor="middle">Worker C</text>
+  <text x="1100" y="137" class="small">Capacity tied together</text><text x="1075" y="310" class="small">Scale workers</text>
+</svg>

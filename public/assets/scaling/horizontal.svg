@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="t d">
+  <title id="t">Horizontal scaling: divide requests across replicas</title><desc id="d">Incoming requests pass through a load distributor into three identical API instances.</desc>
+  <style>text{font-family:Inter,Arial,sans-serif;fill:#0b1f4d}.label{font-size:25px;font-weight:700}.small{font-size:21px;fill:#405789}.box{fill:#fff;stroke:#164194;stroke-width:4}.line{fill:none;stroke:#164194;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}</style>
+  <rect x="56" y="177" width="190" height="105" rx="22" class="box"/><text x="151" y="240" class="label" text-anchor="middle">Requests</text>
+  <path d="M250 229h120" class="line"/><path d="m351 211 26 18-26 18" class="line"/>
+  <rect x="385" y="159" width="246" height="140" rx="24" class="box"/><text x="508" y="215" class="label" text-anchor="middle">Traffic</text><text x="508" y="250" class="label" text-anchor="middle">distribution</text>
+  <path d="M635 229h112M747 93v272M747 93h72M747 229h72M747 365h72" class="line"/>
+  <rect x="820" y="45" width="310" height="96" rx="23" class="box"/><rect x="820" y="181" width="310" height="96" rx="23" class="box"/><rect x="820" y="317" width="310" height="96" rx="23" class="box"/>
+  <text x="975" y="105" class="label" text-anchor="middle">API A</text><text x="975" y="241" class="label" text-anchor="middle">API B</text><text x="975" y="377" class="label" text-anchor="middle">API C</text>
+  <text x="152" y="335" class="small" text-anchor="middle">One stream</text><text x="975" y="449" class="small" text-anchor="middle">Independent slices of work</text>
+</svg>
