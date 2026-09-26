@@ -72,10 +72,10 @@
 .lunchlab .text-slide .slide-frame { display: block; position: relative; }
 .lunchlab .text-slide .slide-header { position: absolute; inset: 0 auto auto 0; }
 .lunchlab .text-slide .slide-body { display: block; height: 100%; padding-top: 190px; }
-.lunchlab .slide-24 { padding-bottom: 24px; }
-.lunchlab .slide-24 .slide-body { display: flex; align-items: center; padding-top: 0; }
-.lunchlab .slide-24 .content { width: 100%; }
-.lunchlab .slide-22 .card h3:not(:first-child) { margin-top: 18px; }
+.lunchlab .closing-slide { padding-bottom: 24px; }
+.lunchlab .closing-slide .slide-body { display: flex; align-items: center; padding-top: 0; }
+.lunchlab .closing-slide .content { width: 100%; }
+.lunchlab .flink-case .card h3:not(:first-child) { margin-top: 18px; }
 
 /* Diagram titles stay at the top; image and footer never resize the header. */
 .lunchlab .c4-visual-slide .slide-frame { grid-template-rows: 72px minmax(0, 1fr); gap: 10px; }
@@ -132,11 +132,11 @@
 .lunchlab .c4-quadrant-card:nth-child(-n + 2) .c4-quadrant-layer { transform: translateY(6px) scale(1.145); }
 .lunchlab .c4-quadrant-card p { font-size: 14px; line-height: 1.2; }
 
-.lunchlab .slide-20 .content { gap: 16px; }
-.lunchlab .slide-20 .two-col { gap: 18px 28px; }
-.lunchlab .slide-20 h3 { font-size: 19px; }
-.lunchlab .slide-20 ul { font-size: 16px; line-height: 1.35; }
-.lunchlab .slide-20 li + li { margin-top: 4px; }
+.lunchlab .dense-case .content { gap: 16px; }
+.lunchlab .dense-case .two-col { gap: 18px 28px; }
+.lunchlab .dense-case h3 { font-size: 19px; }
+.lunchlab .dense-case ul { font-size: 16px; line-height: 1.35; }
+.lunchlab .dense-case li + li { margin-top: 4px; }
 
 .lunchlab .logo-slide .slide-frame { display: block; }
 .lunchlab .logo-slide .slide-body,
