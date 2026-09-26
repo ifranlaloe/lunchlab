@@ -27,6 +27,12 @@ The static site is written to `dist/`. For a site hosted below a URL path, pass 
 
 For Resource Scaling, run `npm run dev:scaling` (at `http://localhost:3031/`), `npm run build:scaling`, or `npm run export:scaling -- --format pdf`.
 
+## Publish both decks
+
+`npm run build:pages` builds both interactive Slidev sites and a deck selector in `dist/lunchlab/`. To preview the default `/lunchlab/` paths locally, run `python3 -m http.server 8000 --directory dist` and open `http://localhost:8000/lunchlab/`.
+
+The [Pages workflow](./.github/workflows/pages.yml) publishes that directory on pushes to `master` (or when manually dispatched). It uses GitHub Pages' configured base path, so the deck links work at `https://ifranlaloe.github.io/lunchlab/` and if the Pages URL changes. The repository's Pages source must be **GitHub Actions**, not a branch.
+
 ## Edit the deck
 
 - [slides.md](./slides.md) holds the 24 slides in presentation order. Write text in Markdown and choose a LunchLab layout in each slide's frontmatter.
