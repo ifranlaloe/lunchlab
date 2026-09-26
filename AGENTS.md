@@ -14,5 +14,5 @@ This repository contains Slidev decks for LunchLab sessions. The current deck li
 - Keep `AGENTS.md` focused on repository-wide rules.
 - For session-specific teaching concepts, workshop flows, and facilitation guardrails, use the README inside that session folder.
 - Current session documentation:
-  - LunchLab #2: `session-2-c4-for-developers/README.md`
+  - LunchLab #2: `session-2-zooming-with-c4/README.md`
   - Current Level 1 audience focus: travelers split by road, water, air, and railway.

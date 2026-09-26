@@ -4,7 +4,7 @@ Slidev presentations for the LunchLab.
 
 ## Sessions
 
-- [LunchLab #2 — Zooming with C4](./session-2-c4-for-developers/README.md)
+- [LunchLab #2 — Zooming with C4](./session-2-zooming-with-c4/README.md)
 
 ## Run the deck
 
@@ -29,4 +29,4 @@ The static site is written to `dist/`. For a site hosted below a URL path, pass 
 - [slides.md](./slides.md) holds the 24 slides in presentation order. The migrated slides retain HTML markup for layout fidelity; new slides can use Slidev Markdown and Vue components.
 - [style.css](./style.css) and [layouts/default.vue](./layouts/default.vue) preserve the LunchLab visual style.
 - `public/assets/` contains the diagrams and logos. Reference them from slides with `/assets/...` paths.
-- [session-2-c4-for-developers/README.md](./session-2-c4-for-developers/README.md) has the facilitation flow and complete slide list.
+- [session-2-zooming-with-c4/README.md](./session-2-zooming-with-c4/README.md) has the facilitation flow and complete slide list.
