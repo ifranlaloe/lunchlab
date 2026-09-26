@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="t d">
+  <title id="t">Stateless requests and stateful ownership scale differently</title><desc id="d">On the left either API replica can serve a request. On the right an order is owned by one instance and a duplicate worker risks processing it twice.</desc>
+  <style>text{font-family:Inter,Arial,sans-serif;fill:#0b1f4d}.title{font-size:29px;font-weight:700}.label{font-size:21px;font-weight:700}.small{font-size:18px;fill:#405789}.box{fill:#fff;stroke:#164194;stroke-width:3}.owner{fill:#fff7eb;stroke:#c56d13;stroke-width:4}.line{fill:none;stroke:#164194;stroke-width:4;stroke-linecap:round}.risk{fill:none;stroke:#c56d13;stroke-width:5;stroke-linecap:round;stroke-dasharray:9 10}</style>
+  <text x="285" y="48" class="title" text-anchor="middle">Stateless request</text><text x="920" y="48" class="title" text-anchor="middle">Stateful work</text>
+  <path d="M600 40v390" stroke="#c8d7ef" stroke-width="3"/>
+  <rect x="194" y="98" width="184" height="67" rx="18" class="box"/><text x="286" y="140" class="label" text-anchor="middle">Request</text>
+  <path d="M286 169v54m0 0-95 52m95-52 95 52" class="line"/>
+  <rect x="75" y="276" width="225" height="90" rx="20" class="box"/><rect x="310" y="276" width="225" height="90" rx="20" class="box"/>
+  <text x="187" y="332" class="label" text-anchor="middle">API A</text><text x="422" y="332" class="label" text-anchor="middle">API B</text><text x="285" y="416" class="small" text-anchor="middle">Either replica can do it</text>
+  <rect x="809" y="98" width="220" height="67" rx="18" class="owner"/><text x="919" y="140" class="label" text-anchor="middle">Order 123</text>
+  <path d="M919 169v103" class="line"/><path d="M919 205 760 274" class="risk"/>
+  <rect x="645" y="276" width="225" height="90" rx="20" class="box"/><rect x="882" y="276" width="225" height="90" rx="20" class="owner"/>
+  <text x="757" y="332" class="label" text-anchor="middle">Worker A</text><text x="994" y="332" class="label" text-anchor="middle">Worker B</text><text x="920" y="416" class="small" text-anchor="middle">Who owns it? How do we prevent duplicates?</text>
+</svg>

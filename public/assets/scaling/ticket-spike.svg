@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="t d">
+  <title id="t">Fictional Ticketmaster on-sale traffic spike</title><desc id="d">Illustrative, not real traffic data. Demand is normal at 09:59 and jumps sharply when a Ziggo Dome concert sale opens at 10:00.</desc>
+  <style>text{font-family:Inter,Arial,sans-serif;fill:#0b1f4d}.head{font-size:29px;font-weight:700}.small{font-size:21px;fill:#405789}.axis{fill:none;stroke:#164194;stroke-width:4;stroke-linecap:round}.demand{fill:none;stroke:#164194;stroke-width:11;stroke-linecap:round;stroke-linejoin:round}.limit{fill:none;stroke:#d9852b;stroke-width:4;stroke-dasharray:12 11}.label{font-size:21px;font-weight:700}</style>
+  <text x="43" y="50" class="head">Major artist · Ziggo Dome · tickets open at 10:00</text>
+  <path d="M90 82v292h1052" class="axis"/><path d="M125 331h470l41-4 20-14 21-101 18-127 447 3" class="demand"/>
+  <path d="M90 238h1052" class="limit"/><text x="1119" y="221" class="small" text-anchor="end">Capacity of first limiting component</text>
+  <path d="M690 75v299" stroke="#c8d7ef" stroke-width="3" stroke-dasharray="8 10"/>
+  <text x="190" y="410" class="label">09:59</text><text x="649" y="410" class="label">10:00</text><text x="1055" y="410" class="label">10:01</text>
+  <text x="789" y="150" class="head">On-sale surge</text>
+  <text x="599" y="455" class="small" text-anchor="middle">Illustrative scenario — not Ticketmaster production data</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" role="img" aria-labelledby="t d">
+  <title id="t">Bottleneck migration stage three: external service is saturated</title><desc id="d">After a cache reduces read pressure on the database, the external service becomes the next visible hotspot.</desc>
+  <style>text{font-family:Inter,Arial,sans-serif;fill:#0b1f4d}.label{font-size:23px;font-weight:700}.small{font-size:19px;fill:#405789}.box{fill:#fff;stroke:#164194;stroke-width:4}.cache{fill:#edf3fc;stroke:#164194;stroke-width:4}.hot{fill:#fff0e6;stroke:#db642b;stroke-width:6}.line{fill:none;stroke:#164194;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.fire{font-size:20px;font-weight:700;fill:#b54b1e}</style>
+  <text x="35" y="44" class="small">3 / 3  ·  Remove some database work</text>
+  <rect x="38" y="159" width="180" height="122" rx="23" class="box"/><text x="128" y="230" class="label" text-anchor="middle">Users</text>
+  <path d="M222 220h88m0-111v222m0-222h20m-20 111h20m-20 111h20" class="line"/>
+  <rect x="332" y="65" width="160" height="88" rx="21" class="box"/><rect x="332" y="176" width="160" height="88" rx="21" class="box"/><rect x="332" y="287" width="160" height="88" rx="21" class="box"/>
+  <text x="412" y="120" class="label" text-anchor="middle">API A</text><text x="412" y="231" class="label" text-anchor="middle">API B</text><text x="412" y="342" class="label" text-anchor="middle">API C</text>
+  <path d="M495 109h25m-25 111h25m-25 111h25m0-222v222m0-111h21" class="line"/>
+  <rect x="546" y="159" width="173" height="122" rx="23" class="cache"/><text x="632" y="230" class="label" text-anchor="middle">Cache</text>
+  <path d="M723 220h23" class="line"/>
+  <rect x="752" y="159" width="178" height="122" rx="23" class="box"/><text x="841" y="230" class="label" text-anchor="middle">Database</text>
+  <path d="M934 220h23" class="line"/>
+  <rect x="963" y="159" width="205" height="122" rx="23" class="hot"/><text x="1065" y="205" class="label" text-anchor="middle">External</text><text x="1065" y="235" class="label" text-anchor="middle">service</text><text x="1065" y="265" class="fire" text-anchor="middle">HOTSPOT</text>
+  <text x="600" y="418" class="small" text-anchor="middle">The next shared dependency is now the limit</text>
+</svg>

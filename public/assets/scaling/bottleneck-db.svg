@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" role="img" aria-labelledby="t d">
+  <title id="t">Bottleneck migration stage two: database is saturated</title><desc id="d">Three API replicas increase application capacity, but all send work to the same database, now marked as the hotspot.</desc>
+  <style>text{font-family:Inter,Arial,sans-serif;fill:#0b1f4d}.label{font-size:25px;font-weight:700}.small{font-size:19px;fill:#405789}.box{fill:#fff;stroke:#164194;stroke-width:4}.hot{fill:#fff0e6;stroke:#db642b;stroke-width:6}.line{fill:none;stroke:#164194;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.fire{font-size:21px;font-weight:700;fill:#b54b1e}</style>
+  <text x="35" y="44" class="small">2 / 3  ·  Add API replicas</text>
+  <rect x="38" y="159" width="180" height="122" rx="23" class="box"/><text x="128" y="230" class="label" text-anchor="middle">Users</text>
+  <path d="M222 220h103m0-111v222m0-222h24m-24 111h24m-24 111h24" class="line"/>
+  <rect x="350" y="65" width="210" height="88" rx="21" class="box"/><rect x="350" y="176" width="210" height="88" rx="21" class="box"/><rect x="350" y="287" width="210" height="88" rx="21" class="box"/>
+  <text x="455" y="120" class="label" text-anchor="middle">API A</text><text x="455" y="231" class="label" text-anchor="middle">API B</text><text x="455" y="342" class="label" text-anchor="middle">API C</text>
+  <path d="M564 109h61m-61 111h61m-61 111h61m0-222v222m0-111h30" class="line"/>
+  <rect x="660" y="159" width="206" height="122" rx="23" class="hot"/><text x="763" y="211" class="label" text-anchor="middle">Database</text><text x="763" y="247" class="fire" text-anchor="middle">HOTSPOT</text>
+  <path d="M870 220h76m-20-17 26 17-26 17" class="line"/>
+  <rect x="957" y="159" width="205" height="122" rx="23" class="box"/><text x="1059" y="210" class="label" text-anchor="middle">External</text><text x="1059" y="243" class="label" text-anchor="middle">service</text>
+  <text x="600" y="418" class="small" text-anchor="middle">More APIs send more work to one shared database</text>
+</svg>

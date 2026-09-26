@@ -4,8 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "slidev --open",
+    "dev:scaling": "slidev resource-scaling.md --port 3031",
     "build": "slidev build",
-    "export": "slidev export"
+    "build:scaling": "slidev build resource-scaling.md --out dist/resource-scaling",
+    "export": "slidev export",
+    "export:scaling": "slidev export resource-scaling.md"
   },
   "devDependencies": {
     "@slidev/cli": "53.0.0",
