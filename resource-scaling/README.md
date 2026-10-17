@@ -8,13 +8,13 @@ Scaling starts with the bottleneck, the workload, and the state — not the repl
 
 This is an architecture-awareness LunchLab, not a Kubernetes or implementation workshop. Work from an observed limit to five questions:
 
-1. What is under pressure, and what evidence shows it?
+1. What is under pressure, what evidence shows it, and what work creates that pressure?
 2. Can the work be divided safely, or can one node gain useful headroom?
 3. Where does state live, and who owns each piece of work?
 4. What dependency receives more load after this change?
 5. Are boundaries, ownership, or communication patterns preventing scaling?
 
-The opening names the two familiar ways to add capacity, then explains vertical and horizontal scaling in turn. A brief false ending makes that pair feel like a complete answer. Immediately afterward, **The bottleneck** names the part currently limiting completed work. Adding API capacity may improve throughput until the database becomes the next bottleneck. This distinguishes **component capacity** from **system capacity**, meaning end-to-end completed work for a particular workload at an acceptable response time. “Landscape capacity” is a useful visual metaphor, but not the term taught on the slide. Neither vertical nor horizontal scaling is portrayed as wrong. The next slide resets from an illustrative diagram with a known bottleneck to a real investigation: slow API responses are the **observation**, “what is actually limiting the response?” is the **question**, and API CPU, database waits, and external-service delay are **hypotheses** to check against request timing and resource evidence. Do not assume that a resource is saturated merely because a response is slow. Only then does the toolbox organize responses by capacity, work, and demand. The deck then tests state and workload assumptions before returning to the same landscape as its bottleneck moves to an external service. The queue and order-service diagrams show that an architectural change can precede resource scaling. Autoscaling comes only after the workload and signal are understood.
+The opening names the two familiar ways to add capacity, then explains vertical and horizontal scaling in turn. A brief false ending makes that pair feel like a complete answer. Immediately afterward, **The bottleneck** names the part currently limiting completed work. Adding API capacity may improve throughput until the database becomes the next bottleneck. This distinguishes **component capacity** from **system capacity**, meaning end-to-end completed work for a particular workload at an acceptable response time. “Landscape capacity” is a useful visual metaphor, but not the term taught on the slide. Neither vertical nor horizontal scaling is portrayed as wrong. The next slide resets from an illustrative diagram with a known bottleneck to a real investigation: slow API responses are the **observation**, “what is actually limiting the response?” is the **question**, and API CPU, database waits, and external-service delay are **hypotheses** to check against request timing and resource evidence. A final question asks what in the implementation creates the measured limit. Do not assume that a resource is saturated merely because a response is slow, or treat implementation and resource pressure as separate alternatives. Only then does the toolbox organize responses by capacity, work, and demand. The deck then tests state and workload assumptions before returning to the same landscape as its bottleneck moves to an external service. The queue and order-service diagrams show that an architectural change can precede resource scaling. Autoscaling comes only after the workload and signal are understood.
 
 The opening example assumes demand waiting behind the API: relieving its limit lets more work reach the database. Adding API capacity alone does not create database load when demand is unchanged. A component change can improve system throughput up to the next limit; it should not be presented as useless.
 
@@ -23,7 +23,7 @@ The opening example assumes demand waiting behind the API: relieving its limit l
 Keep the theory to roughly **20–30 minutes**, then move into hands-on reasoning. This is facilitator guidance, not an agenda slide. Every slide in `resource-scaling.md` now has presenter notes covering its core idea, why it appears there, a way to involve the room, and the bridge to the next idea.
 
 - **Slides 1–2 (about 2 min):** Establish rising demand, a reached limit, and visible symptoms.
-- **Slides 3–9 (about 6 min):** Introduce bigger and more, then explain each. On slide 6, pause on the false ending and click to reveal “NOT.” On slide 7, predict where the bottleneck moves. On slide 8, reveal the question, competing hypotheses, and evidence after starting from the observed symptom. Open the toolbox on slide 9.
+- **Slides 3–9 (about 6 min):** Introduce bigger and more, then explain each. On slide 6, pause on the false ending and click to reveal “NOT.” On slide 7, predict where the bottleneck moves. On slide 8, reveal the question, competing hypotheses, evidence, and implementation cause after starting from the observed symptom. Open the toolbox on slide 9.
 - **Slides 10–13 (3–4 min):** Test when replicas work and how state, ownership, and coordination change the answer.
 - **Slides 14–19 (5–7 min):** Return to the same landscape for its next bottleneck; show why read/write paths, queues, architecture boundaries, and scaling signals matter.
 - **Slides 20–24 (6–8 min):** Transfer the model to the fictional on-sale. Pause longest on slides 22–23 so participants can make and test their own assumptions.
@@ -41,6 +41,7 @@ Let participants propose which components could scale without redesign, then ask
 
 - “What resource is saturated? What evidence tells us that?”
 - “Is the API doing work, or waiting for a dependency?”
+- “What in the implementation creates this limit?”
 - “Can this workload be divided? Where does its state live?”
 - “Who owns this data or job? What coordination is required?”
 - “Would another instance increase throughput?”
@@ -60,7 +61,7 @@ Let participants propose which components could scale without redesign, then ask
 - **Component versus system capacity:** more API throughput may help only until shared database capacity limits completed work.
 - **State ownership:** identical boxes do not imply interchangeable workers.
 - **One current bottleneck:** name it at the API, move the orange label to the database on click, then return to the landscape when the external service becomes the next limit.
-- **Symptom before diagnosis:** a slow API response starts a progressively revealed investigation: observation, question, hypotheses, evidence. It does not identify the bottleneck by itself.
+- **Symptom before diagnosis:** a slow API response starts a progressively revealed investigation: observation, question, hypotheses, evidence, then the implementation cause. It does not identify the bottleneck by itself.
 - **Queue as a boundary:** arrival rate and processing capacity become separate concerns.
 - **Four-step redesign:** coupled work → blocked replication → new boundary → independently scalable workloads.
 - **On-sale spike:** a deliberately illustrative jump from normal demand to a burst.
@@ -77,7 +78,7 @@ Diagram canvases and the “NOT” reveal are transparent so the slide backgroun
 5. Horizontal scaling — divide work across instances.
 6. That's scaling. Thanks, everyone. — false ending; click to reveal “NOT.”
 7. The bottleneck — define the current limit; reveal the database bottleneck and distinguish component from system capacity.
-8. Investigating slow responses — observe the symptom, then reveal the question, hypotheses, and evidence.
+8. Investigating slow responses — observe the symptom, then reveal the question, hypotheses, evidence, and implementation cause.
 9. Scaling is a toolbox — capacity, work, and demand.
 10. A stateless API — why the easy case is easy.
 11. What changed? — add state and ownership.
