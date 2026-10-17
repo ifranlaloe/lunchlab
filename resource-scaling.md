@@ -176,13 +176,16 @@ title: Investigating slow responses
   <div v-click="3" class="scaling-diagnosis-step evidence">
     <span>Evidence</span><p>Trace requests. Check CPU, waits, and dependency time.</p>
   </div>
+  <div v-click="4" class="scaling-diagnosis-step cause">
+    <span>Cause</span><p>What in the implementation creates this limit?</p>
+  </div>
 </div>
 
 <!--
-Core idea: Slow API responses are an observation, not a diagnosis. The main question is what actually limits the response. A resource might be saturated, but a downstream wait or another constraint could also explain the symptom.
-Why here: The previous diagram supplied a known bottleneck. A real investigation begins with an observed symptom, then asks a question, proposes competing explanations, and checks evidence before choosing a response.
-Facilitate: Show only the observation. Ask the room for the main question, then reveal it. Collect possible causes before revealing the three hypotheses. Ask what would distinguish high API CPU from database waiting or external-service delay. Reveal the evidence last; request timing and resource measurements, not guesses. Do not declare any hypothesis correct without data.
-Build toward: Once we identify the limiting factor, choose among changing capacity, changing the work, or controlling admitted demand.
+Core idea: Slow API responses are an observation, not a diagnosis. First locate the limiting factor, then ask what in the current implementation creates that limit. A resource might be saturated because the code repeats expensive work; a lock can cap throughput even when CPU is idle.
+Why here: The previous diagram supplied a known bottleneck. A real investigation begins with an observed symptom, then asks a question, proposes competing explanations, checks evidence, and investigates the cause before choosing a response.
+Facilitate: Show only the observation. Ask the room for the main question, then reveal it. Collect possible causes before revealing the hypotheses. Ask what would distinguish high API CPU from database waiting or external-service delay. Reveal the evidence next; request timing and resource measurements, not guesses. On the final click, ask whether repeated computation, excessive queries, or serialized work could be creating the measured limit. Do not treat implementation and resource pressure as mutually exclusive, and do not declare a cause without data.
+Build toward: The cause may call for more capacity, less work per request, or control over admitted demand. Open the toolbox as a set of responses to evidence, not a list of defaults.
 -->
 
 ---
@@ -200,7 +203,7 @@ prompt: Which response fits the evidence?
 
 <!--
 Core idea: Capacity, amount of work, and admitted demand are different levers.
-Why here: The investigation has shown why the right response depends on the cause, not just the symptom. Now organize the possible responses beyond bigger or more.
+Why here: The investigation has shown why the right response depends on both the limiting factor and what creates it, not just the symptom. Now organize the possible responses beyond bigger or more.
 Facilitate: Point to “Add capacity” as the familiar move, then ask what the other two columns would change if the API were waiting on the database. Treat these as possible levers, not an answer key or a decision tree; the investigation has not yet supplied an answer.
 Build toward: Before adding instances, test the crucial assumption that any instance can safely handle the work.
 -->
