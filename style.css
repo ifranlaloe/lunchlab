@@ -153,7 +153,7 @@
 .lunchlab .scaling-figure { display: block; width: 100%; max-width: 1216px; height: 100%; max-height: 500px; margin: 0 auto; object-fit: contain; }
 .lunchlab .scaling-prompt { display: flex; align-items: center; min-height: 54px; padding: 12px 20px; border-left: 5px solid var(--accent); background: rgba(22,65,148,.07); color: var(--text); font-size: 23px; font-weight: 700; line-height: 1.2; }
 .lunchlab .scaling-sequence { position: relative; width: 100%; height: 100%; max-height: 500px; }
-.lunchlab .scaling-sequence .scaling-figure { position: absolute; inset: 0; background: #f8fbff; }
+.lunchlab .scaling-sequence .scaling-figure { position: absolute; inset: 0; }
 .lunchlab .scaling-kicker { color: var(--accent) !important; font-size: 25px !important; font-weight: 700; }
 .lunchlab .scaling-big { color: var(--text) !important; font-size: 37px !important; line-height: 1.18 !important; font-weight: 700; }
 .lunchlab .scaling-small { font-size: 17px !important; }
@@ -185,3 +185,20 @@
 .lunchlab .scaling-centered { width: 100%; text-align: center; }
 .lunchlab .scaling-centered .scaling-big { max-width: 1050px; margin: 0 auto; font-size: 52px !important; }
 .lunchlab .scaling-centered .scaling-note { margin-top: 30px; }
+.lunchlab .scaling-finish { position: relative; display: grid; place-items: center; width: 100%; min-height: 430px; text-align: center; }
+.lunchlab .scaling-finish-setup { display: grid; justify-items: center; gap: 24px; }
+.lunchlab .scaling-finish-setup p { font-size: 28px; }
+.lunchlab .scaling-finish-setup h1 { max-width: none; font-size: 72px; line-height: 1.12; }
+.lunchlab .scaling-finish-reveal { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 14px; }
+.lunchlab .scaling-finish-not { color: #bc541a; font-size: 200px; font-weight: 800; letter-spacing: -.06em; line-height: .9; }
+.lunchlab .scaling-finish-reveal p { color: var(--text); font-size: 30px; font-weight: 700; }
+.lunchlab .scaling-diagnosis { display: grid; align-content: center; gap: 14px; width: min(1100px, 100%); min-height: 450px; margin: auto; }
+.lunchlab .scaling-diagnosis-step { display: grid; grid-template-columns: 155px minmax(0, 1fr); align-items: center; gap: 24px; min-height: 83px; padding: 10px 0 12px; border-bottom: 2px solid #c8d7ef; }
+.lunchlab .scaling-diagnosis-step span { color: var(--accent); font-size: 16px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.lunchlab .scaling-diagnosis-step p { color: var(--text); font-size: 29px; font-weight: 600; line-height: 1.2; }
+.lunchlab .scaling-diagnosis-step.observation p { font-size: 36px; font-weight: 700; }
+.lunchlab .scaling-diagnosis-step.observation strong { color: #bc541a; }
+.lunchlab .scaling-diagnosis-step.question { border-color: #d9852b; }
+.lunchlab .scaling-diagnosis-step.question span { color: #bc541a; }
+.lunchlab .scaling-diagnosis-step.question p { font-size: 39px; font-weight: 750; }
+.lunchlab .scaling-diagnosis-step.evidence p { font-size: 27px; }

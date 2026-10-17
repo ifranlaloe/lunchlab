@@ -10,7 +10,7 @@ colorSchema: light
 
 # Resource Scaling
 
-<div class="subtitle">More resources do not automatically mean <strong>more scalability.</strong></div>
+<div class="subtitle">When demand grows, <strong>what actually needs to change?</strong></div>
 
 <TwoColumns>
 <template #left>
@@ -19,7 +19,7 @@ colorSchema: light
 
 - See what actually limits a system under load.
 - Recognize that workloads scale differently.
-- Look beyond “just add more instances.”
+- Choose a response that fits the workload.
 
 </template>
 <template #right>
@@ -28,17 +28,24 @@ colorSchema: light
 
 - A mental model for scaling decisions.
 - Horizontal and vertical trade-offs.
-- A case where the bottleneck moves.
+- A case where a new limit appears.
 - Questions for architecture discussions.
 
 </template>
 </TwoColumns>
 
+<!--
+Core idea: Scaling decisions start with rising demand and a system limit.
+Why here: Open the question without revealing the wider set of responses yet.
+Facilitate: Ask what people would do first if traffic doubled; take one or two quick answers without judging them yet. Promise a short theory segment followed by hands-on reasoning, not an infrastructure tutorial.
+Build toward: Show when demand becomes a problem, then introduce the two familiar ways to add capacity.
+-->
+
 ---
 layout: lunchlab-scaling
 eyebrow: Start with pressure
 title: What do we mean by scaling?
-prompt: What resource is actually under pressure?
+prompt: When does rising demand become a scaling problem?
 ---
 
 <div class="scaling-grid three">
@@ -47,20 +54,31 @@ prompt: What resource is actually under pressure?
   <div class="scaling-panel warning"><h3>Symptoms appear</h3><p>Latency, errors, or a growing queue backlog.</p></div>
 </div>
 
-<!-- Ask for an observable signal before naming a solution. A downstream service can be the resource under pressure. -->
+<!--
+Core idea: Rising demand becomes a scaling problem when a limit is reached and its symptoms become visible. More demand alone is not the diagnosis.
+Why here: The group needs this cause-and-effect chain before comparing scaling techniques.
+Facilitate: Ask someone to trace one example through the three boxes, such as more simultaneous requests, CPU saturation, then latency. Make clear that finding the actual limiting resource would still need evidence; this slide only shows the pattern.
+Build toward: Name the two familiar capacity moves before looking at each in detail.
+-->
 
 ---
 layout: lunchlab-scaling
-eyebrow: More than capacity
-title: Scaling is a toolbox
-prompt: Which response changes the amount of work, not just the amount of hardware?
+eyebrow: The familiar answer
+title: Two ways to add capacity
+prompt: Bigger, or more?
 ---
 
-<div class="scaling-grid three">
-  <div class="scaling-panel"><h3>Add capacity</h3><p>Bigger node · more instances · distribute work.</p></div>
-  <div class="scaling-panel accent"><h3>Change the work</h3><p>Make it cheaper · cache · batch · delay it.</p></div>
-  <div class="scaling-panel warning"><h3>Control demand</h3><p>Queue · slow intake · reject optional work · change boundaries.</p></div>
+<div class="scaling-grid two">
+  <div class="scaling-panel"><h3>Vertical scaling</h3><p>Make one machine <strong>bigger</strong>.</p></div>
+  <div class="scaling-panel"><h3>Horizontal scaling</h3><p>Add <strong>more</strong> machines to share the work.</p></div>
 </div>
+
+<!--
+Core idea: The familiar capacity choice is either more resources for one instance or more instances sharing work.
+Why here: Give the audience names for “bigger” and “more” before examining their constraints.
+Facilitate: Ask which side matched people's first instinct when traffic doubled. Keep the explanation to one sentence per side; save trade-offs and state for the following slides.
+Build toward: Zoom into vertical scaling first, then horizontal scaling.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -71,7 +89,12 @@ prompt: Can this workload benefit from a bigger machine?
 
 <img class="scaling-figure" src="/assets/scaling/vertical.svg" alt="One processor becomes a larger processor with more CPU and memory, while remaining a single failure domain." />
 
-<!-- Vertical scaling is a valid design choice, not a failed attempt at horizontal scaling. Discuss local limits and the upper bound. -->
+<!--
+Core idea: Giving one node more CPU or memory can be the simplest useful response when that local resource is the real limit.
+Why here: Expand the “bigger” option from the preceding overview and give it a fair explanation.
+Facilitate: Ask which workload might benefit from more memory or a faster processor. Name the ceiling and single failure domain, but do not call this an inferior choice.
+Build toward: Contrast “one node does more” with “the work is divided.”
+-->
 
 ---
 layout: lunchlab-scaling
@@ -82,6 +105,106 @@ prompt: Can this workload be safely divided across instances?
 
 <img class="scaling-figure" src="/assets/scaling/horizontal.svg" alt="Requests pass through traffic distribution to three API instances." />
 
+<!--
+Core idea: Horizontal scaling adds workers only when the work can be routed or partitioned safely.
+Why here: Complete the familiar “bigger or more” frame before challenging its completeness.
+Facilitate: Explain traffic distribution and ask only whether more instances could help. Hold the deeper questions about state and dependencies for after the reveal.
+Build toward: Briefly act as though bigger or more has finished the scaling story.
+-->
+
+---
+layout: lunchlab-text
+eyebrow: The usual answer
+title: "That's scaling. Thanks, everyone."
+closing: true
+---
+
+<div class="scaling-finish">
+  <div v-click.hide="1" class="scaling-finish-setup">
+    <p>One bigger machine. Or more machines.</p>
+    <h1>That's scaling.<br>Thanks, everyone.</h1>
+  </div>
+  <div v-click="1" class="scaling-finish-reveal">
+    <div class="scaling-finish-not">NOT</div>
+    <p>Those were only two ways to add capacity.</p>
+  </div>
+</div>
+
+<!--
+Core idea: Vertical and horizontal scaling add capacity, but they do not settle what the workload actually needs.
+Why here: Let the familiar model feel complete for a moment, then expose the assumption behind it.
+Facilitate: Deliver the false ending deadpan, pause for two or three seconds, then click once. Clarify immediately that bigger and more are valid choices; the point is that capacity is only one class of response.
+Build toward: Show why increasing one component's capacity does not settle the capacity of the whole system.
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: Component capacity vs system capacity
+title: The bottleneck
+prompt: What happens when the API handles more requests?
+---
+
+<div class="scaling-sequence">
+  <img v-click.hide="1" class="scaling-figure" src="/assets/scaling/bottleneck-api.svg" alt="Users send work through an API, database, and external service. The API is the current bottleneck limiting completed work." />
+  <img v-click="1" class="scaling-figure" src="/assets/scaling/bottleneck-db.svg" alt="With waiting demand, three API replicas can pass more work to the shared database, which becomes the system bottleneck." />
+</div>
+
+<!--
+Core idea: The bottleneck is the part currently limiting completed work. Component capacity can rise while system capacity remains limited by another component.
+Why here: Give the “NOT” reveal immediate causal evidence and a name for the limit before opening the wider toolbox. The landscape will return later with a new constraint.
+Facilitate: Let the room read the definition, then name the API as the current bottleneck. Ask what adding API replicas changes, wait for a prediction, then click. A larger API node could expose the same next limit. With enough waiting demand, more work can now reach the database, which may become the next bottleneck. Explain that system capacity means completed end-to-end work for this workload at an acceptable response time. Do not imply the API change had no benefit: throughput may rise until the database limit. Without waiting demand, extra API capacity would not itself increase database load.
+Build toward: The diagram supplied a bottleneck; in a real incident, we must first discover whether the slow API is doing work or waiting on something else.
+Source: https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: From symptom to diagnosis
+title: Investigating slow responses
+---
+
+<div class="scaling-diagnosis">
+  <div class="scaling-diagnosis-step observation">
+    <span>Observation</span><p>API responses are <strong>slow.</strong></p>
+  </div>
+  <div v-click="1" class="scaling-diagnosis-step question">
+    <span>Question</span><p>What is actually limiting the response?</p>
+  </div>
+  <div v-click="2" class="scaling-diagnosis-step hypotheses">
+    <span>Hypotheses</span><p>API CPU? Database waits? External latency?</p>
+  </div>
+  <div v-click="3" class="scaling-diagnosis-step evidence">
+    <span>Evidence</span><p>Trace requests. Check CPU, waits, and dependency time.</p>
+  </div>
+</div>
+
+<!--
+Core idea: Slow API responses are an observation, not a diagnosis. The main question is what actually limits the response. A resource might be saturated, but a downstream wait or another constraint could also explain the symptom.
+Why here: The previous diagram supplied a known bottleneck. A real investigation begins with an observed symptom, then asks a question, proposes competing explanations, and checks evidence before choosing a response.
+Facilitate: Show only the observation. Ask the room for the main question, then reveal it. Collect possible causes before revealing the three hypotheses. Ask what would distinguish high API CPU from database waiting or external-service delay. Reveal the evidence last; request timing and resource measurements, not guesses. Do not declare any hypothesis correct without data.
+Build toward: Once we identify the limiting factor, choose among changing capacity, changing the work, or controlling admitted demand.
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: Beyond capacity
+title: Scaling is a toolbox
+prompt: Which response fits the evidence?
+---
+
+<div class="scaling-grid three">
+  <div class="scaling-panel"><h3>Add capacity</h3><p>Bigger node · more instances · distribute work.</p></div>
+  <div class="scaling-panel accent"><h3>Change the work</h3><p>Make it cheaper · cache · batch · delay it.</p></div>
+  <div class="scaling-panel warning"><h3>Control demand</h3><p>Queue · slow intake · reject optional work · change boundaries.</p></div>
+</div>
+
+<!--
+Core idea: Capacity, amount of work, and admitted demand are different levers.
+Why here: The investigation has shown why the right response depends on the cause, not just the symptom. Now organize the possible responses beyond bigger or more.
+Facilitate: Point to “Add capacity” as the familiar move, then ask what the other two columns would change if the API were waiting on the database. Treat these as possible levers, not an answer key or a decision tree; the investigation has not yet supplied an answer.
+Build toward: Before adding instances, test the crucial assumption that any instance can safely handle the work.
+-->
+
 ---
 layout: lunchlab-scaling
 eyebrow: The easy case
@@ -91,7 +214,12 @@ prompt: Why can any replica handle the next request?
 
 <img class="scaling-figure" src="/assets/scaling/horizontal.svg" alt="Independent requests can be routed to any of three stateless API replicas." />
 
-<!-- The diagram repeats deliberately: the architecture has not changed, only the workload assumption. -->
+<!--
+Core idea: A stateless request can go to any healthy API replica because no single replica owns its history.
+Why here: Return to horizontal scaling and test when its simple picture is actually true.
+Facilitate: Ask why routing request two to another replica is safe. Keep the answer narrow: the API tier is relatively easy to replicate, not the whole system.
+Build toward: Change just one assumption by giving a piece of work an owner.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -102,7 +230,12 @@ prompt: Where does the state live — and who owns the work?
 
 <img class="scaling-figure" src="/assets/scaling/state.svg" alt="A stateless request can reach either API, while a stateful order needs ownership and duplicate-processing coordination." />
 
-<!-- Ask what could happen if both workers process Order 123. Introduce ownership, coordination, and consistency without implementation detail. -->
+<!--
+Core idea: Once state or one-time work has an owner, identical replicas are not automatically interchangeable.
+Why here: The audience can compare this directly with the stateless diagram and notice what changed.
+Facilitate: Ask, “What if both workers process Order 123?” Draw out duplicate effects, ownership, and coordination; avoid implementation detail such as a particular lock or platform.
+Build toward: Use these concerns as dimensions for evaluating other workload types.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -119,6 +252,13 @@ prompt: Which property would you ask about first?
   <p class="scaling-note" style="margin-top: 35px">Think API, worker, WebSocket, cache, broker, database, CPU- or memory-heavy processor — not a universal ranking.</p>
 </div>
 
+<!--
+Core idea: The scaling properties belong to the workload, not to its generic component label.
+Why here: The state example supplies a concrete reason to ask about ownership, ordering, and partitionability.
+Facilitate: Pick two labels, such as API and database, and ask which tag could change the answer. Resist ranking all component types: an API can hold sessions, and workers can contend over one job.
+Build toward: Compare where horizontal division or vertical headroom actually helps.
+-->
+
 ---
 layout: lunchlab-scaling
 eyebrow: Choose for the workload
@@ -128,35 +268,35 @@ prompt: The more coordination required, the less trivial adding replicas becomes
 
 <img class="scaling-figure" src="/assets/scaling/workloads.svg" alt="Four comparisons show when horizontal division is easier or harder and when vertical headroom helps or does not address the real limit." />
 
----
-layout: lunchlab-scaling
-eyebrow: Bottleneck migration
-title: We scale the API. Then what?
-prompt: Did we scale the system, or move the bottleneck?
----
-
-<div class="scaling-sequence">
-  <img class="scaling-figure" src="/assets/scaling/bottleneck-api.svg" alt="Users to API to database to external service, with the API saturated." />
-  <img v-click="1" class="scaling-figure" src="/assets/scaling/bottleneck-db.svg" alt="Three API replicas now push work to one saturated database." />
-</div>
-
-<!-- Click once after the group predicts what a second or third API instance will change. -->
+<!--
+Core idea: Neither scaling direction wins universally; each addresses a different constraint under different workload assumptions.
+Why here: Consolidate the stateless/stateful contrast without turning it into “horizontal good, vertical bad.”
+Facilitate: Ask for one workload where another replica helps and one where a larger node may help more. Then ask what coordination or shared dependency could invalidate each answer.
+Build toward: Return to the same landscape from the opening and test what happens when we remove some database work.
+-->
 
 ---
 layout: lunchlab-scaling
 eyebrow: Bottleneck migration
-title: Remove database work. Then what?
-prompt: Scaling exposes the next shared constraint.
+title: The bottleneck moves again
+prompt: What work did the cache remove, and what still has to happen?
 ---
 
-<img class="scaling-figure" src="/assets/scaling/bottleneck-external.svg" alt="APIs use a cache to reduce database reads; the external service is now the bottleneck." />
+<img class="scaling-figure" src="/assets/scaling/bottleneck-external.svg" alt="The same landscape now includes a cache to reduce database reads. The external service becomes the next bottleneck." />
+
+<!--
+Core idea: A successful optimization can expose a different shared dependency; it does not eliminate all limits.
+Why here: Return to the landscape introduced just after “NOT” so the audience can see the next change, not learn a new system.
+Facilitate: Recall that the database became the bottleneck after adding APIs. Ask what the cache can avoid and what it cannot. Then point to the external service and ask how more completed requests affect it. Do not imply that a cache fixes write contention.
+Build toward: Generalize the question we should ask after every scaling change.
+-->
 
 ---
 layout: lunchlab-text
 eyebrow: Pause and reason
 ---
 
-# The bottleneck moves
+# The next limit
 
 <p class="lead">Scaling one part often reveals the next limit.</p>
 
@@ -164,9 +304,16 @@ eyebrow: Pause and reason
 
 ### Ask before changing anything
 
-**“What becomes the next limiting resource if we successfully scale this one?”**
+**“What becomes the next bottleneck if we successfully scale this component?”**
 
 </ContentCard>
+
+<!--
+Core idea: Scaling is an iterative system-level investigation. The current bottleneck can move when we relieve it.
+Why here: Pause after two migrations so the audience can state the pattern in their own words without repeating the previous slide's title.
+Facilitate: Let someone answer the quoted question for the diagram we just saw. Accept a hypothesis, then ask what metric would confirm it. Keep this brief; the question is the tool to reuse later.
+Build toward: Some limits depend on whether the pressured path is mostly reads or contended writes.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -180,7 +327,13 @@ prompt: Which path needs more coordination in this system?
   <div class="scaling-panel warning"><h3>Writes: control shared change</h3><p>Partition ownership · batch · queue · coordinate · shed load.</p><p class="scaling-small">Trade-off: contention, ordering, and consistency.</p></div>
 </div>
 
-<!-- Inspired by https://www.hellointerview.com/learn/system-design/patterns/scaling-reads and https://www.hellointerview.com/learn/system-design/patterns/scaling-writes. These are options, not a universal recipe. -->
+<!--
+Core idea: Reads can often be reused or spread, while writes to shared state may require ownership and coordination.
+Why here: Explain why “add database replicas” is not one universal answer to the previous bottleneck.
+Facilitate: Ask which side a seat-availability lookup belongs on and which side the act of reserving a particular seat belongs on. Mention freshness and contention as trade-offs, not implementation details.
+Build toward: For processing that can finish later, changing the timing may let that workload scale independently.
+Sources: https://www.hellointerview.com/learn/system-design/patterns/scaling-reads ; https://www.hellointerview.com/learn/system-design/patterns/scaling-writes
+-->
 
 ---
 layout: lunchlab-scaling
@@ -191,7 +344,12 @@ prompt: Can incoming demand be separated from processing capacity?
 
 <img class="scaling-figure" src="/assets/scaling/queue.svg" alt="Synchronous heavy work delays a response; a queue separates incoming requests from independently scalable workers." />
 
-<!-- A queue absorbs a burst only within finite capacity. It changes timing and failure modes; it does not make work disappear. -->
+<!--
+Core idea: A queue separates the rate of incoming requests from the rate at which workers finish expensive work.
+Why here: This is the first example where an architectural boundary changes the scaling model, rather than just the machine count.
+Facilitate: Ask what the caller gets back now, and what happens if arrivals exceed worker capacity for too long. Stress that backlog is finite and work still has to be processed correctly.
+Build toward: Show the fuller pattern: coupled work, blocked replication, new boundary, then independent worker scaling.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -202,7 +360,12 @@ prompt: Change boundaries, ownership, or communication — then scale.
 
 <img class="scaling-figure" src="/assets/scaling/architecture.svg" alt="Four-step sequence: coupled order service becomes hot, replication is blocked by state ownership, a queue splits workloads, and worker pools then scale independently." />
 
-<!-- This is a conceptual architecture, not a claim that every order flow should be decomposed this way. State ownership must still be defined in the new design. -->
+<!--
+Core idea: Sometimes the bottleneck cannot scale at its current boundary; changing ownership or communication comes first.
+Why here: This is the architectural insight behind the session, and the four-step visual makes the causal chain explicit.
+Facilitate: Walk left to right: identify the hot work, explain why replicas remain coupled, introduce the queue and separated workers, then ask which workload can now scale independently. Ask who owns each job after the split.
+Build toward: Once work can scale, we still need a signal that tells us when to add or remove capacity.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -219,6 +382,13 @@ prompt: A scaling signal should represent pressure on this workload.
   <p class="scaling-note" style="margin-top: 34px">A busy metric is useful only if adding capacity can relieve the bottleneck it represents.</p>
 </div>
 
+<!--
+Core idea: An autoscaling metric is useful only when it tracks pressure that the chosen scaling action can relieve.
+Why here: Automation belongs after understanding workload shape, state, and dependencies; otherwise it can amplify the wrong tier.
+Facilitate: Compare CPU for a CPU-bound worker with oldest-message age for a queue. Ask whether adding API instances helps if database connections are already exhausted.
+Build toward: Apply the full reasoning chain to a familiar bursty product scenario.
+-->
+
 ---
 layout: lunchlab-scaling
 eyebrow: Case · Ticketmaster
@@ -228,7 +398,13 @@ prompt: What reaches its limit first?
 
 <img class="scaling-figure" src="/assets/scaling/ticket-spike.svg" alt="Illustrative concert ticket demand is normal at 09:59 and surges as a Ziggo Dome on-sale opens at 10:00." />
 
-<!-- Fictional design exercise inspired by the Ticketmaster product in the Netherlands. Not a depiction of Ticketmaster's actual system or traffic. https://www.ticketmaster.nl/venue/ziggo-dome-amsterdam-tickets/ziggo/107?language=en-us -->
+<!--
+Core idea: A sudden on-sale is a workload-shape change, not merely a larger version of normal traffic.
+Why here: The familiar scenario lets participants use the earlier questions without needing a detailed system-design briefing.
+Facilitate: State clearly that this is a fictional design exercise inspired by Ticketmaster, not its actual architecture or traffic. Ask which resource might hit a limit first; collect possibilities without solving them yet.
+Build toward: Decide what the system must preserve under this burst before choosing scaling tactics.
+Source: https://www.ticketmaster.nl/venue/ziggo-dome-amsterdam-tickets/ziggo/107?language=en-us
+-->
 
 ---
 layout: lunchlab-scaling
@@ -242,7 +418,13 @@ prompt: Which flow matters most when demand exceeds capacity?
   <div class="scaling-panel warning"><h3>The design must…</h3><p>Handle bursts · prevent double-selling · protect checkout · degrade gracefully.</p></div>
 </div>
 
-<!-- Product-domain exercise only. Ticketmaster architecture is fictional. Contention and reservation concepts: https://www.hellointerview.com/learn/system-design/problem-breakdowns/ticketmaster -->
+<!--
+Core idea: Scaling decisions must protect product invariants and priorities, not just maximize accepted requests.
+Why here: Browsing, reserving, and purchasing have different failure costs; seat ownership makes the tension concrete.
+Facilitate: Ask which flow must remain correct even if another becomes slower. Elicit “no double-selling” and protection of the purchase path. Keep the design fictional and avoid claiming knowledge of Ticketmaster's production system.
+Build toward: Have the room classify components by workload and state before proposing a scaling move.
+Source: https://www.hellointerview.com/learn/system-design/problem-breakdowns/ticketmaster
+-->
 
 ---
 layout: lunchlab-scaling
@@ -257,7 +439,12 @@ prompt: For each component: state, ownership, contention, dependencies, workload
   <span class="scaling-tag">Notification workers</span>
 </div>
 
-<!-- Let the room disagree. There is no universal ranking; the answer depends on hidden state and ownership assumptions. -->
+<!--
+Core idea: The right answer depends on what each component owns, whether its work can be divided, and which dependency it stresses.
+Why here: Give participants a chance to transfer the mental model before the case reveals another bottleneck.
+Facilitate: Spend about 60–90 seconds asking for one “likely easier” and one “needs an assumption” choice. For each, ask where state lives; allow disagreement. There is no universal ranking or hidden answer key.
+Build toward: Test the tempting answer of scaling only the Web/API tier.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -268,7 +455,12 @@ prompt: Where is the pressure now?
 
 <img class="scaling-figure" src="/assets/scaling/ticket-flow.svg" alt="Fictional Ticketmaster flow separates browsing through a catalog cache from checkout, where seat inventory is a contended shared resource." />
 
-<!-- Ask first what changes if only the API is replicated. Then discuss catalog cache, browse/purchase separation, admission control, and seat contention. This is not Ticketmaster's real architecture. -->
+<!--
+Core idea: More front-end capacity can push more contenders toward a finite, shared seat inventory.
+Why here: The case makes bottleneck migration and state ownership tangible in the same moment.
+Facilitate: First ask what scaling only Web/API changes. Then trace browse reads through the catalog cache and purchases toward seat ownership. Ask “Where is the pressure now?” before mentioning path separation or admission control. This is not Ticketmaster's real architecture.
+Build toward: When critical shared work cannot accept everyone at once, controlling demand becomes part of scaling.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -283,7 +475,12 @@ prompt: Which work would you protect, delay, reduce, or reject?
   <div class="scaling-panel warning"><h3>Drop gracefully</h3><p>Disable optional features or reject non-essential work.</p></div>
 </div>
 
-<!-- Backpressure and load shedding are scaling decisions, not merely error handling. -->
+<!--
+Core idea: When demand exceeds safe capacity, deliberately shape or reject lower-priority work to protect the critical path.
+Why here: Complete the toolbox introduced early: some pressure cannot be solved by accepting unlimited work.
+Facilitate: Ask the room to place recommendations, availability refreshes, notifications, and checkout into protect, delay/reduce, or drop. A waiting room is admission control, not extra seat inventory; an endless queue is not a solution.
+Build toward: Pull the different moves back into one reusable decision sequence.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -302,6 +499,13 @@ prompt: Scaling starts with understanding the bottleneck, workload, and state.
   <div class="scaling-panel"><h3>Can demand be controlled?</h3><p>Backpressure and load shedding</p></div>
   <div class="scaling-panel"><h3>Is architecture blocking us?</h3><p>Boundaries, ownership, communication</p></div>
 </div>
+
+<!--
+Core idea: Start with evidence and workload properties; only then choose a capacity, work-reduction, demand-control, or architecture move.
+Why here: This is the retrieval cue for the hands-on exercise, not eight new concepts to lecture through.
+Facilitate: Do not read every tile. Ask someone to walk a hypothetical bottleneck through the first four questions, then have the room pick one relevant lever from the remaining tiles.
+Build toward: Give participants a few facilitation prompts they can use when their design conversation drifts into tools.
+-->
 
 ---
 layout: lunchlab-scaling
@@ -326,6 +530,13 @@ title: Keep the conversation architectural
   </ul></div>
 </div>
 
+<!--
+Core idea: Good scaling conversations stay anchored to evidence, state, ownership, and consequences.
+Why here: Turn the mental model into language participants can use with teammates during hands-on work.
+Facilitate: Treat this as a prompt card, not another lecture slide. Choose one diagnosis question and one re-scoping question; invite participants to use them when a solution jumps straight to Kubernetes or replica counts.
+Build toward: End with the shortest memorable version of the reasoning chain.
+-->
+
 ---
 layout: lunchlab-text
 eyebrow: Takeaway
@@ -343,3 +554,10 @@ slideClass: closing-slide
 **“What becomes the bottleneck after this change?”**
 
 </ContentCard>
+
+<!--
+Core idea: Find the pressure, understand state and ownership, and scale the workload rather than only its infrastructure.
+Why here: Compress the session to one question participants can carry into the practical exercise.
+Facilitate: Ask each group to start hands-on work by writing down the observed limit, evidence, where state lives, whether work can divide, and the likely next bottleneck before proposing resources or tooling. Leave the quote on screen while they begin.
+Build toward: The hands-on exercise applies the same reasoning to a concrete design; no extra theory recap is needed.
+-->
