@@ -185,211 +185,98 @@ title: Investigating slow responses
 Core idea: Slow API responses are an observation, not a diagnosis. First locate the limiting factor, then ask what in the current implementation creates that limit. A resource might be saturated because the code repeats expensive work; a lock can cap throughput even when CPU is idle.
 Why here: The previous diagram supplied a known bottleneck. A real investigation begins with an observed symptom, then asks a question, proposes competing explanations, checks evidence, and investigates the cause before choosing a response.
 Facilitate: Show only the observation. Ask the room for the main question, then reveal it. Collect possible causes before revealing the hypotheses. Ask what would distinguish high API CPU from database waiting or external-service delay. Reveal the evidence next; request timing and resource measurements, not guesses. On the final click, ask whether repeated computation, excessive queries, or serialized work could be creating the measured limit. Do not treat implementation and resource pressure as mutually exclusive, and do not declare a cause without data.
-Build toward: The cause may call for more capacity, less work per request, or control over admitted demand. Open the toolbox as a set of responses to evidence, not a list of defaults.
+Build toward: The cause may call for more capacity, less work per request, or control over admitted demand. Test conditional options across common components, then summarize the levers in the toolbox.
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: Component patterns · API
+title: 'API: when the request path is hot'
+prompt: Which limit would each change actually relieve?
+---
+
+<ScalingPatterns topic="api" />
+
+<!--
+Core idea: An API has several plausible scaling responses. Local CPU or memory pressure suggests more headroom; independent requests allow replicas; repeated work calls for implementation changes; overloaded dependencies may require an in-flight limit.
+Why here: Turn the diagnostic hypotheses into conditional choices for a familiar component, starting with the API named on the previous slide.
+Facilitate: Reveal each option in turn. Ask which measurement would support it. Stress that API replicas need safe state handling and that limiting calls protects a dependency but does not raise its capacity.
+Build toward: Follow the request into the database, where read traffic, expensive queries, and contended writes need different responses.
+Source: https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: Component patterns · Database
+title: 'Database: find the pressured path'
+prompt: Is it node capacity, reads, a query, or contended writes?
+---
+
+<ScalingPatterns topic="database" />
+
+<!--
+Core idea: Database scaling can mean a larger node, separate read capacity, less work per query, or divided write ownership. These are responses to different limits and have different consistency and coordination costs.
+Why here: The database was the next bottleneck in the opening landscape. This slide shows why “scale the database” is too vague to choose an action.
+Facilitate: Reveal the four options. Ask what evidence distinguishes high node utilization from a slow query or a hot write. Read replicas require a suitable freshness tolerance and do not multiply write capacity. Partitioning only helps when the workload can be divided by key.
+Build toward: A response can still wait on a provider outside the system, so inspect calls to external services next.
+Sources: https://learn.microsoft.com/en-us/azure/postgresql/scale/concepts-scaling-resources ; https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/optimize-data-performance
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: Component patterns · External service
+title: 'External service: protect the dependency'
+prompt: What work can be avoided, bounded, or delayed?
+---
+
+<ScalingPatterns topic="external" />
+
+<!--
+Core idea: When a provider is limiting the path, reducing avoidable calls, grouping calls, bounding concurrency, or moving optional work out of the request path may help. None grants unlimited provider capacity.
+Why here: External latency was one of the diagnostic hypotheses. These options connect that hypothesis to implementation and architecture changes.
+Facilitate: Reveal each pattern and ask what the provider contract permits. Cache freshness, batch support, rate limits, and whether the caller may receive an asynchronous result are assumptions to verify. A concurrency gate can increase reliability while reducing admitted throughput.
+Build toward: Deferring work creates a worker and queue path, whose capacity and ownership now need their own diagnosis.
+Sources: https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching ; https://learn.microsoft.com/en-us/azure/architecture/patterns/throttling
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: Component patterns · Workers and queue
+title: 'Workers & queue: separate arrival from capacity'
+prompt: What changes throughput, ownership, or admitted demand?
+---
+
+<ScalingPatterns topic="workers" />
+
+<!--
+Core idea: A queue separates arrivals from processing, but workers still have finite throughput. Independent jobs may use more consumers; slow jobs may need implementation improvements; ordered jobs need ownership; sustained excess arrivals need admission control.
+Why here: Close the component sequence with the workload whose scaling is easiest to misunderstand as “just add a queue.”
+Facilitate: Reveal each pattern. Ask what happens if arrivals exceed completions for an hour. For partitioned jobs, ask who owns a key and how duplicate delivery is handled. Make clear that a growing queue records unmet work, not added capacity.
+Build toward: Summarize the cross-component options as a toolbox of capacity, work, and demand levers.
+Sources: https://learn.microsoft.com/en-us/azure/architecture/patterns/competing-consumers ; https://learn.microsoft.com/en-us/azure/architecture/best-practices/background-jobs
 -->
 
 ---
 layout: lunchlab-scaling
 eyebrow: Beyond capacity
 title: Scaling is a toolbox
-prompt: Which response fits the evidence?
----
-
-<div class="scaling-grid three">
-  <div class="scaling-panel"><h3>Add capacity</h3><p>Bigger node · more instances · distribute work.</p></div>
-  <div class="scaling-panel accent"><h3>Change the work</h3><p>Make it cheaper · cache · batch · delay it.</p></div>
-  <div class="scaling-panel warning"><h3>Control demand</h3><p>Queue · slow intake · reject optional work · change boundaries.</p></div>
-</div>
-
-<!--
-Core idea: Capacity, amount of work, and admitted demand are different levers.
-Why here: The investigation has shown why the right response depends on both the limiting factor and what creates it, not just the symptom. Now organize the possible responses beyond bigger or more.
-Facilitate: Point to “Add capacity” as the familiar move, then ask what the other two columns would change if the API were waiting on the database. Treat these as possible levers, not an answer key or a decision tree; the investigation has not yet supplied an answer.
-Build toward: Before adding instances, test the crucial assumption that any instance can safely handle the work.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: The easy case
-title: A stateless API
-prompt: Why can any replica handle the next request?
----
-
-<img class="scaling-figure" src="/assets/scaling/horizontal.svg" alt="Independent requests can be routed to any of three stateless API replicas." />
-
-<!--
-Core idea: A stateless request can go to any healthy API replica because no single replica owns its history.
-Why here: Return to horizontal scaling and test when its simple picture is actually true.
-Facilitate: Ask why routing request two to another replica is safe. Keep the answer narrow: the API tier is relatively easy to replicate, not the whole system.
-Build toward: Change just one assumption by giving a piece of work an owner.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Now add state
-title: What changed?
-prompt: Where does the state live — and who owns the work?
----
-
-<img class="scaling-figure" src="/assets/scaling/state.svg" alt="A stateless request can reach either API, while a stateful order needs ownership and duplicate-processing coordination." />
-
-<!--
-Core idea: Once state or one-time work has an owner, identical replicas are not automatically interchangeable.
-Why here: The audience can compare this directly with the stateless diagram and notice what changed.
-Facilitate: Ask, “What if both workers process Order 123?” Draw out duplicate effects, ownership, and coordination; avoid implementation detail such as a particular lock or platform.
-Build toward: Use these concerns as dimensions for evaluating other workload types.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Workload characteristics
-title: Replicas are not equally useful everywhere
-prompt: Which property would you ask about first?
+prompt: Which lever fits the evidence and its cause?
 ---
 
 <div>
-  <div class="scaling-tags">
-    <span class="scaling-tag">State</span><span class="scaling-tag">Ownership</span><span class="scaling-tag">Partitionability</span>
-    <span class="scaling-tag">Ordering</span><span class="scaling-tag">Consistency</span><span class="scaling-tag">Local resources</span>
+  <div class="scaling-grid three">
+    <div class="scaling-panel"><h3>Add capacity</h3><p>Bigger node · replicas · workers.</p></div>
+    <div class="scaling-panel accent"><h3>Change the work</h3><p>Optimize · cache · batch · make it asynchronous.</p></div>
+    <div class="scaling-panel warning"><h3>Control demand</h3><p>Rate limits · admission limits · delay or reject optional work.</p></div>
   </div>
-  <p class="scaling-note" style="margin-top: 35px">Think API, worker, WebSocket, cache, broker, database, CPU- or memory-heavy processor — not a universal ranking.</p>
+  <p class="scaling-toolbox-note">Architecture can make these levers possible: route reads, partition ownership, or move work behind a queue.</p>
 </div>
 
 <!--
-Core idea: The scaling properties belong to the workload, not to its generic component label.
-Why here: The state example supplies a concrete reason to ask about ownership, ordering, and partitionability.
-Facilitate: Pick two labels, such as API and database, and ask which tag could change the answer. Resist ranking all component types: an API can hold sessions, and workers can contend over one job.
-Build toward: Compare where horizontal division or vertical headroom actually helps.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Choose for the workload
-title: Horizontal or vertical? It depends.
-prompt: The more coordination required, the less trivial adding replicas becomes.
----
-
-<img class="scaling-figure" src="/assets/scaling/workloads.svg" alt="Four comparisons show when horizontal division is easier or harder and when vertical headroom helps or does not address the real limit." />
-
-<!--
-Core idea: Neither scaling direction wins universally; each addresses a different constraint under different workload assumptions.
-Why here: Consolidate the stateless/stateful contrast without turning it into “horizontal good, vertical bad.”
-Facilitate: Ask for one workload where another replica helps and one where a larger node may help more. Then ask what coordination or shared dependency could invalidate each answer.
-Build toward: Return to the same landscape from the opening and test what happens when we remove some database work.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Bottleneck migration
-title: The bottleneck moves again
-prompt: What work did the cache remove, and what still has to happen?
----
-
-<img class="scaling-figure" src="/assets/scaling/bottleneck-external.svg" alt="The same landscape now includes a cache to reduce database reads. The external service becomes the next bottleneck." />
-
-<!--
-Core idea: A successful optimization can expose a different shared dependency; it does not eliminate all limits.
-Why here: Return to the landscape introduced just after “NOT” so the audience can see the next change, not learn a new system.
-Facilitate: Recall that the database became the bottleneck after adding APIs. Ask what the cache can avoid and what it cannot. Then point to the external service and ask how more completed requests affect it. Do not imply that a cache fixes write contention.
-Build toward: Generalize the question we should ask after every scaling change.
--->
-
----
-layout: lunchlab-text
-eyebrow: Pause and reason
----
-
-# The next limit
-
-<p class="lead">Scaling one part often reveals the next limit.</p>
-
-<ContentCard>
-
-### Ask before changing anything
-
-**“What becomes the next bottleneck if we successfully scale this component?”**
-
-</ContentCard>
-
-<!--
-Core idea: Scaling is an iterative system-level investigation. The current bottleneck can move when we relieve it.
-Why here: Pause after two migrations so the audience can state the pattern in their own words without repeating the previous slide's title.
-Facilitate: Let someone answer the quoted question for the diagram we just saw. Accept a hypothesis, then ask what metric would confirm it. Keep this brief; the question is the tool to reuse later.
-Build toward: Some limits depend on whether the pressured path is mostly reads or contended writes.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Different demand paths
-title: Reads and writes scale differently
-prompt: Which path needs more coordination in this system?
----
-
-<div class="scaling-grid two">
-  <div class="scaling-panel accent"><h3>Reads: avoid or spread work</h3><p>Cache · CDN · indexes · read replicas · read models.</p><p class="scaling-small">Trade-off: freshness and cache misses still matter.</p></div>
-  <div class="scaling-panel warning"><h3>Writes: control shared change</h3><p>Partition ownership · batch · queue · coordinate · shed load.</p><p class="scaling-small">Trade-off: contention, ordering, and consistency.</p></div>
-</div>
-
-<!--
-Core idea: Reads can often be reused or spread, while writes to shared state may require ownership and coordination.
-Why here: Explain why “add database replicas” is not one universal answer to the previous bottleneck.
-Facilitate: Ask which side a seat-availability lookup belongs on and which side the act of reserving a particular seat belongs on. Mention freshness and contention as trade-offs, not implementation details.
-Build toward: For processing that can finish later, changing the timing may let that workload scale independently.
-Sources: https://www.hellointerview.com/learn/system-design/patterns/scaling-reads ; https://www.hellointerview.com/learn/system-design/patterns/scaling-writes
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Decouple demand
-title: Queues change the scaling model
-prompt: Can incoming demand be separated from processing capacity?
----
-
-<img class="scaling-figure" src="/assets/scaling/queue.svg" alt="Synchronous heavy work delays a response; a queue separates incoming requests from independently scalable workers." />
-
-<!--
-Core idea: A queue separates the rate of incoming requests from the rate at which workers finish expensive work.
-Why here: This is the first example where an architectural boundary changes the scaling model, rather than just the machine count.
-Facilitate: Ask what the caller gets back now, and what happens if arrivals exceed worker capacity for too long. Stress that backlog is finite and work still has to be processed correctly.
-Build toward: Show the fuller pattern: coupled work, blocked replication, new boundary, then independent worker scaling.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Architecture before capacity
-title: Sometimes the first scaling action is redesign
-prompt: Change boundaries, ownership, or communication — then scale.
----
-
-<img class="scaling-figure" src="/assets/scaling/architecture.svg" alt="Four-step sequence: coupled order service becomes hot, replication is blocked by state ownership, a queue splits workloads, and worker pools then scale independently." />
-
-<!--
-Core idea: Sometimes the bottleneck cannot scale at its current boundary; changing ownership or communication comes first.
-Why here: This is the architectural insight behind the session, and the four-step visual makes the causal chain explicit.
-Facilitate: Walk left to right: identify the hot work, explain why replicas remain coupled, introduce the queue and separated workers, then ask which workload can now scale independently. Ask who owns each job after the split.
-Build toward: Once work can scale, we still need a signal that tells us when to add or remove capacity.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Signals after workload
-title: 'Autoscaling: based on what?'
-prompt: A scaling signal should represent pressure on this workload.
----
-
-<div>
-  <div class="scaling-tags">
-    <span class="scaling-tag">CPU</span><span class="scaling-tag">Memory</span><span class="scaling-tag">Concurrency</span><span class="scaling-tag">Latency</span>
-    <span class="scaling-tag">Queue depth</span><span class="scaling-tag">Oldest message age</span><span class="scaling-tag">DB connections</span><span class="scaling-tag">IOPS</span>
-  </div>
-  <p class="scaling-note" style="margin-top: 34px">A busy metric is useful only if adding capacity can relieve the bottleneck it represents.</p>
-</div>
-
-<!--
-Core idea: An autoscaling metric is useful only when it tracks pressure that the chosen scaling action can relieve.
-Why here: Automation belongs after understanding workload shape, state, and dependencies; otherwise it can amplify the wrong tier.
-Facilitate: Compare CPU for a CPU-bound worker with oldest-message age for a queue. Ask whether adding API instances helps if database connections are already exhausted.
-Build toward: Apply the full reasoning chain to a familiar bursty product scenario.
+Core idea: The four component examples reduce to three response levers: add capacity, change the amount or timing of work, and control demand. Architecture changes often enable a lever.
+Why here: This is the summary of the conditional patterns, not a menu to apply without diagnosis.
+Facilitate: Ask the room to place one option from each previous slide under a lever. Point out that one option can span categories, such as a queue changing timing while adding an architectural boundary. Return to the evidence and implementation cause before choosing.
+Build toward: Apply the model to a fictional burst where correctness and prioritization matter as much as throughput.
 -->
 
 ---
@@ -493,12 +380,12 @@ prompt: Scaling starts with understanding the bottleneck, workload, and state.
 ---
 
 <div class="scaling-table">
-  <div class="scaling-panel"><h3>What is saturated?</h3><p>CPU · memory · I/O · connections · latency</p></div>
+  <div class="scaling-panel"><h3>What is limiting?</h3><p>CPU · memory · I/O · locks · dependency time</p></div>
   <div class="scaling-panel"><h3>Can work divide?</h3><p>Horizontal scaling and partitioning</p></div>
   <div class="scaling-panel"><h3>Can one node do more?</h3><p>Vertical headroom and limits</p></div>
   <div class="scaling-panel"><h3>Where is state?</h3><p>Coordination and ownership</p></div>
   <div class="scaling-panel"><h3>Can work wait?</h3><p>Queues and asynchronous processing</p></div>
-  <div class="scaling-panel"><h3>Can work be avoided?</h3><p>Cache, reuse, and cheaper work</p></div>
+  <div class="scaling-panel"><h3>Can work be cheaper?</h3><p>Queries, indexes, cache, and batching</p></div>
   <div class="scaling-panel"><h3>Can demand be controlled?</h3><p>Backpressure and load shedding</p></div>
   <div class="scaling-panel"><h3>Is architecture blocking us?</h3><p>Boundaries, ownership, communication</p></div>
 </div>
@@ -528,7 +415,7 @@ title: Keep the conversation architectural
     <li>We are discussing Kubernetes — what problem are we solving?</li>
     <li>Would another instance increase throughput?</li>
     <li>Average demand or the peak?</li>
-    <li>Can we remove, delay, batch, cache, or reject work?</li>
+    <li>Can we optimize, delay, batch, cache, or reject work?</li>
     <li>Must the architecture change first?</li>
   </ul></div>
 </div>
