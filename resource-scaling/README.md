@@ -22,22 +22,25 @@ The opening example assumes demand waiting behind the API: relieving its limit l
 
 ## Theory-to-hands-on flow
 
-Keep the theory to roughly **20–30 minutes**, then move into hands-on reasoning. This is facilitator guidance, not an agenda slide. Every slide in `resource-scaling.md` now has presenter notes covering its core idea, why it appears there, a way to involve the room, and the bridge to the next idea.
+Keep the theory and discussion to roughly **20 minutes**, then move into the host-led incident at slide 14. This is facilitator guidance, not an agenda slide. Every slide in `resource-scaling.md` has presenter notes covering its core idea, why it appears there, a way to involve the room, and the bridge to the next idea.
 
 - **Slides 1–2 (about 2 min):** Establish rising demand, a reached limit, and visible symptoms.
 - **Slides 3–8 (about 6 min):** Introduce bigger and more, then explain each. On slide 6, pause on the false ending and click to reveal “NOT.” On slide 7, predict where the bottleneck moves. On slide 8, reveal the question, competing hypotheses, evidence, and implementation cause after starting from the observed symptom.
 - **Slides 9–12 (about 8–10 min):** Work through API, database, external-service, and worker/queue patterns. Reveal each option, ask which evidence would support it, and discuss its prerequisite or trade-off. Spend longest on the database slide.
 - **Slide 13 (about 1 min):** Use the toolbox as a recap of the options just explored.
-- **Slides 14–18 (about 6–8 min):** Transfer the model to the fictional on-sale. Pause longest on slides 16–17 so participants can make and test their own assumptions.
-- **Slides 19–21 (about 2–3 min):** Retrieve the reasoning questions and hand off to practice. Do not read the summary tiles aloud one by one.
+- **Slides 14–18 (about 10–15 min):** Run [Quest 1 — slow event pages](host/quests/01-event-pages.md), then [Quest 2 — hot seat reservations](host/quests/02-seat-reservations.md). Keep the group's architecture changes on the same drawing; reveal slides 15–18 only when useful.
+- **After slide 18 (about 10–15 min):** Continue with [Quest 3 — confirmation backlog](host/quests/03-confirmation-backlog.md) and [Quest 4 — email provider limit](host/quests/04-email-provider.md). Add the existing asynchronous confirmation branch to the drawing at Quest 3; revisit slide 12's worker patterns if useful.
+- **Slides 19–21 (about 2–3 min):** Debrief and retrieve the reasoning questions. Do not read the summary tiles aloud one by one.
 
-For hands-on work, ask each group to name the observed pressure and evidence, where state and ownership sit, whether the work can be divided, what receives extra load after their proposed change, and whether a boundary must change first. Let the practical scenario determine the exact design exercise.
+Every group starts with Quest 1 and moves through the path in order. At each handoff, ask them to name the observed pressure and evidence, where state and ownership sit, what changed in their architecture, and why the next path now receives more work. Move only after the host guide's conditions are met.
 
 ## Ticketmaster case framing
 
-The case is a **fictional design exercise inspired by the Ticketmaster product**, not a description of Ticketmaster's production architecture or traffic. A major artist's Ziggo Dome on-sale opens at 10:00. Fans browse, check availability, reserve, and purchase. Browse volume and seat-purchase contention create different scaling constraints. No precise traffic numbers are claimed.
+The case is a **fictional design exercise inspired by the Ticketmaster product**, not a description of Ticketmaster's production architecture or traffic. A major artist's Ziggo Dome on-sale opens at 10:00. Fans browse, check availability, reserve, and purchase. Browse volume and seat-purchase contention create different scaling constraints. The slide's spike is illustrative; later host-only rates are invented exercise figures.
 
 Let participants propose which components could scale without redesign, then ask what happens if only the API is replicated. Reveal catalog caching, browse/purchase separation, admission control, and inventory contention as possible design considerations, not an answer key. Protecting checkout can mean delaying or rejecting less essential work.
+
+The [host guide](host/README.md) introduces a C4 Level 3 starting architecture and an ordered four-quest path. The same fictional system moves from catalog reads to seat reservations, confirmation workers, and the email provider as completed work increases. Each quest pairs the participants' symptom, questions, and proposals with prepared host answers, a preferred change, and conditions for revealing the next constraint. Keep hidden facts off the projected slides.
 
 ## Facilitation lines
 
