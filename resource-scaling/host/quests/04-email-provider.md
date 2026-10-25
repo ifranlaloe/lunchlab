@@ -6,11 +6,11 @@ In the proposal table, `*` marks the preferred host route.
 
 ## From Quest 3
 
-The group increased potential PDF rendering throughput, so more jobs reach the send step. The email provider had headroom before; the additional completed work now exposes its contract limit. Keep the six-worker pool or the group's equivalent change on the drawing. Give participants only the new symptom below, then let them request provider evidence.
+Start only when Quest 3's accepted change raises potential rendering throughput **above 60 PDFs per minute**, so more sends reach the next step. More CPU per worker or cheaper rendering can also work; a larger queue alone cannot. Keep the six-worker pool or the group's actual change on the drawing. Rebrief: “Your rendering fix worked. More PDFs are ready to send, but users still report late confirmations.” Give participants the new symptom below and let them request provider evidence.
 
 ## Participant brief
 
-> PDFs are being rendered at a higher total rate, but confirmation emails are still late. Some send attempts wait or retry. What would you inspect now?
+> Your rendering change worked: PDFs are rendered faster. Fans still report late confirmation emails, and some send attempts wait or retry. What would you inspect now?
 
 ## Host-only cause
 
@@ -39,15 +39,17 @@ The email provider has a fixed limit of 60 accepted sends per minute in this fic
 | Email provider | Cache provider responses | Each confirmation is a distinct send; caching a response cannot replace it. |
 | **Email provider**\* | **Bound outbound sends**\* | Rate-gate to the provider's 60/minute allowance and back off on rate-limit responses. This protects the provider; it does not erase the backlog. |
 
-## Preferred host response — protect the provider
+## Preferred host change — protect the provider
 
-- Put an **outbound rate gate** between the workers and provider so at most 60 sends per minute are offered. Honor retry timing instead of immediately repeating rejected calls.
-- Keep unsent jobs durable. Use purchase IDs and a durable send record to limit duplicate confirmations; use provider idempotency support if available.
-- Tell fans when confirmations are delayed and monitor the oldest unsent job. The gate protects the provider, but with 80 arrivals and at most 60 successful sends per minute, the backlog still grows by roughly **20 jobs per minute**.
-- To drain the backlog, obtain verified send capacity **above 80 per minute**, such as a higher quota or another contracted provider, or admit fewer than 60 purchases per minute. Contract-supported batching may help if it counts favorably. Slowing purchases has a significant product cost.
+Once participants identify the provider's contract limit, cover four points:
 
-Treat any higher quota as a change to confirm, not capacity the architecture already has. More workers alone increase provider pressure.
+| Cue | Host talking point |
+| --- | --- |
+| **Why** | The provider accepts at most 60 sends per minute while 80 confirmation jobs arrive. More workers only add attempts and retries against that cap. |
+| **What** | Put an outbound rate gate between the workers and provider. Keep excess confirmation jobs on the durable queue and tell fans when email is delayed. |
+| **How** | Offer no more than 60 sends per minute, honor retry timing, and use purchase IDs plus a durable send record to limit duplicates. Use provider idempotency support if available. |
+| **Proof** | Rate-limit errors and futile retries fall, but at 80 arrivals and 60 completed sends the backlog still grows by about **20 jobs per minute**. Track oldest-job age; the gate protects the provider but does not add send capacity. |
 
 ## Finish the path
 
-Ask how the limiting cause changed from **worker CPU** to **provider rate limits** while oldest-job age remained a warning signal. The queue stayed in place as the bottleneck moved through the confirmation path. End when the group can name both the protective rate gate and the remaining throughput ceiling.
+Ask how the limit moved from **worker CPU** to **provider rate limits** while oldest-job age remained a warning signal. To drain the backlog, the group needs verified send capacity above 80 per minute, contract-supported batching that raises effective capacity, or fewer than 60 new jobs per minute; reducing purchases has a product cost. Treat a higher quota as a proposal to verify, not existing capacity. End when the group can name both the protective rate gate and the remaining throughput ceiling.

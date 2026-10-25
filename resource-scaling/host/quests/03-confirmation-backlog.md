@@ -6,18 +6,20 @@ In the proposal table, `*` marks the preferred host route.
 
 ## From Quest 2
 
-The protected reservation path now completes **80 purchases per minute, up from 30**. Each successful purchase creates one confirmation job. The existing workers could handle the old rate, but the new rate gives their branch more work. The asynchronous branch existed all along but was outside the starting C3 view. Add it to the group's evolving drawing before reading the new symptom:
+Start only when Quest 2's accepted change reduces lock waits without double-selling and **raises completed purchases**. Keep that change on the drawing. The preferred waiting room raises completions from 30 to **80 per minute**; use the group's measured result for another valid solution. Rebrief: “Your reservation fix worked. More purchases finish, and each one creates a confirmation job.”
+
+The confirmation branch existed all along but was outside the starting C3 view. Add it to the group's drawing before reading the new symptom:
 
 ```text
 Checkout → Durable queue → 2 confirmation workers → Email provider
                            (render PDF, then send)
 ```
 
-The purchase response does not wait for email. Jobs can be retried, so confirmation sends need a rule that prevents uncontrolled duplicates. Do not reveal which part of this branch is limiting until participants investigate.
+The purchase response does not wait for email. Do not reveal which part of this branch is limiting until participants investigate.
 
 ## Participant brief
 
-> Purchases are completing, but fans receive their confirmation emails increasingly late. The queue keeps growing. What would you like to inspect?
+> Your reservation change worked: more purchases finish, and seats are still sold correctly. Fans now report that confirmation emails arrive increasingly late. The queue keeps growing. What would you like to inspect?
 
 ## Host-only cause
 
@@ -50,21 +52,11 @@ Rendering each PDF consumes substantial CPU. Use these **fictional exercise rate
 
 ## Preferred host change — expand the worker pool
 
-Once participants identify PDF rendering as the CPU-heavy step, draw **six workers instead of two**, all consuming from the same durable queue:
+Once participants identify PDF rendering as the CPU-heavy step, cover four points:
 
-```text
-Checkout → Durable queue → 6 independent workers → Email provider
-                             (render PDF, then send)
-```
-
-1. Each worker claims a job so only one worker handles it at a time. Use the purchase ID to recognize retries and keep a durable send record; if the provider supports idempotency keys, pass that ID to it. Do not promise that an ordinary queue alone gives exactly-once email delivery.
-2. At 20 renders per worker per minute, six workers have **potential render capacity of 120 per minute**, above the 80 new jobs per minute. This removes PDF rendering as the immediate limit. Keep the six-worker pool for Quest 4.
-3. The provider still accepts only **60 sends per minute**. Once the workers offer sends faster than that, calls wait or receive rate-limit responses. The oldest unsent job can keep aging even though the pool can render more PDFs per minute.
-
-For the preferred six-worker route, say: “We raised potential PDF rendering capacity from 40 to 120 jobs per minute. Yet confirmations are still late. What would you inspect next?” If the group chose another valid change, use its measured capacity instead. Then open Quest 4 and give its new symptom.
-
-Giving workers more CPU or making rendering cheaper is also valid if potential rendering throughput rises above the provider's accepted send rate. Merely enlarging the queue changes how long jobs can wait, not how fast they finish.
-
-## Handoff to Quest 4
-
-Keep all earlier architecture changes, including the new worker capacity. Open [Quest 4 — email provider limit](04-email-provider.md) only when the chosen change raises potential rendering throughput **above 60 per minute**, so more send calls reach the provider under continued demand. With the preferred six-worker design, the provider caps completed sends at 60 per minute while 80 jobs per minute arrive: the backlog still grows by about 20 jobs per minute. A larger queue alone leaves worker CPU as the limit. Reducing admitted demand may stabilize the queue without exposing the provider limit.
+| Cue | Host talking point |
+| --- | --- |
+| **Why** | 80 confirmation jobs arrive per minute, but two CPU-bound workers render only 40 PDFs per minute. The queue buffers the difference without increasing throughput. |
+| **What** | Expand from two to six independent confirmation workers consuming from the same durable queue. Keep the earlier read-path and reservation changes. |
+| **How** | Have one worker claim each job. Recognize retries by purchase ID and keep a durable send record; use provider idempotency keys if supported. The queue alone does not guarantee exactly-once sends. |
+| **Proof** | Six workers can potentially render **120 PDFs per minute** at 20 each, above 80 arrivals. Rendering no longer limits the branch, but sends now wait or hit the provider's **60-per-minute** cap; oldest unsent-job age can still rise. |

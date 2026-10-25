@@ -43,7 +43,7 @@ The first column of both tables names the **component** participants ask about o
 
 An asterisk beside the component and proposal marks the preferred host route for that quest.
 
-Before revealing the next quest, establish three things aloud: **what changed in the architecture, which pressure signal improved, and why more work now reaches the next constrained path**. Quest 2 must show more successful purchases before Quest 3 receives more confirmation jobs; admission control alone does not guarantee that. Keep the current symptom if a proposal does not relieve its measured limit.
+Start each new quest with a short rebrief: **what changed in the architecture, which pressure signal improved, and why more work now reaches this path**. Check the new quest's entry condition before reading its participant brief. Quest 2 must show more successful purchases before Quest 3 receives more confirmation jobs; admission control alone does not guarantee that. Keep the current symptom if a proposal does not relieve its measured limit.
 
 ## Using the deck
 
