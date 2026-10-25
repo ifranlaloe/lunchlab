@@ -32,7 +32,7 @@ Keep the theory and discussion to roughly **20 minutes**, then move into the hos
 - **After slide 18 (about 10–15 min):** Continue with [Quest 3 — confirmation backlog](host/quests/03-confirmation-backlog.md) and [Quest 4 — email provider limit](host/quests/04-email-provider.md). Add the existing asynchronous confirmation branch to the drawing at Quest 3; revisit slide 12's worker patterns if useful.
 - **Slides 19–21 (about 2–3 min):** Debrief and retrieve the reasoning questions. Do not read the summary tiles aloud one by one.
 
-Every group starts with Quest 1 and moves through the path in order. At each handoff, ask them to name the observed pressure and evidence, where state and ownership sit, what changed in their architecture, and why the next path now receives more work. Move only after the host guide's conditions are met.
+Every group starts with Quest 1 and moves through the path in order. Begin each new quest by briefly restating the accepted change, the pressure it relieved, and why this path now receives more work. Let participants investigate the new symptom with evidence, state, and ownership questions. Move only after the host guide's conditions are met.
 
 ## Ticketmaster case framing
 
@@ -40,7 +40,7 @@ The case is a **fictional design exercise inspired by the Ticketmaster product**
 
 Let participants propose which components could scale without redesign, then ask what happens if only the API is replicated. Reveal catalog caching, browse/purchase separation, admission control, and inventory contention as possible design considerations, not an answer key. Protecting checkout can mean delaying or rejecting less essential work.
 
-The [host guide](host/README.md) introduces a C4 Level 3 starting architecture and an ordered four-quest path. The same fictional system moves from catalog reads to seat reservations, confirmation workers, and the email provider as completed work increases. Each quest pairs the participants' symptom, questions, and proposals with prepared host answers, a preferred change, and conditions for revealing the next constraint. Keep hidden facts off the projected slides.
+The [host guide](host/README.md) introduces a C4 Level 3 starting architecture and an ordered four-quest path. The same fictional system moves from catalog reads to seat reservations, confirmation workers, and the email provider as completed work increases. Quest 1's successful fix exposes Quest 2's reservation limit within the same primary database; later limits appear in other components. Each quest pairs the participants' symptom, questions, and proposals with prepared host answers, a preferred change, and conditions for revealing the next constraint. Keep hidden facts off the projected slides.
 
 ## Facilitation lines
 
