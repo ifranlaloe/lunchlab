@@ -19,11 +19,11 @@ The Email service runs this work after purchase in two background rendering slot
 
 ## Participant brief
 
-> Your reservation change worked: more purchases finish, and seats are still sold correctly. Fans now report that confirmation emails arrive increasingly late. Pending confirmations keep growing. What would you like to inspect?
+> Your reservation change worked: more purchases finish, and seats are still sold correctly. Checkout shows an order number right away. Each confirmation email includes a personalized PDF ticket, but those emails now arrive increasingly late. Pending confirmations keep growing. What would you like to inspect?
 
 ## Host-only cause
 
-Rendering each PDF consumes substantial CPU. Use these **fictional exercise rates** when participants ask for numbers: 80 confirmations arrive per minute after Quest 2; each of the Email service's two background slots can render 20 PDFs per minute; the email provider accepts 60 sends per minute. The Email service can render only 40 PDFs per minute, so its rendering CPU is the first limit and the provider still has headroom. Purchase requests and the primary database are healthy.
+Rendering each PDF consumes substantial CPU. Use these **fictional exercise rates** when participants ask for numbers: 80 confirmations arrive per minute after Quest 2; each of the Email service's two background slots can render 20 PDFs per minute. The Email service can render only 40 PDFs per minute, so its rendering CPU is the limit. In this quest, the external Email provider has enough headroom for the worker throughput achieved by an accepted change. Purchase requests and the primary database are healthy.
 
 ## Questions participants may ask
 
@@ -35,7 +35,7 @@ Rendering each PDF consumes substantial CPU. Use these **fictional exercise rate
 | Email service | Is rendering CPU or memory saturated? | The allocated rendering CPU is saturated; memory has headroom for now. Each slot renders 20 PDFs per minute. |
 | Email service | What work creates the CPU limit? | Rendering a personalized PDF dominates each confirmation. The two slots cannot keep up with new purchases. |
 | Email service | Can confirmations run independently? What happens on restart? | Different purchase IDs can be processed independently. In-process pending work is not durable; a restart can lose it. |
-| Email provider | Is the email provider already rate-limiting? | It accepts up to 60 sends per minute; only about 40 reach it initially. |
+| Email provider | Is the email provider already rate-limiting? | No. It accepts about 40 sends per minute now and has headroom for the worker throughput after an accepted change. |
 
 ## Responses to proposals
 
@@ -58,7 +58,7 @@ Once participants identify PDF rendering as the CPU-heavy step, cover four point
 | **Why** | 80 confirmations arrive per minute, but the Email service's two CPU-bound slots render only 40 PDFs per minute. Pending work grows in application memory. |
 | **What** | Have the Email service enqueue a job after purchase. Add a durable queue and a separate confirmation worker application with six running instances. Keep the earlier read-path and reservation changes. |
 | **How** | Have one worker claim each job. Recognize retries by purchase ID and keep a durable send record; use provider idempotency keys if supported. The queue alone does not guarantee exactly-once sends. |
-| **Proof** | Six workers can potentially render **120 PDFs per minute** at 20 each, above 80 arrivals. Rendering no longer limits the branch, but sends now wait or hit the provider's **60-per-minute** cap; oldest unsent-job age can still rise. |
+| **Proof** | Six workers can potentially render **120 PDFs per minute** at 20 each, above 80 arrivals. With the provider healthy at the achieved rate, completed sends can catch up and oldest-job age should fall. Verify both before moving on; a queue or extra workers alone do not prove delivery. |
 
 ## Architecture after Quest 3
 
