@@ -8,8 +8,8 @@ The host acts like a dungeon master for one **fictional ticket-sale system**. Pa
 | --- | --- | --- | --- |
 | [1. Slow event pages](quests/01-event-pages.md) | Event pages time out | Cache stable event details safely | More attempts reach seat reservation |
 | [2. Hot seat reservations](quests/02-seat-reservations.md) | Purchase attempts wait | Gate admission before reservation | Completed purchases rise from 30 to 80/min; confirmations receive more work |
-| [3. Confirmation backlog](quests/03-confirmation-backlog.md) | Emails arrive late | Add a durable queue and independent workers | Render capacity rises from 40 to 120/min; more sends reach the provider |
-| [4. Email provider limit](quests/04-email-provider.md) | Sends wait or retry | Bound outbound sends | Provider capacity remains 60/min against 80 arriving jobs/min |
+| [3. Confirmation backlog](quests/03-confirmation-backlog.md) | Emails arrive late | Add a durable queue and independent workers | Render capacity rises from 40 to 120/min; confirmations catch up |
+| [4. Seat inventory memory](quests/04-seat-inventory-memory.md) | Seat availability slows across nine shows | Increase primary database memory | Buffer churn and read waits fall if the hot set fits |
 
 Start every group with **Quest 1**. Timebox each quest to roughly 5–8 minutes, adjusting for discussion. At each transition, annotate the group's current drawing with its actual accepted change. The next quest starts from **that** architecture when its entry conditions hold.
 
@@ -32,6 +32,7 @@ Each quest includes a diagram of the **preferred** architecture after its change
 | After Quest 1 | [Catalog cache](ticket-on-sale-after-quest-1.svg) | Stable event details use a shared cache; Email service still calls the provider directly. |
 | After Quest 2 | [Reservation gate](ticket-on-sale-after-quest-2.svg) | The cache remains; a waiting room admits attempts without holding seats. Email service still calls the provider directly. |
 | After Quest 3 | [Queue and worker](ticket-on-sale-after-quest-3.svg) | Earlier changes remain; Email service enqueues work for a new worker application with six instances. |
+| After Quest 4 | [Larger database memory](ticket-on-sale-after-quest-4.svg) | Earlier changes remain; the primary database has a larger buffer pool for active seat pages. |
 
 ## Host rules
 
@@ -55,10 +56,10 @@ The first column of both tables names the **component** participants ask about o
 
 An asterisk beside the component and proposal marks the preferred host route for that quest.
 
-Start each new quest with a short rebrief: **what changed in the architecture, which pressure signal improved, and why more work now reaches this path**. Check the new quest's entry condition before reading its participant brief. Quest 2 must show more successful purchases before Quest 3 receives more confirmation jobs; admission control alone does not guarantee that. Keep the current symptom if a proposal does not relieve its measured limit.
+Start each new quest with a short rebrief: **what changed in the architecture or workload, which pressure signal improved, and why this path needs investigation**. Check the new quest's entry condition before reading its participant brief. Quest 2 must show more successful purchases before Quest 3 receives more confirmation jobs; admission control alone does not guarantee that. Quest 4 introduces nine simultaneous shows after confirmations have caught up, rather than claiming Quest 3 caused database pressure. Keep the current symptom if a proposal does not relieve its measured limit.
 
 ## Using the deck
 
-Finish theory at slide 13, **Scaling is a toolbox**. Start Quest 1 on slide 14's traffic spike and share the starting architecture above. Slides 15–16 support priorities and workload questions; show slide 17's evolved design only after the group has investigated the catalog reads. Slide 18 supports Quest 2's overload choices. Reveal the matching updated diagram after each of Quests 1–3, when its preferred change fits the group's result. For Quest 3, shift attention to the confirmation path already visible in the diagram. Return to slide 12's worker and queue patterns if useful. Slides 19–21 support the final debrief. Keep quest answer banks off the projected screen.
+Finish theory at slide 13, **Scaling is a toolbox**. Start Quest 1 on slide 14's traffic spike and share the starting architecture above. Slides 15–16 support priorities and workload questions; show slide 17's evolved design only after the group has investigated the catalog reads. Slide 18 supports Quest 2's overload choices. Reveal the matching updated diagram after each quest when its preferred change fits the group's result. For Quest 3, shift attention to the confirmation path already visible in the diagram. For Quest 4, announce the new nine-show workload and return to the live seat path; slide 10's database patterns may help. Slides 19–21 support the final debrief. Keep quest answer banks off the projected screen.
 
 For each quest, the group should be able to state the **symptom, hypothesis, evidence, proposed change, and predicted next limit**. If they stall, ask one nudge at a time: “Is the slow part doing work or waiting?”, “What evidence distinguishes those?”, then “Which work repeats, and which work changes shared state?”
