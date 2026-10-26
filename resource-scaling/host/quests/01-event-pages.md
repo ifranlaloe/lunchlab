@@ -52,3 +52,9 @@ If someone says “cache the event page,” pause and cover four points:
 | **What** | Cache the event name and artist, venue, date and time, and static description in a shared Event Catalog cache keyed by event ID. Live seat availability and authoritative holds stay on the primary-database path. |
 | **How** | Coalesce cold misses, expire or invalidate changed details, and bound database fallback if the cache fails. |
 | **Proof** | Cache hits rise; database read waits and page latency fall. If they do not, stay in Quest 1. |
+
+## Architecture after Quest 1
+
+Show this diagram after the group confirms the preferred cache change. Stable event details use the shared cache; live availability and seat holds still use the primary database. If the group chose another valid change, keep its actual design on the drawing instead.
+
+![After Quest 1: the Event Catalog reads stable details through a shared cache, while live availability and seat holds remain on the primary database](../ticket-on-sale-after-quest-1.svg)
