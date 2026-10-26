@@ -8,18 +8,30 @@ The host acts like a dungeon master for one **fictional ticket-sale system**. Pa
 | --- | --- | --- | --- |
 | [1. Slow event pages](quests/01-event-pages.md) | Event pages time out | Cache stable event details safely | More attempts reach seat reservation |
 | [2. Hot seat reservations](quests/02-seat-reservations.md) | Purchase attempts wait | Gate admission before reservation | Completed purchases rise from 30 to 80/min; confirmations receive more work |
-| [3. Confirmation backlog](quests/03-confirmation-backlog.md) | Emails arrive late | Increase independent workers | Render capacity rises from 40 to 120/min; more sends reach the provider |
+| [3. Confirmation backlog](quests/03-confirmation-backlog.md) | Emails arrive late | Add a durable queue and independent workers | Render capacity rises from 40 to 120/min; more sends reach the provider |
 | [4. Email provider limit](quests/04-email-provider.md) | Sends wait or retry | Bound outbound sends | Provider capacity remains 60/min against 80 arriving jobs/min |
 
 Start every group with **Quest 1**. Timebox each quest to roughly 5–8 minutes, adjusting for discussion. At each transition, annotate the group's current drawing with its actual accepted change. The next quest starts from **that** architecture when its entry conditions hold.
 
 ## Starting architecture
 
-**Users → Web/API → one primary database.** Checkout also calls a payment provider. There is no event-catalog cache or read replica at the start. A seat must never be sold twice; the primary database makes the authoritative reservation decision.
+**Users → Web/API → one primary database.** Checkout also calls a payment provider. Below Checkout, one internal Email service component renders confirmations and calls the external Email provider. It runs background work after purchase with two rendering slots; there is no separate durable queue or worker application yet. There is no event-catalog cache, read replica, or waiting room at the start. A seat must never be sold twice; the primary database makes the authoritative reservation decision.
 
-![C4 Level 3 starting architecture: components inside Web/API with one primary database and an external payment provider](ticket-on-sale-c3.svg)
+![C4-style Web/API component view: Checkout leads down to an internal Email service, which calls the external Email provider; the database is an owned container and payment is another external system](ticket-on-sale-c3.svg)
 
-Share this diagram for [Quest 1](quests/01-event-pages.md) as a starting design, not a diagnosis. It zooms into the Web/API container and the synchronous purchase path. The primary database and payment provider sit outside that container. After a successful purchase, the system already puts a confirmation job on a durable queue for two workers; this asynchronous branch is outside the diagram's scope. Add it to the group's drawing at Quest 3, or earlier if participants ask about confirmation. Let participants annotate the original diagram rather than treating it as current after a change.
+Share this diagram for [Quest 1](quests/01-event-pages.md) as a starting design, not a diagnosis. The outer boundary contains the owned ticket-sale system. Web/API is the container whose components are expanded; the database is a supporting container. The payment and email providers are external software systems outside its boundary. Read from the fan on the left through Web/API, then follow Checkout down to Email service and right to the external Email provider. Keep that path visible but focus the first investigation on slow event pages. Let participants annotate the current diagram as they accept changes.
+
+These are **C4-style component views of Web/API**. In C4, a [component diagram](https://c4model.com/diagrams/component) has one container in scope and may show connected containers and external software systems. The Email service is one component within Web/API. Quest 3 adds a durable queue and a confirmation worker [application container](https://c4model.com/abstractions/container); its six running instances are an exercise annotation. A formal [deployment diagram](https://c4model.com/diagrams/deployment) would show the instances separately. Technology choices remain open in this fictional exercise.
+
+## Updated diagrams
+
+Each quest includes a diagram of the **preferred** architecture after its change. Show one only after the group has confirmed that change. If participants chose another valid response, keep their actual architecture on the drawing.
+
+| Handoff | Diagram | Change shown |
+| --- | --- | --- |
+| After Quest 1 | [Catalog cache](ticket-on-sale-after-quest-1.svg) | Stable event details use a shared cache; Email service still calls the provider directly. |
+| After Quest 2 | [Reservation gate](ticket-on-sale-after-quest-2.svg) | The cache remains; a waiting room admits attempts without holding seats. Email service still calls the provider directly. |
+| After Quest 3 | [Queue and worker](ticket-on-sale-after-quest-3.svg) | Earlier changes remain; Email service enqueues work for a new worker application with six instances. |
 
 ## Host rules
 
@@ -47,6 +59,6 @@ Start each new quest with a short rebrief: **what changed in the architecture, w
 
 ## Using the deck
 
-Finish theory at slide 13, **Scaling is a toolbox**. Start Quest 1 on slide 14's traffic spike and share the starting architecture above. Slides 15–16 support priorities and workload questions; show slide 17's evolved design only after the group has investigated the catalog reads. Slide 18 supports Quest 2's overload choices. For Quests 3–4, return to slide 12's worker and queue patterns or keep the group's evolving diagram visible. Slides 19–21 support the final debrief. Keep quest answer banks off the projected screen.
+Finish theory at slide 13, **Scaling is a toolbox**. Start Quest 1 on slide 14's traffic spike and share the starting architecture above. Slides 15–16 support priorities and workload questions; show slide 17's evolved design only after the group has investigated the catalog reads. Slide 18 supports Quest 2's overload choices. Reveal the matching updated diagram after each of Quests 1–3, when its preferred change fits the group's result. For Quest 3, shift attention to the confirmation path already visible in the diagram. Return to slide 12's worker and queue patterns if useful. Slides 19–21 support the final debrief. Keep quest answer banks off the projected screen.
 
 For each quest, the group should be able to state the **symptom, hypothesis, evidence, proposed change, and predicted next limit**. If they stall, ask one nudge at a time: “Is the slow part doing work or waiting?”, “What evidence distinguishes those?”, then “Which work repeats, and which work changes shared state?”

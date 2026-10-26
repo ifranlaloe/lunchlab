@@ -16,7 +16,7 @@ Briefly re-establish the result: their Quest 1 solution **worked for the problem
 
 ## Host-only cause
 
-Many attempts collide on a small set of popular seats while other seats remain available. Waiting and repeated retries occupy the reservation path's limited database connections, so attempts for other available seats also wait. This avoidable contention holds completed purchases to **30 per minute** in this fictional exercise. Browse read pressure has fallen because of the group's earlier change; API CPU and payment have headroom. The existing confirmation workers could handle 40 jobs per minute, so they are not limiting yet. Correctness still holds: no seat is sold twice.
+Many attempts collide on a small set of popular seats while other seats remain available. Waiting and repeated retries occupy the reservation path's limited database connections, so attempts for other available seats also wait. This avoidable contention holds completed purchases to **30 per minute** in this fictional exercise. Browse read pressure has fallen because of the group's earlier change; request-handling CPU and payment have headroom. The Email service's two background rendering slots could handle 40 confirmations per minute, so they are not limiting yet. Correctness still holds: no seat is sold twice.
 
 Here the bottleneck moves **within the same primary database**: catalog-read pressure falls, then contended reservation writes limit completed purchases. A later bottleneck can also appear in another component. The point is that relieving one constraint exposes whichever constraint limits the newly flowing work.
 
@@ -44,7 +44,7 @@ Here the bottleneck moves **within the same primary database**: catalog-read pre
 | Primary database | Partition seat writes | May raise throughput across independent seat groups with clear ownership. It cannot divide one hot seat; verify no double-selling. |
 | Seat reservation | Shorten the reservation transaction | Consider if a trace shows avoidable work inside the transaction. The supplied evidence points to contention. |
 | **Admission gate**\* | **Add a waiting room**\* | Hold excess attempts outside the reservation path, admit a bounded number, and keep attempts for one hot seat from occupying every slot. This can reduce wasted waits; check completed purchases. |
-| Checkout | Defer notifications | Confirmation already happens after purchase through a queue. Delaying it further does not shorten reservation write waits. |
+| Checkout | Defer notifications | The Email service already starts confirmation after purchase. Delaying it further does not shorten reservation write waits. |
 
 ## Preferred host change — gate reservation attempts
 
@@ -65,3 +65,9 @@ Then cover four points:
 | **What** | Add a per-event waiting room before Seat Reservation. Browsing keeps the group's Quest 1 read-path change; the primary database still owns the authoritative seat decision. |
 | **How** | Bound active attempts, allow only one active attempt per seat, admit other seat choices fairly, and pace retries. The primary database still makes the final seat decision. |
 | **Proof** | In this fictional run, fewer waits and retries free connections for purchases of other available seats, and completed purchases rise from **30 to 80 per minute** without double-selling. This is a scripted result, not a promise of a waiting room. Track waiting-room age; if completions do not rise, stay in Quest 2. |
+
+## Architecture after Quest 2
+
+Show this diagram when the preferred waiting-room change reduces reservation waits and raises completed purchases. It carries forward the Quest 1 cache. The waiting room holds attempts, while the primary database still makes each seat decision. If the group chose a different valid route, keep its actual design on the drawing.
+
+![After Quest 2: the event-details cache remains, and a waiting room admits attempts before Seat Reservation without claiming seats](../ticket-on-sale-after-quest-2.svg)
