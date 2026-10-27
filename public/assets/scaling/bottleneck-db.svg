@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" role="img" aria-labelledby="t d">
   <title id="t">Bottleneck migration stage two: database limits completed work</title><desc id="d">With waiting demand, three API replicas increase component capacity and pass more work to one shared database, now the system bottleneck.</desc>
-  <style>text{font-family:Inter,Arial,sans-serif;fill:#0b1f4d}.label{font-size:25px;font-weight:700}.small{font-size:19px;fill:#405789}.box{fill:#fff;stroke:#164194;stroke-width:4}.hot{fill:#fff0e6;stroke:#db642b;stroke-width:6}.line{fill:none;stroke:#164194;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.fire{font-size:24px;font-weight:700;fill:#b54b1e}</style>
+  <style>text{font-family:Inter,Arial,sans-serif;fill:#26015c}.label{font-size:25px;font-weight:700}.small{font-size:19px;fill:#59417b}.box{fill:#fff;stroke:#5000c4;stroke-width:4}.hot{fill:#fff1df;stroke:#ff4200;stroke-width:6}.line{fill:none;stroke:#5000c4;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.fire{font-size:24px;font-weight:700;fill:#c33a00}</style>
   <text x="35" y="44" class="small">2 / 3  ·  Add API replicas</text>
   <rect x="38" y="159" width="180" height="122" rx="23" class="box"/><text x="128" y="230" class="label" text-anchor="middle">Users</text>
   <path d="M222 220h103m0-111v222m0-222h24m-24 111h24m-24 111h24" class="line"/>

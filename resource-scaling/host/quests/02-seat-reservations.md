@@ -8,11 +8,11 @@ In the proposal table, `*` marks the preferred host route.
 
 Start only when Quest 1's accepted change lowers database read waits and event-page latency. Keep the group's actual change—cache, query improvement, read replica, or larger database—on the drawing. If those signals have not improved, stay in Quest 1.
 
-Briefly re-establish the result: their Quest 1 solution **worked for the problem it addressed**. Faster pages let more fans reach the purchase path. Then read the new symptom without naming its cause.
+Briefly re-establish the result: their Quest 1 solution **worked for the problem it addressed**. Faster pages let more users reach the purchase path. Then read the new symptom without naming its cause.
 
 ## Participant brief
 
-> Your change worked: event pages now respond faster. More fans reach the purchase path, but users report a new problem. Purchase attempts slow down, especially when many fans choose the same seats. Some fans wait; others receive “unavailable.” Where would you look next?
+> Your change worked: event pages now respond faster. More users reach the purchase path, but users report a new problem. Purchase attempts slow down, especially when many users choose the same seats. Some users wait; others receive “unavailable.” Where would you look next?
 
 ## Host-only cause
 
@@ -41,7 +41,6 @@ Here the bottleneck moves **within the same primary database**: catalog-read pre
 | Web/API | Add API replicas (horizontal) | More attempts reach the same contended write path; the current limit stays. |
 | Primary database | Make the database bigger (vertical) | May help a separately measured node limit. It does not remove competition for one seat by itself. |
 | Primary database | Add a read replica | May help browsing, but the authoritative reservation write still has one owner. |
-| Primary database | Partition seat writes | May raise throughput across independent seat groups with clear ownership. It cannot divide one hot seat; verify no double-selling. |
 | Seat reservation | Shorten the reservation transaction | Consider if a trace shows avoidable work inside the transaction. The supplied evidence points to contention. |
 | **Admission gate**\* | **Add a waiting room**\* | Hold excess attempts outside the reservation path, admit a bounded number, and keep attempts for one hot seat from occupying every slot. This can reduce wasted waits; check completed purchases. |
 | Checkout | Defer notifications | The Email service already starts confirmation after purchase. Delaying it further does not shorten reservation write waits. |
@@ -50,9 +49,9 @@ Here the bottleneck moves **within the same primary database**: catalog-read pre
 
 Once participants locate the wait at the seat-reservation write, explain how the waiting room works **in this exercise**:
 
-1. A fan chooses a seat and enters that event's waiting room. Their place in line **does not hold the seat**. Browsing remains available.
+1. A user chooses a seat and enters that event's waiting room. Their place in line **does not hold the seat**. Browsing remains available.
 2. The gate admits a limited number of reservation attempts at once. It allows at most one active attempt for a given seat and admits attempts for other seats while contenders wait **without holding a reservation database connection**. Tune the limit using completed purchases, connection waits, and lock waits.
-3. Seat Reservation asks the primary database to make the **atomic** decision. A successful attempt continues to checkout; if the seat is unavailable, the fan must choose another. The gate never promises a seat.
+3. Seat Reservation asks the primary database to make the **atomic** decision. A successful attempt continues to checkout; if the seat is unavailable, the user must choose another. The gate never promises a seat.
 4. Release the admission slot on success, failure, or timeout. A retry goes back through the gate with a delay, rather than repeatedly hitting the database.
 
 Host phrasing: “The waiting room holds attempts, not seats. It keeps hot-seat retries out of database connections so purchases for other available seats can finish.” The increase from 30 to 80 per minute is a **scripted exercise outcome**, not a general property of waiting rooms.

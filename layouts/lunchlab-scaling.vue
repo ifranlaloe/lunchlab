@@ -1,5 +1,5 @@
 <template>
-  <div class="slidev-layout lunchlab">
+  <div class="slidev-layout lunchlab scaling-deck">
     <div class="lunchlab-slide scaling-slide" :class="$frontmatter.slideClass">
       <div class="scaling-frame">
         <header class="scaling-header">

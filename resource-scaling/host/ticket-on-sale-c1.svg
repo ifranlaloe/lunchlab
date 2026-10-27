@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4000" height="2250" viewBox="0 0 4000 2250" role="img" aria-labelledby="title description">
+  <title id="title">C1 system context for Big Bands Ticket Gatekeeper before Quest 1</title>
+  <desc id="description">A User browses events, reserves seats, and buys tickets through Big Bands Ticket Gatekeeper. The platform calls an external Payment provider to authorize payments and an external Email provider to deliver confirmations. Internal applications and data stores are intentionally not shown at this level.</desc>
+  <defs>
+    <style>
+      text { font-family: Inter, ui-sans-serif, Arial, sans-serif; fill: #26015c; }
+      .eyebrow { font-size: 45px; font-weight: 750; fill: #ff4200; letter-spacing: .08em; }
+      .title { font-size: 83px; font-weight: 750; }
+      .subtitle { font-size: 43px; fill: #59417b; }
+      .owned { fill: #fff; stroke: #ff4200; stroke-width: 8; }
+      .person { fill: #fff; stroke: #5000c4; stroke-width: 7; }
+      .external { fill: #fff; stroke: #78638d; stroke-width: 7; }
+      .kind { font-size: 34px; font-weight: 750; fill: #59417b; letter-spacing: .06em; }
+      .node-title { font-size: 70px; font-weight: 750; }
+      .system-title { font-size: 93px; font-weight: 750; }
+      .system-name { font-size: 51px; font-weight: 650; fill: #59417b; }
+      .detail { font-size: 39px; fill: #59417b; }
+      .edge-label { font-size: 37px; font-weight: 650; fill: #59417b; }
+      .line { fill: none; stroke: #5000c4; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow); }
+      .footer { font-size: 32px; fill: #59417b; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L11 5 L0 10 Z" fill="#5000c4" /></marker>
+  </defs>
+
+  <rect width="4000" height="2250" fill="#f1ede3" />
+  <text x="75" y="75" class="eyebrow">C1 · SYSTEM CONTEXT · STARTING DESIGN</text>
+  <text x="75" y="170" class="title">BBTG in its environment</text>
+  <text x="75" y="238" class="subtitle">Who uses the platform, and which external systems does it call?</text>
+
+  <rect x="170" y="900" width="590" height="345" rx="40" class="person" />
+  <text x="230" y="975" class="kind">PERSON</text>
+  <text x="230" y="1075" class="node-title">User</text>
+  <text x="230" y="1150" class="detail">Browses and buys</text>
+
+  <rect x="1270" y="570" width="1430" height="1050" rx="70" class="owned" />
+  <text x="1370" y="690" class="kind">SOFTWARE SYSTEM</text>
+  <text x="1370" y="850" class="system-title">BBTG</text>
+  <text x="1370" y="965" class="system-name">Big Bands Ticket Gatekeeper</text>
+  <path d="M1370 1030 H2600" stroke="#bea9cc" stroke-width="5" />
+  <text x="1370" y="1150" class="detail">Browse events</text>
+  <text x="1370" y="1245" class="detail">Reserve a seat</text>
+  <text x="1370" y="1340" class="detail">Buy a ticket</text>
+
+  <rect x="3180" y="575" width="660" height="325" rx="40" class="external" />
+  <text x="3240" y="655" class="kind">EXTERNAL SYSTEM</text>
+  <text x="3240" y="758" class="node-title">Payment provider</text>
+  <text x="3240" y="837" class="detail">Authorizes payments</text>
+
+  <rect x="3180" y="1330" width="660" height="325" rx="40" class="external" />
+  <text x="3240" y="1410" class="kind">EXTERNAL SYSTEM</text>
+  <text x="3240" y="1513" class="node-title">Email provider</text>
+  <text x="3240" y="1592" class="detail">Delivers confirmations</text>
+
+  <path d="M760 1072 H1270" class="line" />
+  <text x="800" y="1015" class="edge-label">Uses platform</text>
+  <path d="M2700 775 H3180" class="line" />
+  <text x="2750" y="715" class="edge-label">Requests payment</text>
+  <path d="M2700 1492 H3180" class="line" />
+  <text x="2750" y="1432" class="edge-label">Sends confirmations</text>
+
+  <path d="M75 2070 H3930" stroke="#d6c6dc" stroke-width="3" />
+  <text x="75" y="2140" class="footer">Fictional workshop architecture · internal applications and data stores appear at C2</text>
+  <text x="3930" y="2140" class="footer" text-anchor="end">C1 / C2 / C3</text>
+</svg>
