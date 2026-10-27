@@ -3,6 +3,7 @@ theme: default
 layout: lunchlab-text
 title: 'LunchLab — Resource Scaling'
 eyebrow: LunchLab
+scalingTheme: true
 aspectRatio: 16/9
 canvasWidth: 1280
 colorSchema: light
@@ -44,7 +45,7 @@ Build toward: Show when demand becomes a problem, then introduce the two familia
 ---
 layout: lunchlab-scaling
 eyebrow: Start with pressure
-title: What do we mean by scaling?
+title: When do we need to scale?
 prompt: When does rising demand become a scaling problem?
 ---
 
@@ -117,6 +118,7 @@ layout: lunchlab-text
 eyebrow: The usual answer
 title: "That's scaling. Thanks, everyone."
 closing: true
+scalingTheme: true
 ---
 
 <div class="scaling-finish">
@@ -198,10 +200,10 @@ prompt: Which limit would each change actually relieve?
 <ScalingPatterns topic="api" />
 
 <!--
-Core idea: An API has several plausible scaling responses. Local CPU or memory pressure suggests more headroom; independent requests allow replicas; repeated work calls for implementation changes; overloaded dependencies may require an in-flight limit.
+Core idea: An API has several plausible scaling responses. Local CPU or memory pressure suggests more headroom; independent requests allow replicas; repeated work calls for implementation changes; overloaded dependencies may require a limit on simultaneous calls.
 Why here: Turn the diagnostic hypotheses into conditional choices for a familiar component, starting with the API named on the previous slide.
 Facilitate: Reveal each option in turn. Ask which measurement would support it. Stress that API replicas need safe state handling and that limiting calls protects a dependency but does not raise its capacity.
-Build toward: Follow the request into the database, where read traffic, expensive queries, and contended writes need different responses.
+Build toward: Follow the request into the database, where read traffic, expensive queries, and competing writes need different responses.
 Source: https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out
 -->
 
@@ -209,15 +211,15 @@ Source: https://learn.microsoft.com/en-us/azure/architecture/guide/design-princi
 layout: lunchlab-scaling
 eyebrow: Component patterns · Database
 title: 'Database: find the pressured path'
-prompt: Is it node capacity, reads, a query, or contended writes?
+prompt: Is it node capacity, reads, a query, or competing writes?
 ---
 
 <ScalingPatterns topic="database" />
 
 <!--
-Core idea: Database scaling can mean a larger node, separate read capacity, less work per query, or divided write ownership. These are responses to different limits and have different consistency and coordination costs.
+Core idea: Database scaling can mean a larger node, separate read capacity, less work per query, or a shorter write transaction. These are responses to different limits and have different consistency and coordination costs.
 Why here: The database was the next bottleneck in the opening landscape. This slide shows why “scale the database” is too vague to choose an action.
-Facilitate: Reveal the four options. Ask what evidence distinguishes high node utilization from a slow query or a hot write. Read replicas require a suitable freshness tolerance and do not multiply write capacity. Partitioning only helps when the workload can be divided by key.
+Facilitate: Reveal the four options. Ask what evidence distinguishes high node utilization from a slow query or writes competing for the same seat. Read replicas require a suitable freshness tolerance and do not multiply write capacity. Shorten a write transaction only if traces show avoidable work inside it. Keep the seat decision atomic; moving work outside the transaction must not allow double-selling. A shorter transaction can reduce lock time, but cannot create more seats.
 Build toward: A response can still wait on a provider outside the system, so inspect calls to external services next.
 Sources: https://learn.microsoft.com/en-us/azure/postgresql/scale/concepts-scaling-resources ; https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/optimize-data-performance
 -->
@@ -226,15 +228,15 @@ Sources: https://learn.microsoft.com/en-us/azure/postgresql/scale/concepts-scali
 layout: lunchlab-scaling
 eyebrow: Component patterns · External service
 title: 'External service: protect the dependency'
-prompt: What work can be avoided, bounded, or delayed?
+prompt: What work can be avoided, limited, or delayed?
 ---
 
 <ScalingPatterns topic="external" />
 
 <!--
-Core idea: When a provider is limiting the path, reducing avoidable calls, grouping calls, bounding concurrency, or moving optional work out of the request path may help. None grants unlimited provider capacity.
+Core idea: When a provider is limiting the path, reducing avoidable calls, grouping calls, limiting simultaneous calls, or moving optional work out of the request path may help. None grants unlimited provider capacity.
 Why here: External latency was one of the diagnostic hypotheses. These options connect that hypothesis to implementation and architecture changes.
-Facilitate: Reveal each pattern and ask what the provider contract permits. Cache freshness, batch support, rate limits, and whether the caller may receive an asynchronous result are assumptions to verify. A concurrency gate can increase reliability while reducing admitted throughput.
+Facilitate: Reveal each pattern and ask what the provider contract permits. Cache freshness, batch support, rate limits, and whether the caller may receive an asynchronous result are assumptions to verify. A limit on simultaneous calls can increase reliability while reducing admitted throughput.
 Build toward: Deferring work creates a worker and queue path, whose capacity and ownership now need their own diagnosis.
 Sources: https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching ; https://learn.microsoft.com/en-us/azure/architecture/patterns/throttling
 -->
@@ -281,156 +283,107 @@ Build toward: Apply the model to a fictional burst where correctness and priorit
 
 ---
 layout: lunchlab-scaling
-eyebrow: Case · Ticketmaster
-title: At 10:00, demand changes shape
-prompt: What reaches its limit first?
+eyebrow: Fictional ticket platform · BBTG
+title: Big Bands Ticket Gatekeeper
+slideClass: gatekeeper-intro-slide
 ---
 
-<img class="scaling-figure" src="/assets/scaling/ticket-spike.svg" alt="Illustrative concert ticket demand is normal at 09:59 and surges as a Ziggo Dome on-sale opens at 10:00." />
-
-<!--
-Core idea: A sudden on-sale is a workload-shape change, not merely a larger version of normal traffic.
-Why here: The familiar scenario lets participants use the earlier questions without needing a detailed system-design briefing.
-Facilitate: State clearly that this is a fictional design exercise inspired by Ticketmaster, not its actual architecture or traffic. Ask which resource might hit a limit first; collect possibilities without solving them yet.
-Build toward: Decide what the system must preserve under this burst before choosing scaling tactics.
-Source: https://www.ticketmaster.nl/venue/ziggo-dome-amsterdam-tickets/ziggo/107?language=en-us
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Case · Ticketmaster
-title: What must the fictional system protect?
-prompt: Which flow matters most when demand exceeds capacity?
----
-
-<div class="scaling-grid two">
-  <div class="scaling-panel"><h3>Fans need to…</h3><p>Browse events · view availability · reserve a seat · purchase a ticket.</p></div>
-  <div class="scaling-panel warning"><h3>The design must…</h3><p>Handle bursts · prevent double-selling · protect checkout · degrade gracefully.</p></div>
+<div class="gatekeeper-intro">
+  <div class="gatekeeper-intro-copy">
+    <p class="gatekeeper-overline">THE GATES OPEN AT 12:00</p>
+    <p class="gatekeeper-lead">A fictional ticket platform for the biggest concert on-sales.</p>
+    <div class="gatekeeper-journey"><span>Browse events</span><span>Reserve a seat</span><span>Buy a ticket</span></div>
+  </div>
+  <img class="gatekeeper-logo" src="/assets/scaling/gatekeeper-logo.png" alt="Old mansion behind an ornate gate, enclosed by a vivid orange circle" />
 </div>
 
 <!--
-Core idea: Scaling decisions must protect product invariants and priorities, not just maximize accepted requests.
-Why here: Browsing, reserving, and purchasing have different failure costs; seat ownership makes the tension concrete.
-Facilitate: Ask which flow must remain correct even if another becomes slower. Elicit “no double-selling” and protection of the purchase path. Keep the design fictional and avoid claiming knowledge of Ticketmaster's production system.
-Build toward: Have the room classify components by workload and state before proposing a scaling move.
-Source: https://www.hellointerview.com/learn/system-design/problem-breakdowns/ticketmaster
+Core idea: Big Bands Ticket Gatekeeper (BBTG) is the fictional platform for the four quests. A concert on-sale creates a sudden arrival burst; users must still browse, reserve, and purchase.
+Why here: Give the incident a memorable identity and a concrete product flow after the toolbox, before explaining its starting architecture.
+Facilitate: Introduce BBTG as fictional. The visual style borrows BBTG.com's purple, cream, and orange palette, but this exercise does not describe that company's product or architecture. Describe the Ziggo Dome sale as an invented scenario. Ask which part might reach a limit, without naming a cause.
+Build toward: Show the owned application, database, and external providers before Quest 1 begins.
+Sources: https://www.bbtg.com/ ; https://www.ticketmaster.nl/venue/ziggo-dome-amsterdam-tickets/ziggo/107?language=en-us
 -->
 
 ---
 layout: lunchlab-scaling
-eyebrow: Audience exercise
-title: What could scale without redesign?
-prompt: For each component: state, ownership, contention, dependencies, workload shape?
+eyebrow: BBTG · C1 system context
+title: Who connects to the platform?
+slideClass: gatekeeper-architecture-slide
 ---
 
-<div class="scaling-tags">
-  <span class="scaling-tag">Web / API</span><span class="scaling-tag">Event catalog</span><span class="scaling-tag">Search</span>
-  <span class="scaling-tag">Checkout</span><span class="scaling-tag">Reservations</span><span class="scaling-tag">Database</span>
-  <span class="scaling-tag">Notification workers</span>
+<img class="scaling-figure" src="/assets/scaling/gatekeeper-before-quest-1-c1.svg" alt="C1 system context: a User uses BBTG to browse, reserve, and buy tickets. BBTG calls external payment and email providers." />
+
+<!--
+Core idea: C1 is the system context: one User reaches BBTG, which calls external payment and email providers. It does not describe internal applications or data stores.
+Why here: Start with the product boundary and its dependencies before zooming into implementation.
+Facilitate: Ask who uses BBTG and which other systems it relies on. Keep the explanation at the software-system level; the external providers are outside BBTG's ownership.
+Build toward: Open the BBTG boundary and show its application and data store at C2.
+Source: https://c4model.com/diagrams/system-context
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: BBTG · C2 containers
+title: What does BBTG own?
+slideClass: gatekeeper-architecture-slide
+---
+
+<img class="scaling-figure" src="/assets/scaling/gatekeeper-before-quest-1-c2.svg" alt="C2 container view: the User reaches the owned Web/API application. Web/API reads and writes the owned primary database and calls external payment and email providers." />
+
+<!--
+Core idea: C2 reveals BBTG's two starting containers: the Web/API application and the primary database. The payment and email providers remain external systems. There is no cache, waiting room, queue, or separate worker application yet.
+Why here: Distinguish owned deployable applications and data stores from external dependencies before opening Web/API.
+Facilitate: Trace User to Web/API, then the database and providers. Explain that C4's container means an application or data store, not necessarily a Docker container. The email confirmation work still runs inside Web/API at this point.
+Build toward: Decompose Web/API at C3 to show the request path and internal responsibilities.
+Source: https://c4model.com/diagrams/container
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: BBTG · C3 components
+title: What happens inside Web/API?
+slideClass: gatekeeper-architecture-slide
+---
+
+<img class="scaling-figure" src="/assets/scaling/gatekeeper-before-quest-1.svg" alt="C3 component view of Web/API: the User enters through a request router, which leads to event catalog and seat reservation. Seat reservation leads to checkout and an internal Email service. The components use a primary database and external payment and email providers." />
+
+<!--
+Core idea: C3 shows the components within Web/API: request routing, event catalog, seat reservation, checkout, and email service. The primary database is a separate owned container; providers are external software systems.
+Why here: The first quest can now point to the exact component and path responsible for slow event pages.
+Facilitate: Trace left to right from User through Request router to Event catalog and Seat reservation. Follow Checkout down to Email service and right to Email provider. Point out that the email component is already present, while a separate confirmation worker does not exist yet. Do not reveal the Quest 1 cause.
+Build toward: Leave a compact question guide on screen while participants investigate the incidents.
+Source: https://c4model.com/diagrams/component
+-->
+
+---
+layout: lunchlab-scaling
+eyebrow: Participant guide · keep on screen
+title: Questions for every quest
+prompt: Use these in any order. Return to the architecture as it changes.
+---
+
+<div class="scaling-quest-guide">
+  <div class="scaling-quest-card"><h3>What is happening?</h3><p>Which user action is slow, failing, or waiting?</p></div>
+  <div class="scaling-quest-card"><h3>Where is the limit?</h3><p>Which component or dependency? What evidence points there?</p></div>
+  <div class="scaling-quest-card"><h3>What creates the pressure?</h3><p>Repeated work, contention, a provider, or a burst of arrivals?</p></div>
+  <div class="scaling-quest-card"><h3>Where is state?</h3><p>Who owns the seat or job? What must stay correct?</p></div>
+  <div class="scaling-quest-card"><h3>Which change fits?</h3><p>Add capacity, reduce or divide work, delay it, or control demand?</p></div>
+  <div class="scaling-quest-card"><h3>What happens next?</h3><p>What should improve? Where might pressure move?</p></div>
 </div>
 
 <!--
-Core idea: The right answer depends on what each component owns, whether its work can be divided, and which dependency it stresses.
-Why here: Give participants a chance to transfer the mental model before the case reveals another bottleneck.
-Facilitate: Spend about 60–90 seconds asking for one “likely easier” and one “needs an assumption” choice. For each, ask where state lives; allow disagreement. There is no universal ranking or hidden answer key.
-Build toward: Test the tempting answer of scaling only the Web/API tier.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Case · pressure moves
-title: More APIs will not create more seats
-prompt: Where is the pressure now?
----
-
-<img class="scaling-figure" src="/assets/scaling/ticket-flow.svg" alt="Fictional Ticketmaster flow separates browsing through a catalog cache from checkout, where seat inventory is a contended shared resource." />
-
-<!--
-Core idea: More front-end capacity can push more contenders toward a finite, shared seat inventory.
-Why here: The case makes bottleneck migration and state ownership tangible in the same moment.
-Facilitate: First ask what scaling only Web/API changes. Then trace browse reads through the catalog cache and purchases toward seat ownership. Ask “Where is the pressure now?” before mentioning path separation or admission control. This is not Ticketmaster's real architecture.
-Build toward: When critical shared work cannot accept everyone at once, controlling demand becomes part of scaling.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Protect the critical path
-title: Sometimes, accept less work
-prompt: Which work would you protect, delay, reduce, or reject?
----
-
-<div class="scaling-grid three">
-  <div class="scaling-panel accent"><h3>Protect</h3><p>Checkout and seat ownership ahead of recommendations.</p></div>
-  <div class="scaling-panel"><h3>Shape</h3><p>Waiting room · rate limits · slower refresh · queued tasks.</p></div>
-  <div class="scaling-panel warning"><h3>Drop gracefully</h3><p>Disable optional features or reject non-essential work.</p></div>
-</div>
-
-<!--
-Core idea: When demand exceeds safe capacity, deliberately shape or reject lower-priority work to protect the critical path.
-Why here: Complete the toolbox introduced early: some pressure cannot be solved by accepting unlimited work.
-Facilitate: Ask the room to place recommendations, availability refreshes, notifications, and checkout into protect, delay/reduce, or drop. A waiting room is admission control, not extra seat inventory; an endless queue is not a solution.
-Build toward: Pull the different moves back into one reusable decision sequence.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Scaling mental model
-title: Ask in this order
-prompt: Scaling starts with understanding the bottleneck, workload, and state.
----
-
-<div class="scaling-table">
-  <div class="scaling-panel"><h3>What is limiting?</h3><p>CPU · memory · I/O · locks · dependency time</p></div>
-  <div class="scaling-panel"><h3>Can work divide?</h3><p>Horizontal scaling and partitioning</p></div>
-  <div class="scaling-panel"><h3>Can one node do more?</h3><p>Vertical headroom and limits</p></div>
-  <div class="scaling-panel"><h3>Where is state?</h3><p>Coordination and ownership</p></div>
-  <div class="scaling-panel"><h3>Can work wait?</h3><p>Queues and asynchronous processing</p></div>
-  <div class="scaling-panel"><h3>Can work be cheaper?</h3><p>Queries, indexes, cache, and batching</p></div>
-  <div class="scaling-panel"><h3>Can demand be controlled?</h3><p>Backpressure and load shedding</p></div>
-  <div class="scaling-panel"><h3>Is architecture blocking us?</h3><p>Boundaries, ownership, communication</p></div>
-</div>
-
-<!--
-Core idea: Start with evidence and workload properties; only then choose a capacity, work-reduction, demand-control, or architecture move.
-Why here: This is the retrieval cue for the hands-on exercise, not eight new concepts to lecture through.
-Facilitate: Do not read every tile. Ask someone to walk a hypothetical bottleneck through the first four questions, then have the room pick one relevant lever from the remaining tiles.
-Build toward: Give participants a few facilitation prompts they can use when their design conversation drifts into tools.
--->
-
----
-layout: lunchlab-scaling
-eyebrow: Facilitator guide
-title: Keep the conversation architectural
----
-
-<div class="scaling-facilitator">
-  <div class="scaling-panel accent"><h3>Start / diagnose</h3><ul>
-    <li>What is saturated? What evidence shows it?</li>
-    <li>Can the workload be divided?</li>
-    <li>Where does state live? Who owns it?</li>
-    <li>What receives extra load if we scale this?</li>
-    <li>What becomes the next bottleneck?</li>
-  </ul></div>
-  <div class="scaling-panel warning"><h3>Re-scope</h3><ul>
-    <li>We are discussing Kubernetes — what problem are we solving?</li>
-    <li>Would another instance increase throughput?</li>
-    <li>Average demand or the peak?</li>
-    <li>Can we optimize, delay, batch, cache, or reject work?</li>
-    <li>Must the architecture change first?</li>
-  </ul></div>
-</div>
-
-<!--
-Core idea: Good scaling conversations stay anchored to evidence, state, ownership, and consequences.
-Why here: Turn the mental model into language participants can use with teammates during hands-on work.
-Facilitate: Treat this as a prompt card, not another lecture slide. Choose one diagnosis question and one re-scoping question; invite participants to use them when a solution jumps straight to Kubernetes or replica counts.
-Build toward: End with the shortest memorable version of the reasoning chain.
+Core idea: These six questions combine observation, evidence, implementation cause, state, scaling choice, and predicted consequences. They are reusable prompts, not ordered steps or an answer key.
+Why here: Keep one participant-facing guide visible throughout all four quests after the C1–C3 walkthrough. The general diagnosis reveal on slide 8 introduced the reasoning; this board makes it practical.
+Facilitate: Read each quest's participant brief, then leave this slide on screen. Let participants ask for evidence in any order and answer from the host guide. Bring back the C3 or updated diagram when a path needs tracing, then return to this board. Do not read every card aloud or reveal host-only causes.
+Build toward: After the final quest, close with the single takeaway question.
 -->
 
 ---
 layout: lunchlab-text
 eyebrow: Takeaway
 slideClass: closing-slide
+scalingTheme: true
 ---
 
 # Find the pressure.

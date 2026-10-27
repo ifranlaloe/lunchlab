@@ -1,19 +1,19 @@
 # Quest 1 — slow event pages
 
-This is a fictional ticket-sale system, not Ticketmaster’s production architecture. Start from the [host’s starting architecture](../README.md#starting-architecture) and keep every accepted change on the group’s drawing.
+Big Bands Ticket Gatekeeper is a fictional ticket platform, not Ticketmaster’s production architecture. Start from the [host’s starting architecture](../README.md#starting-architecture) and keep every accepted change on the group’s drawing.
 
 In the proposal table, `*` marks the preferred host route.
 
 
 ## Participant brief
 
-Read aloud while showing slide 14's demand spike:
+Read aloud with slide 18's participant question board visible, after introducing the platform on slide 14 and its C1–C3 starting architecture on slides 15–17:
 
-> A major artist's Ziggo Dome tickets went on sale at 10:00. At 10:01, event pages are slow and some requests time out. Fans still need to browse, reserve, and purchase. What would you like to inspect?
+> A major artist's Ziggo Dome tickets went on sale at 12:00. At 12:01, event pages are slow and some requests time out. Users still need to browse, reserve, and purchase. What would you like to inspect?
 
 ## Host-only cause
 
-Many fans request the same event page. Every request repeats reads of the same **stable event details**, which dominate the measured catalog read load. Live seat availability is a separate read and must remain accurate at reservation. Database read I/O and connection waiting now limit completed page requests. API CPU has headroom. Reservation writes and payment are not the current limit.
+Many users request the same event page. Every request repeats reads of the same **stable event details**, which dominate the measured catalog read load. Live seat availability is a separate read and must remain accurate at reservation. Database read I/O and connection waiting now limit completed page requests. API CPU has headroom. Reservation writes and payment are not the current limit.
 
 ## Questions participants may ask
 
@@ -21,7 +21,7 @@ Give the observation first. Let participants ask for evidence before naming the 
 
 | Component | Participant question | Host answer |
 | --- | --- | --- |
-| Event catalog | Are event pages the slow path after 10:00? | Event pages slow and time out. Many fans browse the same event; checkout traffic is smaller. |
+| Event catalog | Are event pages the slow path after 12:00? | Event pages slow and time out. Many users browse the same event; checkout traffic is smaller. |
 | Event catalog | Where does a slow event-page request spend its time? | Most time is database waiting, not API computation or payment. |
 | Event catalog | What work creates the repeated read pressure? | Every page request rereads the same stable event details, such as name, venue, and date, from the primary database. No result is reused; live seat availability is a separate read. |
 | Web/API | Is the API out of CPU or memory? | Both have headroom. Slow requests spend much of their time waiting. |
@@ -35,7 +35,7 @@ Give the observation first. Let participants ask for evidence before naming the 
 | --- | --- | --- |
 | Web/API | Make the API bigger (vertical) | API CPU and memory have headroom, so a larger API does not reduce the database wait. Stay in Quest 1. |
 | Web/API | Add API replicas (horizontal) | Independent requests can reach the same overloaded database faster. This may increase its pressure; stay in Quest 1. |
-| Web/API | Bound incoming catalog reads | A gate can protect the database by admitting fewer reads, but fans wait. Read capacity has not increased. |
+| Web/API | Bound incoming catalog reads | A gate can protect the database by admitting fewer reads, but users wait. Read capacity has not increased. |
 | **Event catalog**\* | **Cache event details**\* | Can reduce repeated metadata reads if misses are controlled and live seat decisions remain authoritative. Use the preferred change below. |
 | Primary database | Make the database bigger (vertical) | May buy read I/O or connection headroom if the measured limit improves. It still performs repeated reads. |
 | Primary database | Add a read replica | Route suitable catalog reads to a replica if its lag is acceptable. Reservation writes stay with the primary owner. |

@@ -12,7 +12,7 @@ Rebrief: “Your confirmation change worked. Emails are arriving on time.” The
 
 ## Participant brief
 
-> Later that day, three artists each open three shows for sale at the same time. Event pages still load quickly, but live seat availability updates lag. The waiting room admits fans as planned; even admitted reservation attempts take longer and some time out. Successful purchases are correct, and confirmation emails arrive on time. What would you inspect?
+> Later that day, three artists each open three shows for sale at the same time. Event pages still load quickly, but live seat availability updates lag. The waiting room admits users as planned; even admitted reservation attempts take longer and some time out. Successful purchases are correct, and confirmation emails arrive on time. What would you inspect?
 
 ## Host-only cause
 
@@ -38,12 +38,11 @@ The preferred vertical change is a larger-memory primary database instance **wit
 | --- | --- | --- |
 | Web/API | Make the API bigger or add replicas | The application is waiting on database reads. More API capacity does not keep seat pages in database memory and may add pressure. |
 | Event catalog | Cache live availability | A short-lived browse hint could reduce some reads if staleness is acceptable. It cannot promise a seat or replace the authoritative reservation check. |
-| Waiting room | Admit fewer attempts | This can protect the database, but fans wait longer and the measured memory capacity does not grow. |
+| Waiting room | Admit fewer attempts | This can protect the database, but users wait longer and the measured memory capacity does not grow. |
 | Primary database | Add CPU | CPU has headroom; the measured delay is storage read wait. |
 | **Primary database**\* | **Increase database memory (vertical)**\* | Move to a larger-memory instance and size the buffer pool for the measured hot set plus headroom. Verify that evictions and read waits fall. |
 | Primary database | Improve queries or indexes | Valid if traces reveal avoidable scans or excess fetched data. In this exercise, indexed lookups still reread evicted hot pages. |
 | Primary database | Add a read replica | May offload suitable browse reads if lag is acceptable. Authoritative holds remain on the primary and must not rely on stale availability. |
-| Primary database | Partition by event | Could divide ownership and working sets with a larger architecture change. Preserve one authoritative owner for each seat. |
 
 ## Preferred host change — give the primary database more memory
 

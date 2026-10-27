@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4000" height="2250" viewBox="0 0 4000 2250" role="img" aria-labelledby="title description">
+  <title id="title">C2 container view for Big Bands Ticket Gatekeeper before Quest 1</title>
+  <desc id="description">The User reaches the Web/API application inside Big Bands Ticket Gatekeeper. Web/API reads and writes the owned primary database, requests authorization from the external Payment provider, and calls the external Email provider for confirmations. There is no separate cache, waiting room, queue, or worker application at the start.</desc>
+  <defs>
+    <style>
+      text { font-family: Inter, ui-sans-serif, Arial, sans-serif; fill: #26015c; }
+      .eyebrow { font-size: 45px; font-weight: 750; fill: #ff4200; letter-spacing: .08em; }
+      .title { font-size: 83px; font-weight: 750; }
+      .subtitle { font-size: 43px; fill: #59417b; }
+      .boundary { fill: #fffaf2; stroke: #ff4200; stroke-width: 7; }
+      .application { fill: #fff; stroke: #5000c4; stroke-width: 7; }
+      .data-store { fill: #fff; stroke: #5000c4; stroke-width: 7; }
+      .person { fill: #fff; stroke: #5000c4; stroke-width: 7; }
+      .external { fill: #fff; stroke: #78638d; stroke-width: 7; }
+      .kind { font-size: 34px; font-weight: 750; fill: #59417b; letter-spacing: .06em; }
+      .boundary-title { font-size: 59px; font-weight: 750; }
+      .node-title { font-size: 68px; font-weight: 750; }
+      .external-title { font-size: 58px; }
+      .detail { font-size: 38px; fill: #59417b; }
+      .edge-label { font-size: 34px; font-weight: 650; fill: #59417b; }
+      .line { fill: none; stroke: #5000c4; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow); }
+      .footer { font-size: 32px; fill: #59417b; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L11 5 L0 10 Z" fill="#5000c4" /></marker>
+  </defs>
+
+  <rect width="4000" height="2250" fill="#f1ede3" />
+  <text x="75" y="75" class="eyebrow">C2 · CONTAINERS · STARTING DESIGN</text>
+  <text x="75" y="170" class="title">Inside Big Bands Ticket Gatekeeper</text>
+  <text x="75" y="238" class="subtitle">Which applications and data stores does the platform own?</text>
+
+  <rect x="650" y="350" width="2500" height="1580" rx="65" class="boundary" />
+  <text x="735" y="445" class="kind">SOFTWARE SYSTEM</text>
+  <text x="735" y="530" class="boundary-title">Big Bands Ticket Gatekeeper</text>
+
+  <rect x="80" y="985" width="470" height="265" rx="38" class="person" />
+  <text x="130" y="1050" class="kind">PERSON</text>
+  <text x="130" y="1140" class="node-title">User</text>
+  <text x="130" y="1200" class="detail">Browses and buys</text>
+
+  <rect x="900" y="780" width="950" height="620" rx="48" class="application" />
+  <text x="980" y="870" class="kind">CONTAINER · APPLICATION</text>
+  <text x="980" y="995" class="node-title">Web/API</text>
+  <path d="M980 1045 H1770" stroke="#bea9cc" stroke-width="4" />
+  <text x="980" y="1130" class="detail">Serves pages and API calls</text>
+  <text x="980" y="1215" class="detail">Catalog, seats, checkout,</text>
+  <text x="980" y="1285" class="detail">and confirmation work</text>
+
+  <rect x="2200" y="680" width="670" height="385" rx="43" class="data-store" />
+  <text x="2260" y="760" class="kind">CONTAINER · DATA STORE</text>
+  <text x="2260" y="865" class="node-title">Primary database</text>
+  <text x="2260" y="950" class="detail">Event details, availability,</text>
+  <text x="2260" y="1010" class="detail">and seat holds</text>
+
+  <rect x="3360" y="790" width="565" height="280" rx="38" class="external" />
+  <text x="3410" y="860" class="kind">EXTERNAL SYSTEM</text>
+  <text x="3410" y="955" class="node-title external-title">Payment provider</text>
+  <text x="3410" y="1020" class="detail">Authorizes payments</text>
+
+  <rect x="3360" y="1390" width="565" height="280" rx="38" class="external" />
+  <text x="3410" y="1460" class="kind">EXTERNAL SYSTEM</text>
+  <text x="3410" y="1555" class="node-title external-title">Email provider</text>
+  <text x="3410" y="1620" class="detail">Delivers messages</text>
+
+  <path d="M550 1120 H900" class="line" />
+  <text x="585" y="1070" class="edge-label">Uses</text>
+  <path d="M1850 890 H2200" class="line" />
+  <text x="1880" y="835" class="edge-label">Reads and writes</text>
+  <path d="M1850 1160 H3060 V930 H3360" class="line" />
+  <text x="2480" y="1110" class="edge-label">Requests payment</text>
+  <path d="M1850 1290 H3000 V1530 H3360" class="line" />
+  <text x="2430" y="1240" class="edge-label">Calls email provider</text>
+
+  <path d="M75 2070 H3930" stroke="#d6c6dc" stroke-width="3" />
+  <text x="75" y="2140" class="footer">Fictional workshop architecture · Web/API components appear at C3</text>
+  <text x="3930" y="2140" class="footer" text-anchor="end">C1 / C2 / C3</text>
+</svg>

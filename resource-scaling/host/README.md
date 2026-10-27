@@ -1,6 +1,6 @@
 # Resource Scaling — host guide
 
-The host acts like a dungeon master for one **fictional ticket-sale system**. Participants ask questions, diagnose pressure, change the architecture, and predict what happens next. Every group completes the quests in order and keeps its accepted changes. This exercise uses a recognizable Ticketmaster product scenario; it does **not** describe Ticketmaster's real architecture or operations.
+The host acts like a dungeon master for **Big Bands Ticket Gatekeeper (BBTG)**, a fictional ticket platform. Participants ask questions, diagnose pressure, change the architecture, and predict what happens next. Every group completes the quests in order and keeps its accepted changes. The scenario uses a familiar concert ticketing flow; it does **not** describe Ticketmaster's real architecture or operations.
 
 ## Ordered quest path
 
@@ -17,11 +17,25 @@ Start every group with **Quest 1**. Timebox each quest to roughly 5–8 minutes,
 
 **Users → Web/API → one primary database.** Checkout also calls a payment provider. Below Checkout, one internal Email service component renders confirmations and calls the external Email provider. It runs background work after purchase with two rendering slots; there is no separate durable queue or worker application yet. There is no event-catalog cache, read replica, or waiting room at the start. A seat must never be sold twice; the primary database makes the authoritative reservation decision.
 
-![C4-style Web/API component view: Checkout leads down to an internal Email service, which calls the external Email provider; the database is an owned container and payment is another external system](ticket-on-sale-c3.svg)
+### C1 — system context
 
-Share this diagram for [Quest 1](quests/01-event-pages.md) as a starting design, not a diagnosis. The outer boundary contains the owned ticket-sale system. Web/API is the container whose components are expanded; the database is a supporting container. The payment and email providers are external software systems outside its boundary. Read from the fan on the left through Web/API, then follow Checkout down to Email service and right to the external Email provider. Keep that path visible but focus the first investigation on slow event pages. Let participants annotate the current diagram as they accept changes.
+![C1 system context: User connects to BBTG, which calls external payment and email providers](ticket-on-sale-c1.svg)
 
-These are **C4-style component views of Web/API**. In C4, a [component diagram](https://c4model.com/diagrams/component) has one container in scope and may show connected containers and external software systems. The Email service is one component within Web/API. Quest 3 adds a durable queue and a confirmation worker [application container](https://c4model.com/abstractions/container); its six running instances are an exercise annotation. A formal [deployment diagram](https://c4model.com/diagrams/deployment) would show the instances separately. Technology choices remain open in this fictional exercise.
+Show on slide 15. This [system context diagram](https://c4model.com/diagrams/system-context) shows the User, BBTG, and external providers without internal implementation details.
+
+### C2 — containers
+
+![C2 container view: BBTG owns Web/API and a primary database; payment and email providers remain external](ticket-on-sale-c2.svg)
+
+Show on slide 16. In C4, a [container](https://c4model.com/diagrams/container) is an application or data store. The Web/API application and primary database are inside BBTG's boundary. There is no independent cache, queue, waiting room, or confirmation worker at the start.
+
+### C3 — Web/API components
+
+![C3 Web/API component view: Checkout leads down to an internal Email service, which calls the external Email provider; the database is an owned container and payment is another external system](ticket-on-sale-c3.svg)
+
+Show on slide 17 and share for [Quest 1](quests/01-event-pages.md) as a starting design, not a diagnosis. Read from the User on the left through Web/API, then follow Checkout down to Email service and right to the external Email provider. Keep that path visible but focus the first investigation on slow event pages. Let participants annotate this diagram as they accept changes.
+
+In C4, a [component diagram](https://c4model.com/diagrams/component) has one container in scope and may show connected containers and external software systems. The Email service is one component within Web/API. Quest 3 adds a durable queue and a confirmation worker [application container](https://c4model.com/abstractions/container); its six running instances are an exercise annotation. A formal [deployment diagram](https://c4model.com/diagrams/deployment) would show the instances separately. Technology choices remain open in this fictional exercise.
 
 ## Updated diagrams
 
@@ -60,6 +74,6 @@ Start each new quest with a short rebrief: **what changed in the architecture or
 
 ## Using the deck
 
-Finish theory at slide 13, **Scaling is a toolbox**. Start Quest 1 on slide 14's traffic spike and share the starting architecture above. Slides 15–16 support priorities and workload questions; show slide 17's evolved design only after the group has investigated the catalog reads. Slide 18 supports Quest 2's overload choices. Reveal the matching updated diagram after each quest when its preferred change fits the group's result. For Quest 3, shift attention to the confirmation path already visible in the diagram. For Quest 4, announce the new nine-show workload and return to the live seat path; slide 10's database patterns may help. Slides 19–21 support the final debrief. Keep quest answer banks off the projected screen.
+Finish theory at slide 13, **Scaling is a toolbox**. Slide 14 introduces BBTG. Use slides 15–17 to zoom from C1 context to C2 containers and C3 Web/API components. Show slide 18's participant question board while reading the Quest 1 brief, then leave it visible through the quests. The cards are prompts to use in any order, not answers. Bring back slide 17 or a shared C3 diagram when the group needs to trace a path; return to slide 18 afterward. Reveal the matching updated host diagram after each quest when its preferred change fits the group's result. For Quest 3, shift attention to the confirmation path already visible in the diagram. For Quest 4, announce the new nine-show workload and return to the live seat path; slide 10's database patterns may help. Show slide 19's takeaway after the final quest. Keep quest answer banks off the projected screen.
 
 For each quest, the group should be able to state the **symptom, hypothesis, evidence, proposed change, and predicted next limit**. If they stall, ask one nudge at a time: “Is the slow part doing work or waiting?”, “What evidence distinguishes those?”, then “Which work repeats, and which work changes shared state?”

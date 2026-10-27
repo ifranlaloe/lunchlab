@@ -1,5 +1,5 @@
 <template>
-  <div class="slidev-layout lunchlab">
+  <div class="slidev-layout lunchlab" :class="{ 'scaling-deck': $frontmatter.scalingTheme }">
     <div class="lunchlab-slide text-slide" :class="{ 'closing-slide': $frontmatter.closing }">
       <div class="slide-frame">
         <div class="slide-header">
