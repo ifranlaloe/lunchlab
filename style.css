@@ -278,3 +278,22 @@
 .scaling-deck .scaling-case-note { color: #59417b; }
 .scaling-deck .gatekeeper-intro-slide,
 .scaling-deck .gatekeeper-architecture-slide { background: #f1ede3; }
+
+/* Optional cutouts stay behind the content and can be selected per slide. */
+.scaling-deck .lunchlab-slide { position: relative; }
+.scaling-deck .slide-frame,
+.scaling-deck .scaling-frame { position: relative; z-index: 2; }
+.scaling-deck .halloween-decor { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.scaling-deck .gatekeeper-architecture-slide .halloween-decor { z-index: 3; }
+.scaling-deck .halloween-decor img { position: absolute; display: block; max-width: none; height: auto; object-fit: contain; }
+.scaling-deck .halloween-decor .bats-top-right { top: -8px; right: 8px; width: 355px; opacity: .82; }
+.scaling-deck .gatekeeper-architecture-slide .halloween-decor .bats-top-right { top: -16px; right: 0; width: 270px; }
+.scaling-deck .halloween-decor .cobweb-top-right { top: -5px; right: -5px; width: 210px; transform: scaleX(-1); opacity: .77; }
+.scaling-deck .halloween-decor .gargoyle-top-right { top: -23px; right: -12px; width: 270px; opacity: .82; }
+.scaling-deck .halloween-decor .mask-right { top: 205px; right: -12px; width: 252px; opacity: .88; }
+.scaling-deck .halloween-decor .pumpkin-bottom-left { bottom: -9px; left: -9px; width: 240px; transform: scaleX(-1); opacity: .9; }
+.scaling-deck .halloween-decor .pumpkin-bottom-right { right: -9px; bottom: -9px; width: 240px; opacity: .9; }
+.scaling-deck .halloween-decor .skeleton-bottom-left { bottom: -24px; left: -21px; width: 260px; opacity: .83; }
+.scaling-deck .halloween-decor .skeleton-bottom-right { right: -21px; bottom: -24px; width: 260px; transform: scaleX(-1); opacity: .83; }
+.scaling-deck .halloween-decor .zombie-bottom-left { bottom: -33px; left: -15px; width: 295px; opacity: .81; }
+.scaling-deck .halloween-decor .zombie-bottom-right { right: -15px; bottom: -33px; width: 295px; opacity: .81; }

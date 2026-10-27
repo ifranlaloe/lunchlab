@@ -1,6 +1,7 @@
 <template>
   <div class="slidev-layout lunchlab scaling-deck">
     <div class="lunchlab-slide scaling-slide" :class="$frontmatter.slideClass">
+      <HalloweenDecor :items="$frontmatter.halloween" />
       <div class="scaling-frame">
         <header class="scaling-header">
           <div class="eyebrow">{{ $frontmatter.eyebrow }}</div>

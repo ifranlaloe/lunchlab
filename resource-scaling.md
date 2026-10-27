@@ -7,6 +7,7 @@ scalingTheme: true
 aspectRatio: 16/9
 canvasWidth: 1280
 colorSchema: light
+halloween: [bats-top-right]
 ---
 
 # Resource Scaling
@@ -47,6 +48,7 @@ layout: lunchlab-scaling
 eyebrow: Start with pressure
 title: When do we need to scale?
 prompt: When does rising demand become a scaling problem?
+halloween: [cobweb-top-right]
 ---
 
 <div class="scaling-grid three">
@@ -67,6 +69,7 @@ layout: lunchlab-scaling
 eyebrow: The familiar answer
 title: Two ways to add capacity
 prompt: Bigger, or more?
+halloween: [gargoyle-top-right]
 ---
 
 <div class="scaling-grid two">
@@ -86,6 +89,7 @@ layout: lunchlab-scaling
 eyebrow: One node, more headroom
 title: Vertical scaling
 prompt: Can this workload benefit from a bigger machine?
+halloween: [pumpkin-bottom-right]
 ---
 
 <img class="scaling-figure" src="/assets/scaling/vertical.svg" alt="One processor becomes a larger processor with more CPU and memory, while remaining a single failure domain." />
@@ -102,6 +106,7 @@ layout: lunchlab-scaling
 eyebrow: Divide the work
 title: Horizontal scaling
 prompt: Can this workload be safely divided across instances?
+halloween: [bats-top-right]
 ---
 
 <img class="scaling-figure" src="/assets/scaling/horizontal.svg" alt="Requests pass through traffic distribution to three API instances." />
@@ -119,6 +124,7 @@ eyebrow: The usual answer
 title: "That's scaling. Thanks, everyone."
 closing: true
 scalingTheme: true
+halloween: [mask-right, zombie-bottom-left]
 ---
 
 <div class="scaling-finish">
@@ -144,6 +150,7 @@ layout: lunchlab-scaling
 eyebrow: Component capacity vs system capacity
 title: The bottleneck
 prompt: What happens when the API handles more requests?
+halloween: [skeleton-bottom-right]
 ---
 
 <div class="scaling-sequence">
@@ -163,6 +170,7 @@ Source: https://learn.microsoft.com/en-us/azure/architecture/guide/design-princi
 layout: lunchlab-scaling
 eyebrow: From symptom to diagnosis
 title: Investigating slow responses
+halloween: [pumpkin-bottom-right]
 ---
 
 <div class="scaling-diagnosis">
@@ -195,6 +203,7 @@ layout: lunchlab-scaling
 eyebrow: Component patterns · API
 title: 'API: when the request path is hot'
 prompt: Which limit would each change actually relieve?
+halloween: [bats-top-right]
 ---
 
 <ScalingPatterns topic="api" />
@@ -212,6 +221,7 @@ layout: lunchlab-scaling
 eyebrow: Component patterns · Database
 title: 'Database: find the pressured path'
 prompt: Is it node capacity, reads, a query, or competing writes?
+halloween: [cobweb-top-right]
 ---
 
 <ScalingPatterns topic="database" />
@@ -229,6 +239,7 @@ layout: lunchlab-scaling
 eyebrow: Component patterns · External service
 title: 'External service: protect the dependency'
 prompt: What work can be avoided, limited, or delayed?
+halloween: [gargoyle-top-right]
 ---
 
 <ScalingPatterns topic="external" />
@@ -246,6 +257,7 @@ layout: lunchlab-scaling
 eyebrow: Component patterns · Workers and queue
 title: 'Workers & queue: separate arrival from capacity'
 prompt: What changes throughput, ownership, or admitted demand?
+halloween: [zombie-bottom-right]
 ---
 
 <ScalingPatterns topic="workers" />
@@ -263,6 +275,7 @@ layout: lunchlab-scaling
 eyebrow: Beyond capacity
 title: Scaling is a toolbox
 prompt: Which lever fits the evidence and its cause?
+halloween: [skeleton-bottom-right]
 ---
 
 <div>
@@ -286,6 +299,7 @@ layout: lunchlab-scaling
 eyebrow: Fictional ticket platform · BBTG
 title: Big Bands Ticket Gatekeeper
 slideClass: gatekeeper-intro-slide
+halloween: [bats-top-right]
 ---
 
 <div class="gatekeeper-intro">
@@ -310,6 +324,7 @@ layout: lunchlab-scaling
 eyebrow: BBTG · C1 system context
 title: Who connects to the platform?
 slideClass: gatekeeper-architecture-slide
+halloween: [cobweb-top-right]
 ---
 
 <img class="scaling-figure" src="/assets/scaling/gatekeeper-before-quest-1-c1.svg" alt="C1 system context: a User uses BBTG to browse, reserve, and buy tickets. BBTG calls external payment and email providers." />
@@ -327,6 +342,7 @@ layout: lunchlab-scaling
 eyebrow: BBTG · C2 containers
 title: What does BBTG own?
 slideClass: gatekeeper-architecture-slide
+halloween: [gargoyle-top-right]
 ---
 
 <img class="scaling-figure" src="/assets/scaling/gatekeeper-before-quest-1-c2.svg" alt="C2 container view: the User reaches the owned Web/API application. Web/API reads and writes the owned primary database and calls external payment and email providers." />
@@ -344,6 +360,7 @@ layout: lunchlab-scaling
 eyebrow: BBTG · C3 components
 title: What happens inside Web/API?
 slideClass: gatekeeper-architecture-slide
+halloween: [bats-top-right]
 ---
 
 <img class="scaling-figure" src="/assets/scaling/gatekeeper-before-quest-1.svg" alt="C3 component view of Web/API: the User enters through a request router, which leads to event catalog and seat reservation. Seat reservation leads to checkout and an internal Email service. The components use a primary database and external payment and email providers." />
@@ -361,6 +378,7 @@ layout: lunchlab-scaling
 eyebrow: Participant guide · keep on screen
 title: Questions for every quest
 prompt: Use these in any order. Return to the architecture as it changes.
+halloween: [cobweb-top-right]
 ---
 
 <div class="scaling-quest-guide">
@@ -384,6 +402,7 @@ layout: lunchlab-text
 eyebrow: Takeaway
 slideClass: closing-slide
 scalingTheme: true
+halloween: [mask-right, zombie-bottom-left, pumpkin-bottom-right]
 ---
 
 # Find the pressure.

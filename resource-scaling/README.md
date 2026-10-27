@@ -74,8 +74,11 @@ The [host guide](host/README.md) introduces a C4-style Web/API component view an
 - **Gatekeeper logo:** an old mansion gate inside an orange ring introduces the fictional platform.
 - **Starting architecture:** three full-stage diagrams zoom from C1 system context to C2 containers and C3 Web/API components without changing the underlying design. White cards, a cream canvas, purple connections, and the orange BBTG boundary carry the deck's visual theme through the walkthrough.
 - **Participant guide:** six white question cards combine the former diagnosis, mental-model, and facilitator prompts into one reusable screen. There is no prescribed order.
+- **Halloween cutouts:** bats, a skeleton hand, a gargoyle, zombie hands, a hooded scream mask, a cobweb with spider, and a pumpkin decorate selected slide margins. The C1–C3 diagrams use cutouts in their open upper-right margins.
 
 The component diagrams are editable Slidev content in [`ScalingPatterns.vue`](../components/ScalingPatterns.vue), styled in [`style.css`](../style.css). The complete scaling deck uses a flat Gatekeeper cream background, white cards, purple connections, and orange accents. The case intro uses the transparent [`gatekeeper-logo.png`](../public/assets/scaling/gatekeeper-logo.png). The three full-slide architecture assets in [`public/assets/scaling/`](../public/assets/scaling/) are copies of the [host's C1](host/ticket-on-sale-c1.svg), [C2](host/ticket-on-sale-c2.svg), and [C3](host/ticket-on-sale-c3.svg) source diagrams; keep each slide copy in sync with its host source.
+
+Each decorated slide selects cutouts with a `halloween: [...]` frontmatter list in [`resource-scaling.md`](../resource-scaling.md). Remove the line to turn that slide's decorations off, or add any placement key defined in [`HalloweenDecor.vue`](../components/HalloweenDecor.vue). The transparent images live in [`public/assets/scaling/halloween/`](../public/assets/scaling/halloween/). Placements are fixed so they do not jump between reloads or cover diagram labels.
 
 ## Slide list
 
