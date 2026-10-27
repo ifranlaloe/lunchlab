@@ -11,7 +11,6 @@
       .container-boundary { fill: #fff; stroke: #5000c4; stroke-width: 6; }
       .boundary-kind { font-size: 35px; font-weight: 750; fill: #59417b; letter-spacing: .06em; }
       .boundary-title { font-size: 58px; font-weight: 750; }
-      .boundary-note { font-size: 38px; fill: #59417b; }
       .component, .owned { fill: #fff; stroke: #5000c4; stroke-width: 5; }
       .new { fill: #fff1df; stroke: #ff4200; stroke-width: 6; }
       .external { fill: #fff; stroke: #78638d; stroke-width: 5; }
@@ -49,86 +48,89 @@
   <rect x="610" y="480" width="1600" height="1450" rx="48" class="container-boundary" />
   <text x="675" y="540" class="boundary-kind">CONTAINER · APPLICATION</text>
   <text x="675" y="610" class="boundary-title">Web/API</text>
-  <text x="675" y="660" class="boundary-note">Components inside the focus container</text>
 
-  <path d="M400 1110 H730" class="line" />
-  <path d="M1130 1110 H1190 M1190 790 V1110" class="branch" />
-  <path d="M1190 790 H1600" class="line" />
-  <path d="M1190 1110 H1270 M1570 1110 H1680" class="line" />
-  <path d="M1895 1200 V1400" class="line" />
-  <path d="M2100 790 H2390 M2690 880 V1020" class="line" />
-  <path d="M2100 840 H2250 V1055 H2390" class="line" />
-  <path d="M2110 1110 H2260 V1165 H2390 M2110 1490 H3550" class="line" />
-  <path d="M1895 1580 V1690" class="line" />
-  <path d="M2110 1780 H2310 M2660 1780 H2840 M3290 1780 H3550" class="line" />
+  <path d="M400 1070 H730" class="line" />
+  <path d="M1130 1070 H1190 M1190 750 V1070" class="branch" />
+  <path d="M1190 750 H1680" class="line" />
+  <path d="M1190 1070 H1270" class="line" />
+  <path d="M1570 1070 H1680" class="line" />
+  <path d="M1895 1160 V1315" class="line" />
+  <path d="M2110 750 H2630" class="line" />
+  <path d="M2930 840 V980" class="line" />
+  <path d="M2110 800 H2250 V1015 H2630" class="line" />
+  <path d="M2110 1070 H2260 V1125 H2630" class="line" />
+  <path d="M2110 1405 H3550" class="line" />
+  <path d="M1895 1495 V1650" class="line" />
+  <path d="M2110 1740 H2310" class="line" />
+  <path d="M2660 1740 H2840" class="line" />
+  <path d="M3290 1740 H3550" class="line" />
 
-  <rect x="70" y="1020" width="330" height="180" rx="27" class="person" />
-  <text x="106" y="1070" class="node-kind">PERSON</text>
-  <text x="106" y="1132" class="node-title">User</text>
-  <text x="106" y="1178" class="node-detail">Browses and buys</text>
-  <rect x="730" y="1020" width="400" height="180" rx="27" class="component" />
-  <text x="766" y="1070" class="node-kind">COMPONENT</text>
-  <text x="766" y="1132" class="node-title router-title">Request router</text>
-  <text x="766" y="1178" class="node-detail">Routes HTTP calls</text>
-  <rect x="1600" y="700" width="500" height="180" rx="27" class="component" />
-  <text x="1636" y="750" class="node-kind">COMPONENT</text>
-  <text x="1636" y="812" class="node-title">Event catalog</text>
-  <text x="1636" y="858" class="node-detail">Details + availability</text>
-  <rect x="1270" y="1020" width="300" height="180" rx="27" class="component" />
-  <text x="1306" y="1070" class="node-kind">COMPONENT</text>
-  <text x="1306" y="1132" class="node-title gate-title">Waiting room</text>
-  <text x="1306" y="1178" class="node-detail gate-detail">No seat held</text>
-  <rect x="1680" y="1020" width="430" height="180" rx="27" class="component" />
-  <text x="1716" y="1070" class="node-kind">COMPONENT</text>
-  <text x="1716" y="1132" class="node-title seat-title">Seat reservation</text>
-  <text x="1716" y="1178" class="node-detail">Requests atomic hold</text>
-  <rect x="1680" y="1400" width="430" height="180" rx="27" class="component" />
-  <text x="1716" y="1450" class="node-kind">COMPONENT</text>
-  <text x="1716" y="1512" class="node-title">Checkout</text>
-  <text x="1716" y="1558" class="node-detail">Purchase + payment</text>
-  <rect x="2390" y="700" width="600" height="180" rx="27" class="owned" />
-  <text x="2426" y="750" class="node-kind">CONTAINER · DATA STORE</text>
-  <text x="2426" y="812" class="node-title">Event details cache</text>
-  <text x="2426" y="858" class="node-detail">Shared stable metadata</text>
-  <rect x="2390" y="1020" width="600" height="250" rx="27" class="new" />
-  <text x="2426" y="1070" class="node-kind">CONTAINER · DATA STORE</text>
-  <text x="2426" y="1132" class="node-title">Primary database</text>
-  <text x="2426" y="1178" class="node-detail">Availability + seat holds</text>
-  <text x="2426" y="1225" class="node-detail">Larger buffer pool</text>
-  <rect x="1680" y="1690" width="430" height="180" rx="27" class="component" />
-  <text x="1716" y="1740" class="node-kind">COMPONENT</text>
-  <text x="1716" y="1802" class="node-title">Email service</text>
-  <text x="1716" y="1848" class="node-detail">Creates confirmation job</text>
-  <rect x="2310" y="1690" width="350" height="180" rx="27" class="owned" />
-  <text x="2346" y="1740" class="node-kind">CONTAINER</text>
-  <text x="2346" y="1802" class="node-title queue-title">Durable queue</text>
-  <text x="2346" y="1848" class="node-detail">Confirmation jobs</text>
-  <rect x="2840" y="1690" width="450" height="180" rx="27" class="owned" />
-  <text x="2876" y="1740" class="node-kind">CONTAINER · APPLICATION</text>
-  <text x="2876" y="1802" class="node-title worker-title">Confirmation worker</text>
-  <text x="2876" y="1848" class="node-detail">6 running instances</text>
-  <rect x="3550" y="1400" width="380" height="180" rx="27" class="external" />
-  <text x="3586" y="1450" class="node-kind">SOFTWARE SYSTEM</text>
-  <text x="3586" y="1512" class="node-title external-title">Payment provider</text>
-  <text x="3586" y="1558" class="node-detail">Authorizes payments</text>
-  <rect x="3550" y="1690" width="380" height="180" rx="27" class="external" />
-  <text x="3586" y="1740" class="node-kind">SOFTWARE SYSTEM</text>
-  <text x="3586" y="1802" class="node-title external-title">Email provider</text>
-  <text x="3586" y="1848" class="node-detail">Delivers messages</text>
+  <rect x="70" y="980" width="330" height="180" rx="27" class="person" />
+  <text x="106" y="1030" class="node-kind">PERSON</text>
+  <text x="106" y="1092" class="node-title">User</text>
+  <text x="106" y="1138" class="node-detail">Browses and buys</text>
+  <rect x="730" y="980" width="400" height="180" rx="27" class="component" />
+  <text x="766" y="1030" class="node-kind">COMPONENT</text>
+  <text x="766" y="1092" class="node-title router-title">Request router</text>
+  <text x="766" y="1138" class="node-detail">Routes HTTP calls</text>
+  <rect x="1680" y="660" width="430" height="180" rx="27" class="component" />
+  <text x="1716" y="710" class="node-kind">COMPONENT</text>
+  <text x="1716" y="772" class="node-title">Event catalog</text>
+  <text x="1716" y="818" class="node-detail">Details + availability</text>
+  <rect x="1270" y="980" width="300" height="180" rx="27" class="component" />
+  <text x="1306" y="1030" class="node-kind">COMPONENT</text>
+  <text x="1306" y="1092" class="node-title gate-title">Waiting room</text>
+  <text x="1306" y="1138" class="node-detail gate-detail">No seat held</text>
+  <rect x="1680" y="980" width="430" height="180" rx="27" class="component" />
+  <text x="1716" y="1030" class="node-kind">COMPONENT</text>
+  <text x="1716" y="1092" class="node-title seat-title">Seat reservation</text>
+  <text x="1716" y="1138" class="node-detail">Requests atomic hold</text>
+  <rect x="1680" y="1315" width="430" height="180" rx="27" class="component" />
+  <text x="1716" y="1365" class="node-kind">COMPONENT</text>
+  <text x="1716" y="1427" class="node-title">Checkout</text>
+  <text x="1716" y="1473" class="node-detail">Purchase + payment</text>
+  <rect x="2630" y="660" width="600" height="180" rx="27" class="owned" />
+  <text x="2666" y="710" class="node-kind">CONTAINER · DATA STORE</text>
+  <text x="2666" y="772" class="node-title">Event details cache</text>
+  <text x="2666" y="818" class="node-detail">Shared stable metadata</text>
+  <rect x="2630" y="980" width="600" height="250" rx="27" class="new" />
+  <text x="2666" y="1030" class="node-kind">CONTAINER · DATA STORE</text>
+  <text x="2666" y="1092" class="node-title">Primary database</text>
+  <text x="2666" y="1138" class="node-detail">Availability + seat holds</text>
+  <text x="2666" y="1185" class="node-detail">Larger buffer pool</text>
+  <rect x="1680" y="1650" width="430" height="180" rx="27" class="component" />
+  <text x="1716" y="1700" class="node-kind">COMPONENT</text>
+  <text x="1716" y="1762" class="node-title">Email service</text>
+  <text x="1716" y="1808" class="node-detail">Creates confirmation job</text>
+  <rect x="2310" y="1650" width="350" height="180" rx="27" class="owned" />
+  <text x="2346" y="1700" class="node-kind">CONTAINER</text>
+  <text x="2346" y="1762" class="node-title queue-title">Durable queue</text>
+  <text x="2346" y="1808" class="node-detail">Confirmation jobs</text>
+  <rect x="2840" y="1650" width="450" height="180" rx="27" class="owned" />
+  <text x="2876" y="1700" class="node-kind">CONTAINER · APPLICATION</text>
+  <text x="2876" y="1762" class="node-title worker-title">Confirmation worker</text>
+  <text x="2876" y="1808" class="node-detail">6 running instances</text>
+  <rect x="3550" y="1315" width="380" height="180" rx="27" class="external" />
+  <text x="3586" y="1365" class="node-kind">SOFTWARE SYSTEM</text>
+  <text x="3586" y="1427" class="node-title external-title">Payment provider</text>
+  <text x="3586" y="1473" class="node-detail">Authorizes payments</text>
+  <rect x="3550" y="1650" width="380" height="180" rx="27" class="external" />
+  <text x="3586" y="1700" class="node-kind">SOFTWARE SYSTEM</text>
+  <text x="3586" y="1762" class="node-title external-title">Email provider</text>
+  <text x="3586" y="1808" class="node-detail">Delivers messages</text>
 
-  <text x="520" y="1065" class="edge-label">HTTPS</text>
-  <text x="1270" y="764" class="edge-label">routes browse</text>
-
-  <text x="2134" y="768" class="edge-label">stable details</text>
-  <text x="2123" y="982" class="edge-label">live availability</text>
-  <text x="2725" y="966" class="edge-label">cache miss</text>
-  <text x="2170" y="1250" class="edge-label">writes hold</text>
-  <text x="1930" y="1325" class="edge-label">on success</text>
-  <text x="2730" y="1465" class="edge-label">requests payment</text>
-  <text x="1600" y="1650" class="edge-label">after purchase</text>
-  <text x="2135" y="1650" class="edge-label">adds job</text>
-  <text x="2670" y="1650" class="edge-label">claims job</text>
-  <text x="3340" y="1650" class="edge-label">sends email</text>
+  <text x="475" y="1025" class="edge-label">HTTPS</text>
+  <text x="1270" y="705" class="edge-label">routes browse</text>
+  <text x="2300" y="705" class="edge-label">stable details</text>
+  <text x="2300" y="970" class="edge-label">live availability</text>
+  <text x="2965" y="900" class="edge-label">cache miss</text>
+  <text x="2300" y="1080" class="edge-label">writes hold</text>
+  <text x="1930" y="1220" class="edge-label">on success</text>
+  <text x="2300" y="1360" class="edge-label">requests payment</text>
+  <text x="1930" y="1555" class="edge-label">after purchase</text>
+  <text x="2250" y="1610" class="edge-label">adds job</text>
+  <text x="2670" y="1610" class="edge-label">claims job</text>
+  <text x="3360" y="1610" class="edge-label">sends email</text>
 
   <path d="M75 2070 H3930" stroke="#d6c6dc" stroke-width="3" />
   <rect x="75" y="2115" width="42" height="33" rx="7" class="component" />
