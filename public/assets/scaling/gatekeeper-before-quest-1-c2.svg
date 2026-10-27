@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="4000" height="2250" viewBox="0 0 4000 2250" role="img" aria-labelledby="title description">
   <title id="title">C2 container view for Big Bands Ticket Gatekeeper before Quest 1</title>
-  <desc id="description">The User reaches the Web/API application inside Big Bands Ticket Gatekeeper. Web/API reads and writes the owned primary database, requests authorization from the external Payment provider, and calls the external Email provider for confirmations. There is no separate cache, waiting room, queue, or worker application at the start.</desc>
+  <desc id="description">The User reaches the Web/API application inside Big Bands Ticket Gatekeeper. Web/API reads and writes the owned primary database, requests authorization from the external Payment provider, and calls the external Email provider for confirmations.</desc>
   <defs>
     <style>
       text { font-family: Inter, ui-sans-serif, Arial, sans-serif; fill: #26015c; }
@@ -52,10 +52,10 @@
   <text x="2260" y="950" class="detail">Event details, availability,</text>
   <text x="2260" y="1010" class="detail">and seat holds</text>
 
-  <rect x="3360" y="790" width="565" height="280" rx="38" class="external" />
-  <text x="3410" y="860" class="kind">EXTERNAL SYSTEM</text>
-  <text x="3410" y="955" class="node-title external-title">Payment provider</text>
-  <text x="3410" y="1020" class="detail">Authorizes payments</text>
+  <rect x="3360" y="1020" width="565" height="280" rx="38" class="external" />
+  <text x="3410" y="1090" class="kind">EXTERNAL SYSTEM</text>
+  <text x="3410" y="1185" class="node-title external-title">Payment provider</text>
+  <text x="3410" y="1250" class="detail">Authorizes payments</text>
 
   <rect x="3360" y="1390" width="565" height="280" rx="38" class="external" />
   <text x="3410" y="1460" class="kind">EXTERNAL SYSTEM</text>
@@ -63,10 +63,10 @@
   <text x="3410" y="1620" class="detail">Delivers messages</text>
 
   <path d="M550 1120 H900" class="line" />
-  <text x="585" y="1070" class="edge-label">Uses</text>
+  <text x="685" y="1070" class="edge-label">Uses</text>
   <path d="M1850 890 H2200" class="line" />
   <text x="1880" y="835" class="edge-label">Reads and writes</text>
-  <path d="M1850 1160 H3060 V930 H3360" class="line" />
+  <path d="M1850 1160 H3360" class="line" />
   <text x="2480" y="1110" class="edge-label">Requests payment</text>
   <path d="M1850 1290 H3000 V1530 H3360" class="line" />
   <text x="2430" y="1240" class="edge-label">Calls email provider</text>

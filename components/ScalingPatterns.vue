@@ -23,7 +23,7 @@ const byTopic = {
     { title: 'Cache repeat lookups', type: 'Implementation + architecture', condition: 'If results can be reused safely', before: ['Every call → provider'], after: ['Cache hit', 'Provider on miss'] },
     { title: 'Batch provider calls', type: 'Implementation', condition: 'If the provider accepts grouped work', before: ['Call', 'Call', 'Call'], after: ['One batch call'] },
     { title: 'Limit simultaneous calls', type: 'Implementation + operations', condition: 'If concurrent calls overload the provider', before: ['Too many calls at once'], after: ['Call limit', 'Provider'], afterMode: 'flow' },
-    { title: 'Defer optional calls', type: 'Architecture', condition: 'If the caller need not wait', before: ['Request waits'], after: ['Queue', 'Worker → provider'], afterMode: 'flow' },
+    { title: 'Add a queue for optional calls', type: 'Architecture', condition: 'If the caller need not wait', before: ['Request waits'], after: ['Queue', 'Worker → provider'], afterMode: 'flow' },
   ],
   workers: [
     { title: 'Add consumers', type: 'Infrastructure', condition: 'If jobs can run independently', before: ['One worker'], after: ['Worker A', 'Worker B', 'Worker C'] },
