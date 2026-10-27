@@ -25,7 +25,7 @@ The opening example assumes demand waiting behind the API: relieving its limit l
 Keep the theory and discussion to roughly **20 minutes**, then introduce the case at slide 14. This is facilitator guidance, not an agenda slide. Every slide in `resource-scaling.md` has presenter notes covering its core idea, why it appears there, a way to involve the room, and the bridge to the next idea.
 
 - **Slides 1–2 (about 2 min):** Establish rising demand, a reached limit, and visible symptoms.
-- **Slides 3–8 (about 6 min):** Introduce bigger and more, then explain each. On slide 6, pause on the false ending and click to reveal “NOT.” On slide 7, predict where the bottleneck moves. On slide 8, reveal the question, competing hypotheses, evidence, and implementation cause after starting from the observed symptom.
+- **Slides 3–8 (about 6 min):** Introduce bigger and more, then explain each. On slide 6, pause on the false ending and click to reveal the full-screen Samara still. On slide 7, predict where the bottleneck moves. On slide 8, reveal the question, competing hypotheses, evidence, and implementation cause after starting from the observed symptom.
 - **Slides 9–12 (about 8–10 min):** Work through API, database, external-service, and worker/queue patterns. Reveal each option, ask which evidence would support it, and discuss its prerequisite or trade-off. Spend longest on the database slide.
 - **Slide 13 (about 1 min):** Use the toolbox as a recap of the options just explored.
 - **Slides 14–17 (about 4 min):** Introduce Big Bands Ticket Gatekeeper and zoom from C1 context to C2 containers and C3 components.
@@ -65,7 +65,7 @@ The [host guide](host/README.md) introduces a C4-style Web/API component view an
 
 - **One larger node / several replicas:** capacity and division are different moves.
 - **Bigger / more:** matching cards name the two directions before the detailed diagrams.
-- **False ending:** “bigger or more” feels complete until the landscape exposes another limit.
+- **False ending:** “bigger or more” feels complete, then one click cuts to a full-screen Samara still before the bottleneck slide opens the second half.
 - **Component versus system capacity:** more API throughput may help only until shared database capacity limits completed work.
 - **One current bottleneck:** name it at the API, then move the orange label to the database on click.
 - **Symptom before diagnosis:** a slow API response starts a progressively revealed investigation: observation, question, hypotheses, evidence, then the implementation cause. It does not identify the bottleneck by itself.
@@ -87,7 +87,7 @@ Each decorated slide selects cutouts with a `halloween: [...]` frontmatter list 
 3. Two ways to add capacity — introduce bigger and more.
 4. Vertical scaling — one node gets more headroom.
 5. Horizontal scaling — divide work across instances.
-6. That's scaling. Thanks, everyone. — false ending; click to reveal “NOT.”
+6. That's scaling. Thanks, everyone. — false ending; click to reveal a full-screen Samara still.
 7. The bottleneck — define the current limit; reveal the database bottleneck and distinguish component from system capacity.
 8. Investigating slow responses — observe the symptom, then reveal the question, hypotheses, evidence, and implementation cause.
 9. API: when the request path is hot — local capacity, replicas, cheaper requests, and limits on simultaneous calls.
