@@ -247,7 +247,7 @@ halloween: [gargoyle-top-right]
 Core idea: When a provider is limiting the path, reducing avoidable calls, grouping calls, limiting simultaneous calls, or moving optional work out of the request path may help. None grants unlimited provider capacity.
 Why here: External latency was one of the diagnostic hypotheses. These options connect that hypothesis to implementation and architecture changes.
 Facilitate: Reveal each pattern and ask what the provider contract permits. Cache freshness, batch support, rate limits, and whether the caller may receive an asynchronous result are assumptions to verify. A limit on simultaneous calls can increase reliability while reducing admitted throughput.
-Build toward: Deferring work creates a worker and queue path, whose capacity and ownership now need their own diagnosis.
+Build toward: Adding a queue introduces a worker path, whose capacity and ownership now need their own diagnosis.
 Sources: https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching ; https://learn.microsoft.com/en-us/azure/architecture/patterns/throttling
 -->
 
