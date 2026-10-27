@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const publicAssetUrl = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
+</script>
+
 <template>
   <div class="slidev-layout lunchlab" :class="{ 'scaling-deck': $frontmatter.scalingTheme }">
     <div class="lunchlab-slide text-slide" :class="{ 'closing-slide': $frontmatter.closing }">
@@ -14,7 +18,7 @@
         v-if="$frontmatter.revealImage"
         v-click="1"
         class="scaling-fullscreen-reveal"
-        :src="$frontmatter.revealImage"
+        :src="publicAssetUrl($frontmatter.revealImage)"
         :alt="$frontmatter.revealImageAlt || ''"
       />
     </div>
