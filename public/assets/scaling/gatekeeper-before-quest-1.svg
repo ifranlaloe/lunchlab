@@ -56,8 +56,8 @@
   <path d="M1190 790 H1600" class="line" />
   <path d="M1190 1110 H1680" class="line" />
   <path d="M1895 1200 V1400" class="line" />
-  <path d="M2100 790 H2250 V1055 H2390" class="line" />
-  <path d="M2110 1110 H2260 V1165 H2390 M2110 1490 H3550" class="line" />
+  <path d="M2100 790 H2390" class="line" />
+  <path d="M2110 1110 H2690 V880 M2110 1490 H3550" class="line" />
   <path d="M1895 1580 V1690 M2110 1780 H3550" class="line" />
 
   <rect x="70" y="1020" width="330" height="180" rx="27" class="person" />
@@ -82,10 +82,10 @@
   <text x="1716" y="1512" class="node-title">Checkout</text>
   <text x="1716" y="1558" class="node-detail">Purchase + payment</text>
 
-  <rect x="2390" y="1020" width="600" height="210" rx="27" class="owned" />
-  <text x="2426" y="1070" class="node-kind">CONTAINER · DATA STORE</text>
-  <text x="2426" y="1132" class="node-title">Primary database</text>
-  <text x="2426" y="1178" class="node-detail">Availability + seat holds</text>
+  <rect x="2390" y="700" width="600" height="180" rx="27" class="owned" />
+  <text x="2426" y="750" class="node-kind">CONTAINER · DATA STORE</text>
+  <text x="2426" y="812" class="node-title">Primary database</text>
+  <text x="2426" y="858" class="node-detail">Availability + seat holds</text>
   <rect x="1680" y="1690" width="430" height="180" rx="27" class="component" />
   <text x="1716" y="1740" class="node-kind">COMPONENT</text>
   <text x="1716" y="1802" class="node-title">Email service</text>
@@ -102,8 +102,8 @@
   <text x="520" y="1065" class="edge-label">HTTPS</text>
   <text x="1270" y="764" class="edge-label">routes browse</text>
   <text x="1300" y="1082" class="edge-label">routes reservation</text>
-  <text x="2240" y="745" class="edge-label">reads event data</text>
-  <text x="2170" y="1250" class="edge-label">writes hold</text>
+  <text x="2240" y="665" class="edge-label">reads event data</text>
+  <text x="2240" y="1065" class="edge-label">writes hold</text>
   <text x="1930" y="1325" class="edge-label">on success</text>
   <text x="2730" y="1465" class="edge-label">requests payment</text>
   <text x="1600" y="1650" class="edge-label">after purchase</text>
