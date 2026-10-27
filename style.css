@@ -203,9 +203,7 @@
 .lunchlab .scaling-finish-setup { display: grid; justify-items: center; gap: 24px; }
 .lunchlab .scaling-finish-setup p { font-size: 28px; }
 .lunchlab .scaling-finish-setup h1 { max-width: none; font-size: 72px; line-height: 1.12; }
-.lunchlab .scaling-finish-reveal { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 14px; }
-.lunchlab .scaling-finish-not { color: #bc541a; font-size: 200px; font-weight: 800; letter-spacing: -.06em; line-height: .9; }
-.lunchlab .scaling-finish-reveal p { color: var(--text); font-size: 30px; font-weight: 700; }
+.scaling-deck .scaling-fullscreen-reveal { position: absolute; inset: 0; z-index: 4; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .lunchlab .scaling-diagnosis { display: grid; align-content: center; gap: 14px; width: min(1100px, 100%); min-height: 450px; margin: auto; }
 .lunchlab .scaling-diagnosis-step { display: grid; grid-template-columns: 155px minmax(0, 1fr); align-items: center; gap: 24px; min-height: 83px; padding: 10px 0 12px; border-bottom: 2px solid #c8d7ef; }
 .lunchlab .scaling-diagnosis-step span { color: var(--accent); font-size: 16px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
@@ -272,8 +270,7 @@
 .scaling-deck .scaling-tag { border-color: #ccb8d5; background: #fff; }
 .scaling-deck .scaling-diagnosis-step { border-color: #d7c7db; }
 .scaling-deck .scaling-diagnosis-step.observation strong,
-.scaling-deck .scaling-diagnosis-step.question span,
-.scaling-deck .scaling-finish-not { color: #ff4200; }
+.scaling-deck .scaling-diagnosis-step.question span { color: #ff4200; }
 .scaling-deck .scaling-diagnosis-step.question { border-color: #ff4200; }
 .scaling-deck .scaling-case-note { color: #59417b; }
 .scaling-deck .gatekeeper-intro-slide,

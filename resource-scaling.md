@@ -125,6 +125,8 @@ title: "That's scaling. Thanks, everyone."
 closing: true
 scalingTheme: true
 halloween: [mask-right, zombie-bottom-left]
+revealImage: /assets/scaling/samara-the-ring.jpg
+revealImageAlt: Samara stands before a well in a misty blue scene from The Ring.
 ---
 
 <div class="scaling-finish">
@@ -132,17 +134,14 @@ halloween: [mask-right, zombie-bottom-left]
     <p>One bigger machine. Or more machines.</p>
     <h1>That's scaling.<br>Thanks, everyone.</h1>
   </div>
-  <div v-click="1" class="scaling-finish-reveal">
-    <div class="scaling-finish-not">NOT</div>
-    <p>Those were only two ways to add capacity.</p>
-  </div>
 </div>
 
 <!--
 Core idea: Vertical and horizontal scaling add capacity, but they do not settle what the workload actually needs.
-Why here: Let the familiar model feel complete for a moment, then expose the assumption behind it.
-Facilitate: Deliver the false ending deadpan, pause for two or three seconds, then click once. Clarify immediately that bigger and more are valid choices; the point is that capacity is only one class of response.
+Why here: Let the familiar model feel complete for a moment, then cut to a full-screen Samara still before opening the second half.
+Facilitate: Deliver the false ending deadpan, pause for two or three seconds, then click once. Let the image mark the turn before clarifying that bigger and more are valid choices; capacity is only one class of response.
 Build toward: Show why increasing one component's capacity does not settle the capacity of the whole system.
+Image source: https://www.themoviebuff.net/wp-content/uploads/2022/06/thering1-1536x768.jpg
 -->
 
 ---
@@ -160,7 +159,7 @@ halloween: [skeleton-bottom-right]
 
 <!--
 Core idea: The bottleneck is the part currently limiting completed work. Component capacity can rise while system capacity remains limited by another component.
-Why here: Give the “NOT” reveal immediate causal evidence and a name for the limit before opening the wider toolbox. The landscape will return later with a new constraint.
+Why here: Follow the full-screen image cut with causal evidence and a name for the limit before opening the wider toolbox. The landscape will return later with a new constraint.
 Facilitate: Let the room read the definition, then name the API as the current bottleneck. Ask what adding API replicas changes, wait for a prediction, then click. A larger API node could expose the same next limit. With enough waiting demand, more work can now reach the database, which may become the next bottleneck. Explain that system capacity means completed end-to-end work for this workload at an acceptable response time. Do not imply the API change had no benefit: throughput may rise until the database limit. Without waiting demand, extra API capacity would not itself increase database load.
 Build toward: The diagram supplied a bottleneck; in a real incident, we must first discover whether the slow API is doing work or waiting on something else.
 Source: https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out

@@ -10,6 +10,13 @@
           <div class="content"><slot /></div>
         </div>
       </div>
+      <img
+        v-if="$frontmatter.revealImage"
+        v-click="1"
+        class="scaling-fullscreen-reveal"
+        :src="$frontmatter.revealImage"
+        :alt="$frontmatter.revealImageAlt || ''"
+      />
     </div>
   </div>
 </template>
