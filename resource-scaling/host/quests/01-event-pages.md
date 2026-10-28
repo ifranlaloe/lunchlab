@@ -9,11 +9,13 @@ In the proposal table, `*` marks the preferred host route.
 
 Read aloud with slide 18's participant question board visible, after introducing the platform on slide 14 and its C1–C3 starting architecture on slides 15–17:
 
-> A major artist's Ziggo Dome tickets went on sale at 12:00. At 12:01, event pages are slow and some requests time out. Users still need to browse, reserve, and purchase. What would you like to inspect?
+> **Background.** A major artist's Ziggo Dome sale opens at 12:00, and many users arrive together. They use the event page to check the artist, date, venue, and show details before moving on to choose seats.
+>
+> **Incident.** At 12:01, that event page is slow and some visits time out. Users cannot reliably read the show details or reach seat selection just as tickets go on sale. What would you inspect first?
 
 ## Host-only cause
 
-Many users request the same event page. Every request repeats reads of the same **stable event details**, which dominate the measured catalog read load. Live seat availability is a separate read and must remain accurate at reservation. Database read I/O and connection waiting now limit completed page requests. API CPU has headroom. Reservation writes and payment are not the current limit.
+Many users request the same event page. Every request repeats reads of the same **stable event details**, which dominate the measured catalog read load. “Choose seats” makes a separate live availability request; availability is not part of the event-page request and must remain accurate at reservation. Database read I/O and connection waiting now limit completed page requests. API CPU has headroom. Reservation writes and payment are not the current limit.
 
 ## Questions participants may ask
 
@@ -21,7 +23,8 @@ Give the observation first. Let participants ask for evidence before naming the 
 
 | Component | Participant question | Host answer |
 | --- | --- | --- |
-| Event catalog | Are event pages the slow path after 12:00? | Event pages slow and time out. Many users browse the same event; checkout traffic is smaller. |
+| Event catalog | Is only the on-sale artist's page affected? | That page is slowest and sometimes times out. Other event pages are slower too, but usually still load. Many users browse the same on-sale event; checkout traffic is smaller. |
+| Event catalog | Does loading the event page also load seat availability? | No. “Choose seats” opens a separate availability view that reads current seat data. A seat may be taken before the user reserves it; the primary database makes the final decision. |
 | Event catalog | Where does a slow event-page request spend its time? | Most time is database waiting, not API computation or payment. |
 | Event catalog | What work creates the repeated read pressure? | Every page request rereads the same stable event details, such as name, venue, and date, from the primary database. No result is reused; live seat availability is a separate read. |
 | Web/API | Is the API out of CPU or memory? | Both have headroom. Slow requests spend much of their time waiting. |

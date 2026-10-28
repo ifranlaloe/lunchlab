@@ -15,7 +15,7 @@ Start every group with **Quest 1**. Timebox each quest to roughly 5–8 minutes,
 
 ## Starting architecture
 
-**Users → Web/API → one primary database.** Checkout also calls a payment provider. Below Checkout, one internal Email service component renders confirmations and calls the external Email provider. It runs background work after purchase with two rendering slots; there is no separate durable queue or worker application yet. There is no event-catalog cache, read replica, or waiting room at the start. A seat must never be sold twice; the primary database makes the authoritative reservation decision.
+**Users → Web/API → one primary database.** The event page shows event details; “Choose seats” opens a separate live availability view. Checkout also calls a payment provider. Below Checkout, one internal Email service component renders confirmations and calls the external Email provider. It runs background work after purchase with two rendering slots; there is no separate durable queue or worker application yet. There is no event-catalog cache, read replica, or waiting room at the start. A seat must never be sold twice; the primary database makes the authoritative reservation decision.
 
 ### C1 — system context
 
